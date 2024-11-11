@@ -8,6 +8,8 @@
 import Navbar from "@/components/Navbar";
 import MainBanner from "@/components/MainBanner";
 import PropertySection from "@/components/PropertySection";
+import PackageSection from "@/components/PackageSection";
+import FirewoodSection from "@/components/FirewoodSection";
 
 export default function Home() {
   return (
@@ -24,6 +26,8 @@ export default function Home() {
       <Navbar />
       <MainBanner />
       <PropertySection />
+      <PackageSection />
+      <FirewoodSection />
       {/* <AboutUs />
       <LawnPrograms />
       <FirewoodCTA />

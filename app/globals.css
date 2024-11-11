@@ -306,3 +306,228 @@
   }
 }
 /* END OF CODE FOR PROPERTY SECTION */
+
+/* CODE FOR PACKAGESECTION.tsx */
+/* Package Section Styles */
+.package-section {
+  padding: 5rem 0;
+  background-color: #fff;
+}
+
+.package-content {
+  display: flex;
+  gap: 4rem;
+}
+
+.package-info {
+  flex: 1;
+}
+
+.package-info h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.package-info p {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.package-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.tab-button {
+  padding: 1rem 2rem;
+  border: none;
+  background: #f5f5f5;
+  color: #666;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  background: linear-gradient(45deg, #28a745, #218838);
+  color: white;
+}
+
+.package-details {
+  flex: 1;
+  position: relative;
+}
+
+.package-card {
+  display: none;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+}
+
+.package-card.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in;
+}
+
+.card-header {
+  background: linear-gradient(45deg, #28a745, #218838);
+  color: white;
+  padding: 2rem;
+  border-radius: 8px 8px 0 0;
+}
+
+.card-header h2 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.card-body {
+  padding: 2rem;
+  background: #f8f9fa;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0;
+}
+
+.feature-list li {
+  padding: 0.5rem 0;
+  color: #666;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.feature-list li::before {
+  content: "✓";
+  color: #28a745;
+  font-weight: bold;
+}
+
+.quote-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: linear-gradient(45deg, #28a745, #218838);
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.quote-button:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .package-content {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .package-info {
+    text-align: center;
+  }
+  
+  .package-tabs {
+    justify-content: center;
+  }
+}
+
+
+/* END OF CODE FOR PACKAGESECTION.tsx */
+
+
+/* CODE FOR FIREWOODSECTION.tsx */
+/* Firewood Section Styles */
+/* Firewood Section Styles */
+.firewood-section {
+  padding: 2.5rem 0;
+}
+
+.firewood-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(90deg, #7ab83c 0%, #3cc99c 100%);
+  padding: 2rem 2.5rem;
+  border-radius: 8px;
+  color: white;
+  gap: 2rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.banner-content {
+  flex: 1;
+}
+
+.banner-content h3 {
+  font-size: 1.75rem;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: 600;
+}
+
+.banner-content p {
+  /* margin: 0; */
+  font-size: 1.1rem;
+  opacity: 0.9;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.banner-action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.order-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: white;
+  color: #333;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background: #f8f9fa;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .firewood-banner {
+    flex-direction: column;
+    text-align: center;
+    
+  }
+
+  .banner-action {
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+}
+/* END OF CODE FOR FIREWOODSECTION.tsx */
