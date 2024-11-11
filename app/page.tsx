@@ -1,5 +1,5 @@
 // Move from components/page.tsx to app/page.tsx
-import Image from "next/image";
+//import Image from "next/image";
 // import MainBanner from "@/components/MainBanner";
 // import AboutUs from "@/components/AboutUs";
 // import LawnPrograms from "@/components/LawnPrograms";
