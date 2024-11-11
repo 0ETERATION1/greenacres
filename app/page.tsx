@@ -6,6 +6,7 @@
 // import FirewoodCTA from "@/components/FirewoodCTA";
 // import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import MainBanner from "@/components/MainBanner";
 
 export default function Home() {
   return (
@@ -20,8 +21,8 @@ export default function Home() {
       </div> */}
 
       <Navbar />
-      {/* <MainBanner />
-      <AboutUs />
+      <MainBanner />
+      {/* <AboutUs />
       <LawnPrograms />
       <FirewoodCTA />
       <Footer /> */}
