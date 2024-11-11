@@ -7,6 +7,7 @@
 // import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import MainBanner from "@/components/MainBanner";
+import PropertySection from "@/components/PropertySection";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
 
       <Navbar />
       <MainBanner />
+      <PropertySection />
       {/* <AboutUs />
       <LawnPrograms />
       <FirewoodCTA />
