@@ -10,6 +10,7 @@ import MainBanner from "@/components/MainBanner";
 import PropertySection from "@/components/PropertySection";
 import PackageSection from "@/components/PackageSection";
 import FirewoodSection from "@/components/FirewoodSection";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -28,6 +29,7 @@ export default function Home() {
       <PropertySection />
       <PackageSection />
       <FirewoodSection />
+      <Footer />
       {/* <AboutUs />
       <LawnPrograms />
       <FirewoodCTA />
