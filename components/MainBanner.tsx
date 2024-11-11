@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 // Import additional Swiper styles if needed
 import "swiper/css/effect-fade";
