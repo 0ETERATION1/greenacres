@@ -93,14 +93,34 @@
 .main-banner {
   position: relative;
   width: 100%;
-  height: 70%; /* Full viewport height */
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  /* position: relative;
+  width: 100%;
+  height: 70%; 
   background-image: url('/assets/images/bg/pattern/beautifulTurf.jpg');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
   display: flex;
   align-items: center;
-  padding: 0 0%;
+  padding: 0 0%; */
+}
+
+.banner-background {
+  object-fit: cover;
+  z-index: 0;
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1;
 }
 
 .main-banner::before {
