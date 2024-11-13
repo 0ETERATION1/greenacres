@@ -1,0 +1,58 @@
+.footer {
+    width: 100%;
+    border-top: 1px solid #eee;
+  }
+  
+  .contactInfo {
+    color: #666;
+  }
+  
+  .contactLink {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .contactLink:hover {
+    color: #28a745;
+  }
+  
+  .quickLinksContainer {
+    text-align: right; /* Aligns the heading and list to the right */
+  }
+  
+  .quickLinks {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .quickLinks li {
+    margin-bottom: 0.5rem;
+  }
+  
+  .quickLinks a {
+    color: #666;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .quickLinks a:hover {
+    color: #28a745;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .footer .row > div {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+    
+    .footer .row > div:last-child {
+      margin-bottom: 0;
+    }
+    
+    .quickLinksContainer {
+      text-align: center;
+    }
+  }
