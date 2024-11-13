@@ -13,7 +13,7 @@ export default function FirewoodSection() {
             </p>
             <div className="banner-action">
               <Link href="/firewood" className="fire-order-button">
-                Order now! 🔥 🪵
+                Order now! 🔥🪵
               </Link>
             </div>
           </div>
