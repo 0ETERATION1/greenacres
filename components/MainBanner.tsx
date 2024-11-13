@@ -23,7 +23,7 @@ export default function MainBanner() {
           Mowing, Fertilizer & Weed control. We got you covered.
         </h2>
         <Link href="/contact" className="cta-button">
-          Get a Free Quote!
+          Get a Free Quote! 🌳
         </Link>
       </div>
     </section>

@@ -496,7 +496,7 @@
   justify-content: flex-end;
 }
 
-.order-button {
+.fire-order-button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background: white;
@@ -508,7 +508,7 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.order-button:hover {
+.fire-order-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   background: #f8f9fa;
@@ -525,6 +525,7 @@
   .banner-action {
     justify-content: center;
     margin-top: 1.5rem;
+    
   }
 }
 /* END OF CODE FOR FIREWOODSECTION.tsx */

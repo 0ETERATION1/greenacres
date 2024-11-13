@@ -11,11 +11,11 @@ export default function FirewoodSection() {
               We deliver a 1/4 of a cord and up. Smaller quantities are
               available for pickup!
             </p>
-          </div>
-          <div className="banner-action">
-            <Link href="/firewood" className="order-button">
-              Order now!
-            </Link>
+            <div className="banner-action">
+              <Link href="/firewood" className="fire-order-button">
+                Order now! 🔥 🪵
+              </Link>
+            </div>
           </div>
         </div>
       </div>
