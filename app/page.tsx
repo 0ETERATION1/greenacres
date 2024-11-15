@@ -26,10 +26,11 @@ export default function Home() {
 
       <Navbar />
       <MainBanner />
-      <PropertySection />
+      {/* <PropertySection />
       <PackageSection />
       <FirewoodSection />
-      <Footer />
+      <Footer /> */}
+
       {/* <AboutUs />
       <LawnPrograms />
       <FirewoodCTA />
