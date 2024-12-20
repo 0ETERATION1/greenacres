@@ -38,8 +38,8 @@ export default function Navbar() {
           </div>
 
           {/* Center: Navigation Links */}
-          <NavigationMenu className="hidden md:flex flex-1">
-            <NavigationMenuList className="w-full flex items-center justify-evenly">
+          <NavigationMenu className="hidden md:flex flex-1 justify-center">
+            <NavigationMenuList className="flex items-center space-x-6">
               <NavigationMenuItem>
                 <Link href="/services" legacyBehavior passHref>
                   <NavigationMenuLink className="nav-link">
