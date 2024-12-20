@@ -55,13 +55,30 @@
   color: #333;
   text-decoration: none;
   padding: 0.5rem 1rem;
-  transition: color 0.3s ease;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
 }
 
 .nav-link:hover {
   color: #28a745;
 }
 
+.nav-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 50%;
+  background: #28a745;
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  width: calc(100% - 2rem); /* Accounts for the padding */
+}
 
 .btn-grad {
   background: linear-gradient(45deg, #28a745, #218838);
