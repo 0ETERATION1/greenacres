@@ -26,7 +26,7 @@ export default function Navbar() {
           <div className="w-[200px]">
             <NavigationMenu>
               <NavigationMenuList>
-                <NavigationMenuItem className="pl-0">
+                <NavigationMenuItem className="pl-4">
                   <Link href="/" legacyBehavior passHref>
                     <NavigationMenuLink className="navbar-logo -ml-4">
                       <div className="logo" />
