@@ -11,20 +11,13 @@ import {
 } from "@/components/ui/navigation-menu";
 
 export default function Navbar() {
-  const { scrollDirection, scrollPosition } = useScrollPosition();
+  const { scrollPosition } = useScrollPosition();
 
   return (
     <div
       className={cn(
-        "fixed w-full z-50 transition-all duration-300",
-        {
-          "translate-y-0": scrollDirection === "up" || scrollPosition < 100,
-          "-translate-y-full":
-            scrollDirection === "down" && scrollPosition > 100,
-        },
-        scrollPosition > 0
-          ? "bg-white/95 backdrop-blur-sm shadow-md"
-          : "bg-transparent"
+        "fixed w-full z-50 transition-all duration-300 border-b bg-white/95 backdrop-blur-sm",
+        scrollPosition > 0 ? "shadow-md" : ""
       )}
     >
       <div className="container mx-auto">
