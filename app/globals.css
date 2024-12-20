@@ -635,3 +635,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  
+  body {
+    @apply min-h-screen w-full;
+  }
+}

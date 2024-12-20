@@ -8,26 +8,17 @@
 import Navbar from "@/components/Navbar";
 import MainBanner from "@/components/MainBanner";
 import PropertySection from "@/components/PropertySection";
-import PackageSection from "@/components/PackageSection";
+// import PackageSection from "@/components/PackageSection";
 import FirewoodSection from "@/components/FirewoodSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <>
-      {/* <div className="preloader">
-        <Image
-          src="/assets/images/preloader.svg"
-          alt="Pre-loader"
-          width={100}
-          height={100}
-        />
-      </div> */}
-
       <Navbar />
       <MainBanner />
       <PropertySection />
-      <PackageSection />
+      {/* <PackageSection /> */}
       <FirewoodSection />
       <Footer />
 
