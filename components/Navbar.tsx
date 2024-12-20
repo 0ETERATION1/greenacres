@@ -21,14 +21,14 @@ export default function Navbar() {
       )}
     >
       <div className="container mx-auto px-2">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between h-20">
           {/* Left: Logo */}
           <div className="w-[200px]">
             <NavigationMenu>
               <NavigationMenuList>
-                <NavigationMenuItem className="pl-4">
+                <NavigationMenuItem className="pl-0">
                   <Link href="/" legacyBehavior passHref>
-                    <NavigationMenuLink className="navbar-logo -ml-4">
+                    <NavigationMenuLink className="navbar-logo">
                       <div className="logo" />
                     </NavigationMenuLink>
                   </Link>
@@ -38,8 +38,8 @@ export default function Navbar() {
           </div>
 
           {/* Center: Navigation Links */}
-          <NavigationMenu className="flex-1 flex justify-center">
-            <NavigationMenuList className="flex items-center gap-8">
+          <NavigationMenu className="hidden md:flex flex-1 justify-center">
+            <NavigationMenuList className="flex items-center space-x-8">
               <NavigationMenuItem>
                 <Link href="/services" legacyBehavior passHref>
                   <NavigationMenuLink className="nav-link">
