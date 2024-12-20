@@ -1,54 +1,83 @@
-import Link from "next/link";
-import { NavItem } from "@/types";
+"use client";
 
-const navItems: NavItem[] = [
-  { label: "About", href: "/about" },
-  { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
-  { label: "Firewood", href: "/firewood" },
-  { label: "Contact", href: "/contact" },
-  {
-    label: "Customer Login",
-    href: "https://secure.copilotcrm.com/client/login/portal/423",
-    //isButton: true,
-  },
-];
+import Link from "next/link";
+import { useScrollPosition } from "@/hooks/useScrollPosition";
+import { cn } from "@/lib/utils";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuLink,
+} from "@/components/ui/navigation-menu";
 
 export default function Navbar() {
+  const { scrollDirection, scrollPosition } = useScrollPosition();
+
   return (
-    <header className="header-static navbar-sticky navbar-light">
-      <nav className="navbar navbar-expand-lg">
-        <div className="container">
-          <Link href="/" className="navbar-logo">
-            <div className="logo" aria-label="Green Acres Landscaping"></div>
-          </Link>
+    <div
+      className={cn(
+        "fixed w-full z-50 transition-all duration-300",
+        {
+          "translate-y-0": scrollDirection === "up" || scrollPosition < 100,
+          "-translate-y-full":
+            scrollDirection === "down" && scrollPosition > 100,
+        },
+        scrollPosition > 0
+          ? "bg-white/95 backdrop-blur-sm shadow-md"
+          : "bg-transparent"
+      )}
+    >
+      <div className="container mx-auto">
+        <NavigationMenu className="w-full">
+          <NavigationMenuList className="w-full flex justify-between px-4">
+            {/* Logo */}
+            <NavigationMenuItem>
+              <Link href="/" legacyBehavior passHref>
+                <NavigationMenuLink className="navbar-logo">
+                  <div className="logo" />
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
 
-          {/* <button
-            className="navbar-toggler ml-auto"
-            type="button"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button> */}
-
-          <div className="collapse navbar-collapse" id="navbarCollapse">
-            <ul className="navbar-nav ml-auto">
-              {navItems.map((item, index) => (
-                <li key={index} className="nav-item dropdown">
-                  <Link
-                    href={item.href}
-                    className={`nav-link ${
-                      item.isButton ? "btn btn-grad" : ""
-                    }`}
+            {/* Navigation Items */}
+            <div className="flex items-center gap-6">
+              <NavigationMenuItem>
+                <Link href="/services" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      "nav-link",
+                      scrollPosition > 0 ? "text-foreground" : "text-white"
+                    )}
                   >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+                    Services
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link href="/firewood" legacyBehavior passHref>
+                  <NavigationMenuLink
+                    className={cn(
+                      "nav-link",
+                      scrollPosition > 0 ? "text-foreground" : "text-white"
+                    )}
+                  >
+                    Firewood
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+
+              <NavigationMenuItem>
+                <Link href="/contact" legacyBehavior passHref>
+                  <NavigationMenuLink className="btn-grad">
+                    Contact Us
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </div>
+          </NavigationMenuList>
+        </NavigationMenu>
+      </div>
+    </div>
   );
 }
