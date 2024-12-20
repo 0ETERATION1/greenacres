@@ -38,7 +38,7 @@ export default function Navbar() {
           </div>
 
           {/* Center: Navigation Links */}
-          <NavigationMenu>
+          <NavigationMenu className="flex-1 flex justify-center">
             <NavigationMenuList className="flex items-center gap-8">
               <NavigationMenuItem>
                 <Link href="/services" legacyBehavior passHref>
@@ -47,6 +47,7 @@ export default function Navbar() {
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <Link href="/about" legacyBehavior passHref>
                   <NavigationMenuLink className="nav-link">
@@ -54,6 +55,7 @@ export default function Navbar() {
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <Link href="/portfolio" legacyBehavior passHref>
                   <NavigationMenuLink className="nav-link">
@@ -61,6 +63,7 @@ export default function Navbar() {
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
+
               <NavigationMenuItem>
                 <Link href="/firewood" legacyBehavior passHref>
                   <NavigationMenuLink className="nav-link">
@@ -72,21 +75,20 @@ export default function Navbar() {
           </NavigationMenu>
 
           {/* Right: Contact Buttons */}
-          <div className="flex items-center gap-4 shrink-0">
+          <div className="flex items-center gap-4 pr-4">
             <Link
               href="/contact"
               className="
-                inline-block px-6 py-3
+                inline-block px-4 py-2
                 bg-gradient-to-r from-green-600 to-green-700
                 text-white
-                rounded-2xl
+                rounded-md
                 transition-transform duration-300 ease-in-out
                 hover:-translate-y-0.5
                 shadow-sm
                 whitespace-nowrap
-                w-[180px]
+                w-[140px]
                 text-center
-                text-xl
               "
             >
               Sign In
@@ -95,21 +97,21 @@ export default function Navbar() {
             <Link
               href="/contact"
               className="
-                inline-block px-6 py-3
-                bg-gradient-to-r from-green-600 to-green-700
-                text-white
-                rounded-2xl
+                inline-block px-4 py-2
+                bg-white
+                text-black
+                rounded-md
                 transition-transform duration-300 ease-in-out
                 hover:-translate-y-0.5
-                shadow-sm
-                whitespace-nowrap
-                w-[180px]
+                shadow-md
+                w-[140px]
                 text-center
-                flex items-center justify-center gap-2
-                text-xl
+                
               "
+              style={{ fontWeight: 500 }}
             >
-              <span>Free Quote!</span> <span className="text-2xl">🌳</span>
+              Free Quote! 🌳
+              {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
             </Link>
           </div>
         </div>
