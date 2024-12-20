@@ -20,56 +20,99 @@ export default function Navbar() {
         scrollPosition > 0 ? "shadow-md" : ""
       )}
     >
-      <div className="container mx-auto">
-        <NavigationMenu className="w-full">
-          <NavigationMenuList className="w-full flex justify-between px-4">
-            {/* Logo */}
+      <div className="container mx-auto flex justify-between items-center">
+        {/* Left: Logo */}
+        <div className="w-[200px]">
+          <NavigationMenu>
+            <NavigationMenuList>
+              <NavigationMenuItem className="pl-0">
+                <Link href="/" legacyBehavior passHref>
+                  <NavigationMenuLink className="navbar-logo -ml-4">
+                    <div className="logo" />
+                  </NavigationMenuLink>
+                </Link>
+              </NavigationMenuItem>
+            </NavigationMenuList>
+          </NavigationMenu>
+        </div>
+
+        {/* Center: Navigation Links */}
+        <NavigationMenu className="flex-1 flex justify-center">
+          <NavigationMenuList className="flex items-center gap-8">
             <NavigationMenuItem>
-              <Link href="/" legacyBehavior passHref>
-                <NavigationMenuLink className="navbar-logo">
-                  <div className="logo" />
+              <Link href="/services" legacyBehavior passHref>
+                <NavigationMenuLink className="nav-link">
+                  Services
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
 
-            {/* Navigation Items */}
-            <div className="flex items-center gap-6">
-              <NavigationMenuItem>
-                <Link href="/services" legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      "nav-link",
-                      scrollPosition > 0 ? "text-foreground" : "text-white"
-                    )}
-                  >
-                    Services
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/about" legacyBehavior passHref>
+                <NavigationMenuLink className="nav-link">
+                  About
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
 
-              <NavigationMenuItem>
-                <Link href="/firewood" legacyBehavior passHref>
-                  <NavigationMenuLink
-                    className={cn(
-                      "nav-link",
-                      scrollPosition > 0 ? "text-foreground" : "text-white"
-                    )}
-                  >
-                    Firewood
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/portfolio" legacyBehavior passHref>
+                <NavigationMenuLink className="nav-link">
+                  Portfolio
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
 
-              <NavigationMenuItem>
-                <Link href="/contact" legacyBehavior passHref>
-                  <NavigationMenuLink className="btn-grad">
-                    Contact Us
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </div>
+            <NavigationMenuItem>
+              <Link href="/firewood" legacyBehavior passHref>
+                <NavigationMenuLink className="nav-link">
+                  Firewood
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+
+        {/* Right: Contact Buttons */}
+        <div className="flex items-center gap-4 pr-4">
+          <Link
+            href="/contact"
+            className="
+              inline-block px-4 py-2
+              bg-gradient-to-r from-green-600 to-green-700
+              text-white
+              rounded-md
+              transition-transform duration-300 ease-in-out
+              hover:-translate-y-0.5
+              shadow-sm
+              whitespace-nowrap
+              w-[140px]
+              text-center
+            "
+          >
+            Sign In
+          </Link>
+
+          <Link
+            href="/contact"
+            className="
+              inline-block px-4 py-2
+              bg-white
+              text-black
+              rounded-md
+              transition-transform duration-300 ease-in-out
+              hover:-translate-y-0.5
+              shadow-md
+              w-[140px]
+              text-center
+              
+            "
+            style={{ fontWeight: 500 }}
+          >
+            Free Quote! 🌳
+            {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
+          </Link>
+        </div>
       </div>
     </div>
   );
