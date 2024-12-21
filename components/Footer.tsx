@@ -3,7 +3,7 @@ import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="duration-300 border-b bg-white/95 backdrop-blur-sm">
+    <footer className="bg-white/95 backdrop-blur-md text-gray-800 py-6 shadow-inner">
       <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
           {/* Company Information */}
@@ -31,7 +31,7 @@ export default function Footer() {
               </a>
             </address>
             <div className="mt-4">
-              <h4 className="font-semibold">Office Hours</h4>
+              <h4 className="font-semibold">Hours</h4>
               <p>Mon - Fri: 09:00 - 21:00</p>
               <p>Sat & Sun: Closed</p>
             </div>
