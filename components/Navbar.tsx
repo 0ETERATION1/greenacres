@@ -111,7 +111,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/contact"
+              href="/quotePage"
               className="
                 inline-block px-4 py-2
                 bg-white
@@ -120,6 +120,7 @@ export default function Navbar() {
                 transition-transform duration-300 ease-in-out
                 hover:-translate-y-0.5
                 shadow-md
+                whitespace-nowrap
                 w-[140px]
                 text-center
                 
