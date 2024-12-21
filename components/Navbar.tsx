@@ -73,17 +73,17 @@ export default function Navbar() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Link href="/contact" legacyBehavior passHref>
+                <Link href="/blog" legacyBehavior passHref>
                   <NavigationMenuLink className="nav-link">
-                    Contact
+                    Blog
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Link href="/blog" legacyBehavior passHref>
+                <Link href="/contact" legacyBehavior passHref>
                   <NavigationMenuLink className="nav-link">
-                    Blog
+                    Contact
                   </NavigationMenuLink>
                 </Link>
               </NavigationMenuItem>

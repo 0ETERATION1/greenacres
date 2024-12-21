@@ -8,6 +8,13 @@
   text-decoration: none;
 }
 
+.custom-image {
+  width: 400px;  /* Desired width */
+  height: 368px; /* Desired height */
+  object-fit: cover; 
+
+}
+
 .logo {
   background-image: url('/assets/images/greenacres_2/Logo.png');
   background-size: contain;
