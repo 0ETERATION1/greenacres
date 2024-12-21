@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="duration-300 border-b bg-white/95 backdrop-blur-sm">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8  justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
           {/* Company Information */}
           <div>
             {/* <h3 className="text-xl font-bold mb-4">Green Acres</h3> */}
@@ -40,25 +40,27 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {["About", "Services", "Portfolio", "Firewood", "Contact"].map(
-                (link) => (
-                  <li key={link}>
-                    <Link
-                      href={`/${link.toLowerCase()}`}
-                      className="hover:underline"
-                    >
-                      {link}
-                    </Link>
-                  </li>
-                )
-              )}
+            <ul className="space-y-0 justify-items-center ">
+              {[
+                "Services",
+                "About",
+                "Portfolio",
+                "Firewood",
+                "Blog",
+                "Contact",
+              ].map((link) => (
+                <li key={link}>
+                  <Link href={`/${link.toLowerCase()}`} className="nav-link">
+                    {link}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           {/* Social Media Links */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
+            <h3 className="text-xl font-bold mb-4">Connect With Us!</h3>
             <div className="flex space-x-4">
               <a
                 href="https://facebook.com"
