@@ -40,7 +40,7 @@ export default function Footer() {
           {/* Quick Links */}
           <div>
             <h3 className="text-xl font-bold mb-4">Quick Links</h3>
-            <ul className="space-y-0 justify-items-center ">
+            <ul className="justify-items-center">
               {[
                 "Services",
                 "About",
@@ -59,14 +59,14 @@ export default function Footer() {
           </div>
 
           {/* Social Media Links */}
-          <div>
+          <div className="flex flex-col items-center">
             <h3 className="text-xl font-bold mb-4">Connect With Us!</h3>
-            <div className="flex space-x-4">
+            <div>
               <a
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-green-300"
+                className="nav-link"
               >
                 <Facebook size={24} />
                 <span className="sr-only">Facebook</span>
@@ -75,7 +75,7 @@ export default function Footer() {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-green-300"
+                className="nav-link"
               >
                 <Instagram size={24} />
                 <span className="sr-only">Instagram</span>
@@ -84,7 +84,7 @@ export default function Footer() {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-green-300"
+                className="nav-link"
               >
                 <Twitter size={24} />
                 <span className="sr-only">Twitter</span>
@@ -93,7 +93,7 @@ export default function Footer() {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-green-300"
+                className="nav-link"
               >
                 <Linkedin size={24} />
                 <span className="sr-only">LinkedIn</span>
