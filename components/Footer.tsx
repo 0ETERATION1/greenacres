@@ -1,85 +1,109 @@
-import React from "react";
-import Image from "next/image";
 import Link from "next/link";
-import styles from "./Footer.module.css";
+import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className={`${styles.footer} bg-light py-5`}>
-      <div className="container">
-        <div className="row justify-content-between">
-          {/* Logo and Company Info - Left */}
-          <div className="col-md-3 text-start">
-            <Link href="/" className="d-inline-block mb-3">
-              <Image
-                src="/assets/images/greenacres_2/Logo.png"
-                alt="Green Acres Landscaping"
-                width={150}
-                height={75}
-                priority
-              />
-            </Link>
-          </div>
-
-          {/* Contact Information - Center */}
-          <div className="col-md-4 text-center">
-            <div className={styles.contactInfo}>
-              <p className="mb-2">
-                14144 Travilah Road Rockville
-                <br />
-                Maryland 20850
-              </p>
-
-              <p className="mb-2">
-                <a href="tel:3012781049" className={styles.contactLink}>
-                  (301) 278-1049
-                </a>
-              </p>
-
-              <p className="mb-2">
-                <a
-                  href="mailto:info@greenacresdmv.com"
-                  className={styles.contactLink}
-                >
-                  info@greenacresdmv.com
-                </a>
-              </p>
-
-              <div className={styles.officeHours}>
-                <p className="mb-2">Office Hours</p>
-                <p className="mb-1">
-                  Mon - Fri: <span className="fw-bold">09:00 - 21:00</span>
-                </p>
-                <p className="mb-0">
-                  Sat & Sun: <span className="fw-bold">Closed</span>
-                </p>
-              </div>
+    <footer className="duration-300 border-b bg-white/95 backdrop-blur-sm">
+      <div className="container mx-auto px-4 py-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8  justify-items-center">
+          {/* Company Information */}
+          <div>
+            {/* <h3 className="text-xl font-bold mb-4">Green Acres</h3> */}
+            <p className="mb-4">
+              Green Acres is a landscape company, based in Montgomery County
+              Maryland. Founded over 30 years ago, we strive to continue
+              providing quality service for our clients.
+            </p>
+            <address className="not-italic">
+              14144 Travilah Road
+              <br />
+              Rockville Maryland 20850
+              <br />
+              <a href="tel:+13012781049" className="hover:underline">
+                (301) 278-1049
+              </a>
+              <br />
+              <a
+                href="mailto:info@greenacresdmv.com"
+                className="hover:underline"
+              >
+                info@greenacresdmv.com
+              </a>
+            </address>
+            <div className="mt-4">
+              <h4 className="font-semibold">Office Hours</h4>
+              <p>Mon - Fri: 09:00 - 21:00</p>
+              <p>Sat & Sun: Closed</p>
             </div>
           </div>
 
-          {/* Quick Links - Right */}
-          <div className="col-md-3">
-            <div className={styles.quickLinksContainer}>
-              <h6 className="mb-4">Quick Links</h6>
-              <ul className={styles.quickLinks}>
-                <li>
-                  <Link href="/about">About</Link>
-                </li>
-                <li>
-                  <Link href="/services">Services</Link>
-                </li>
-                <li>
-                  <Link href="/portfolio">Portfolio</Link>
-                </li>
-                <li>
-                  <Link href="/firewood">Firewood</Link>
-                </li>
-                <li>
-                  <Link href="/contact">Contact</Link>
-                </li>
-              </ul>
+          {/* Quick Links */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              {["About", "Services", "Portfolio", "Firewood", "Contact"].map(
+                (link) => (
+                  <li key={link}>
+                    <Link
+                      href={`/${link.toLowerCase()}`}
+                      className="hover:underline"
+                    >
+                      {link}
+                    </Link>
+                  </li>
+                )
+              )}
+            </ul>
+          </div>
+
+          {/* Social Media Links */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Connect With Us</h3>
+            <div className="flex space-x-4">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-300"
+              >
+                <Facebook size={24} />
+                <span className="sr-only">Facebook</span>
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-300"
+              >
+                <Instagram size={24} />
+                <span className="sr-only">Instagram</span>
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-300"
+              >
+                <Twitter size={24} />
+                <span className="sr-only">Twitter</span>
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-green-300"
+              >
+                <Linkedin size={24} />
+                <span className="sr-only">LinkedIn</span>
+              </a>
             </div>
           </div>
+        </div>
+
+        <div className="mt-8 pt-8 border-t border-green-700 text-center">
+          <p>
+            &copy; {new Date().getFullYear()} Green Acres. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
