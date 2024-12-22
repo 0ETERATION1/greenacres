@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function PropertySection() {
   return (
-    <section className="">
-      <div className="container mx-auto py-10">
+    <section className="py-10">
+      <div className="container mx-auto ">
         {/* First Image and Text */}
         <div className="flex items-center mb-10">
           <div className="w-1/2 place-items-end px-5">
