@@ -1,25 +1,19 @@
 import type { Metadata } from "next";
-import { Poppins, Playfair_Display, Roboto } from "next/font/google";
+// import { Poppins, Playfair_Display, Roboto } from "next/font/google";
 import "./globals.css";
+import CopilotScript from "@/components/CopilotScript";
 
-// Font configurations
-const poppins = Poppins({
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-});
+// const playfair = Playfair_Display({
+//   weight: ["400", "700"],
+//   subsets: ["latin"],
+//   variable: "--font-playfair",
+// });
 
-const playfair = Playfair_Display({
-  weight: ["400", "700"],
-  subsets: ["latin"],
-  variable: "--font-playfair",
-});
-
-const roboto = Roboto({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
-});
+// const roboto = Roboto({
+//   weight: ["400", "500", "700"],
+//   subsets: ["latin"],
+//   variable: "--font-roboto",
+// });
 
 export const metadata: Metadata = {
   title: "Green Acres | Landscaping",
@@ -39,10 +33,14 @@ export default function RootLayout({
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         />
       </head>
-      <body
-        className={`${poppins.variable} ${playfair.variable} ${roboto.variable}`}
-      >
+      <body>
         {children}
+        <div
+          id="7b18f385-61fa-4a26-bb55-bea4198a6257"
+          className="copilot-request-container copilot-preview-loader"
+          style={{ display: "none" }}
+        />
+        <CopilotScript />
       </body>
     </html>
   );

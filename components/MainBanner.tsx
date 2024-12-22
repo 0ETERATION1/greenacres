@@ -1,7 +1,11 @@
+"use client";
+
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function MainBanner() {
+  const router = useRouter();
+
   return (
     <section className="main-banner">
       <Image
@@ -22,9 +26,12 @@ export default function MainBanner() {
         <h2 className="banner-subtitle">
           Mowing, Fertilizer & Weed control. We got you covered.
         </h2>
-        <Link href="/contact" className="cta-button">
+        <button
+          onClick={() => router.push("/quotePage")}
+          className="cta-button"
+        >
           Get a Free Quote Today! 🌳
-        </Link>
+        </button>
       </div>
     </section>
   );
