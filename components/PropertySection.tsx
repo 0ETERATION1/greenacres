@@ -4,12 +4,12 @@ import Link from "next/link";
 export default function PropertySection() {
   return (
     <section className="py-10">
-      <div className="container mx-auto ">
+      <div className="container mx-auto">
         {/* First Image and Text */}
         <div className="flex items-center mb-10">
           <div className="w-1/2 place-items-end px-5">
             <Image
-              src="/assets/images/port/dadMowing.jpg"
+              src="/assets/images/port/bradleyAndDad.JPG"
               alt="Dad mowing Lawn and leaving stripes in Montgomery County Maryland"
               width={300}
               height={400}
@@ -46,12 +46,33 @@ export default function PropertySection() {
         </div>
 
         {/* Second Image and Text */}
-        <div className="flex items-center">
-          <div className="w-1/2 pr-6 place-items-end">
+        <div className="flex items-center mb-10">
+          <div className="w-1/2 place-items-end px-5">
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
-              See your house blossom
+              Our Skillset
             </h1>
             <p>Learn more about the Green Acres Turf Program</p>
+            <br></br>
+            <Link
+              href="/services"
+              className="
+                inline-block px-4 py-2
+                bg-gradient-to-r from-green-600 to-green-700
+                text-white
+                rounded-md
+                transition-transform duration-300 ease-in-out
+                hover:-translate-y-0.5
+                shadow-md
+                whitespace-nowrap
+                w-[140px]
+                text-center
+                
+              "
+              style={{ fontWeight: 500 }}
+            >
+              Services 🛠️
+              {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
+            </Link>
           </div>
           <div className="w-1/2 place-items-start px-5">
             <Image
@@ -61,6 +82,46 @@ export default function PropertySection() {
               height={400}
               className="rounded-image custom-image"
             />
+          </div>
+        </div>
+
+        {/* Third Image and Text */}
+        <div className="flex items-center mb-10">
+          <div className="w-1/2 place-items-end px-5">
+            <Image
+              src="/assets/images/port/Houseblossom.jpg"
+              alt="Description of the third image"
+              width={300}
+              height={400}
+              className="rounded-image custom-image"
+            />
+          </div>
+          <div className="w-1/2 pl-6">
+            <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
+              See your house blossom
+            </h1>
+            <p>Your text here.</p>
+            <br></br>
+            <Link
+              href="/Services"
+              className="
+                inline-block px-4 py-2
+                bg-gradient-to-r from-green-600 to-green-700
+                text-white
+                rounded-md
+                transition-transform duration-300 ease-in-out
+                hover:-translate-y-0.5
+                shadow-md
+                whitespace-nowrap
+                w-[140px]
+                text-center
+                
+              "
+              style={{ fontWeight: 500 }}
+            >
+              Portfolio 🏡
+              {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
+            </Link>
           </div>
         </div>
       </div>
