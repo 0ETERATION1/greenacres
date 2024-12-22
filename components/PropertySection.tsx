@@ -86,7 +86,7 @@ export default function PropertySection() {
         </div>
 
         {/* Third Image and Text */}
-        <div className="flex items-center mb-10">
+        <div className="flex items-center">
           <div className="w-1/2 place-items-end px-5">
             <Image
               src="/assets/images/port/Houseblossom.jpg"

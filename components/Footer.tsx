@@ -9,17 +9,17 @@ export default function Footer() {
           {/* Company Information */}
           <div>
             {/* <h3 className="text-xl font-bold mb-4">Green Acres</h3> */}
-            <p className="mb-4">
+            <p className="mb-4 justify-items-center text-center">
               Green Acres is a landscape company, based in Montgomery County
               Maryland. Founded over 30 years ago, we strive to continue
               providing quality service for our clients.
             </p>
-            <address className="not-italic">
+            <address className="not-italic text-center">
               14144 Travilah Road
               <br />
               Rockville Maryland 20850
               <br />
-              <a href="tel:+13012781049" className="hover:underline">
+              <a href="tel:+13012781049" className="hover:underline ">
                 (301) 278-1049
               </a>
               <br />
@@ -30,7 +30,7 @@ export default function Footer() {
                 info@greenacresdmv.com
               </a>
             </address>
-            <div className="mt-4">
+            <div className="mt-4 text-center">
               <h4 className="font-semibold">Hours</h4>
               <p>Mon - Fri: 09:00 - 21:00</p>
               <p>Sat & Sun: Closed</p>
