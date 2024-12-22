@@ -39,7 +39,7 @@ export default function PropertySection() {
               "
               style={{ fontWeight: 500 }}
             >
-              Services 📋
+              Our story 📖
               {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
             </Link>
           </div>
