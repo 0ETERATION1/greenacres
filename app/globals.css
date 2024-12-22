@@ -542,11 +542,11 @@
   color: rgba(255, 255, 255, 0.9);
 }
 
-.banner-action {
+/* .banner-action {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-}
+} */
 
 .fire-order-button {
   display: inline-block;

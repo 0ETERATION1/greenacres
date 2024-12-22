@@ -6,12 +6,13 @@ export default function FirewoodSection() {
       <div className="container">
         <div className="firewood-banner" id="firewoodAD">
           <div className="banner-content">
-            <h3>Get Seasoned Hardwood Firewood delivered to your door.</h3>
+            <h3>Get seasoned hardwood firewood delivered to your door!</h3>
             <p>
               We deliver a 1/4 of a cord and up. Smaller quantities are
               available for pickup!
             </p>
-            <div className="banner-action">
+            <br></br>
+            <div className="">
               <Link href="/firewood" className="fire-order-button">
                 Order now! 🔥🪵
               </Link>
