@@ -1,8 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-// Define the Copilot interface
 interface CopilotWindow extends Window {
   Copilot?: {
     openRequestForm: (id: string) => void;
@@ -10,23 +9,57 @@ interface CopilotWindow extends Window {
 }
 
 export default function QuotePage() {
-  useEffect(() => {
-    // Try to show the form when this page loads
-    if (typeof window !== "undefined") {
-      const element = document.getElementById(
-        "7b18f385-61fa-4a26-bb55-bea4198a6257"
-      );
-      if (element) {
-        element.style.display = "block";
-      }
+  const [isMounted, setIsMounted] = useState(false);
 
-      // If Copilot is loaded, try to open the form
+  useEffect(() => {
+    setIsMounted(true);
+
+    // Check if the script is already loaded
+    if (
+      !document.querySelector(
+        'script[src="https://secure.copilotcrm.com/widget/lp-requests_access_grant_0x.js"]'
+      )
+    ) {
+      const script = document.createElement("script");
+      script.src =
+        "https://secure.copilotcrm.com/widget/lp-requests_access_grant_0x.js";
+      script.type = "text/javascript";
+      script.setAttribute("lp_company", "7b18f385-61fa-4a26-bb55-bea4198a6257");
+
+      script.onload = () => {
+        const win = window as CopilotWindow;
+        if (win.Copilot) {
+          win.Copilot.openRequestForm("7b18f385-61fa-4a26-bb55-bea4198a6257");
+        }
+      };
+
+      document.body.appendChild(script);
+    } else {
+      // If script is already loaded, just open the form
       const win = window as CopilotWindow;
       if (win.Copilot) {
         win.Copilot.openRequestForm("7b18f385-61fa-4a26-bb55-bea4198a6257");
       }
     }
+
+    // Cleanup function to avoid duplicate scripts if component is unmounted
+    return () => {
+      const existingScript = document.querySelector(
+        'script[src="https://secure.copilotcrm.com/widget/lp-requests_access_grant_0x.js"]'
+      );
+      if (existingScript) {
+        existingScript.remove();
+      }
+    };
   }, []);
+
+  if (!isMounted) {
+    return (
+      <div className="quote-page">
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
 
   return (
     <div className="quote-page">
