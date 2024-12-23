@@ -16,7 +16,7 @@ export default function Navbar() {
   return (
     <div
       className={cn(
-        "fixed w-full z-50 transition-all duration-300 border-b bg-white/95 backdrop-blur-sm",
+        "sticky top-0 w-full z-50 transition-all duration-300 border-b bg-white/95 backdrop-blur-sm",
         scrollPosition > 0 ? "shadow-md" : ""
       )}
     >
