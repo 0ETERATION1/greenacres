@@ -26,10 +26,10 @@ export default function Navbar() {
         scrollPosition > 0 ? "shadow-md" : ""
       )}
     >
-      <div className="container mx-auto px-2">
+      <div className="container mx-auto px-4 max-w-[100vw] overflow-x-hidden">
         <div className="flex items-center justify-between h-20">
           {/* Left: Logo */}
-          <div className="w-[200px]">
+          <div className="w-[150px]">
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem className="pl-0">
@@ -141,11 +141,11 @@ export default function Navbar() {
             </div>
 
             {/* Mobile Actions (Free Quote + Hamburger) */}
-            <div className="md:hidden flex items-center gap-4">
+            <div className="md:hidden flex items-center gap-2">
               <Link
                 href="/quotePage"
                 className="
-                  inline-block px-4 py-2
+                  inline-block px-3 py-2
                   bg-white
                   text-black
                   rounded-md
@@ -153,7 +153,7 @@ export default function Navbar() {
                   hover:-translate-y-0.5
                   shadow-md
                   whitespace-nowrap
-                  w-[140px]
+                  w-[120px]
                   text-center
                 "
                 style={{ fontWeight: 500 }}
@@ -162,7 +162,7 @@ export default function Navbar() {
               </Link>
               <button
                 onClick={toggleMobileMenu}
-                className="p-2"
+                className="p-2 ml-1"
                 aria-label="Toggle menu"
               >
                 <svg
