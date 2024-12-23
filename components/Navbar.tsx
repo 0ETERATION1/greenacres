@@ -43,122 +43,145 @@ export default function Navbar() {
             </NavigationMenu>
           </div>
 
-          {/* Hamburger Menu Button (visible only on mobile) */}
-          <button
-            onClick={toggleMobileMenu}
-            className="md:hidden p-2"
-            aria-label="Toggle menu"
-          >
-            <svg
-              className="w-6 h-6"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              {isMobileMenuOpen ? (
-                <path d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
-          </button>
+          {/* Center: Navigation on Desktop */}
+          <div className="flex-1">
+            {/* Desktop Navigation */}
+            <NavigationMenu className="hidden md:flex justify-center">
+              <NavigationMenuList className="flex items-center space-x-6">
+                <NavigationMenuItem>
+                  <Link href="/services" legacyBehavior passHref>
+                    <NavigationMenuLink className="nav-link">
+                      Services
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
 
-          {/* Desktop Navigation */}
-          <NavigationMenu className="hidden md:flex flex-1 justify-center">
-            <NavigationMenuList className="flex items-center space-x-6">
-              <NavigationMenuItem>
-                <Link href="/services" legacyBehavior passHref>
-                  <NavigationMenuLink className="nav-link">
-                    Services
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/" legacyBehavior passHref>
+                    <NavigationMenuLink className="nav-link">
+                      About
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
 
-              <NavigationMenuItem>
-                <Link href="/" legacyBehavior passHref>
-                  <NavigationMenuLink className="nav-link">
-                    About
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/portfolio" legacyBehavior passHref>
+                    <NavigationMenuLink className="nav-link">
+                      Portfolio
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
 
-              <NavigationMenuItem>
-                <Link href="/portfolio" legacyBehavior passHref>
-                  <NavigationMenuLink className="nav-link">
-                    Portfolio
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/firewood" legacyBehavior passHref>
+                    <NavigationMenuLink className="nav-link">
+                      Firewood
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
 
-              <NavigationMenuItem>
-                <Link href="/firewood" legacyBehavior passHref>
-                  <NavigationMenuLink className="nav-link">
-                    Firewood
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/blog" legacyBehavior passHref>
+                    <NavigationMenuLink className="nav-link">
+                      Blog
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
 
-              <NavigationMenuItem>
-                <Link href="/blog" legacyBehavior passHref>
-                  <NavigationMenuLink className="nav-link">
-                    Blog
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
+                <NavigationMenuItem>
+                  <Link href="/quotePage" legacyBehavior passHref>
+                    <NavigationMenuLink className="nav-link">
+                      Contact
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
 
-              <NavigationMenuItem>
-                <Link href="/quotePage" legacyBehavior passHref>
-                  <NavigationMenuLink className="nav-link">
-                    Contact
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          {/* Right: Desktop Buttons and Mobile Actions */}
+          <div className="flex items-center gap-4 pr-4">
+            {/* Desktop Buttons */}
+            <div className="hidden md:flex items-center gap-4">
+              <Link
+                href="/quotePage"
+                className="
+                  inline-block px-4 py-2
+                  bg-white
+                  text-black
+                  rounded-md
+                  transition-transform duration-300 ease-in-out
+                  hover:-translate-y-0.5
+                  shadow-md
+                  whitespace-nowrap
+                  w-[140px]
+                  text-center
+                "
+                style={{ fontWeight: 500 }}
+              >
+                Free Quote! 🌳
+              </Link>
+              <Link
+                href="https://secure.copilotcrm.com/client/login/portal/423"
+                className="
+                  inline-block px-4 py-2
+                  bg-gradient-to-r from-green-600 to-green-700
+                  text-white
+                  rounded-md
+                  transition-transform duration-300 ease-in-out
+                  hover:-translate-y-0.5
+                  shadow-sm
+                  whitespace-nowrap
+                  w-[140px]
+                  text-center
+                "
+              >
+                Sign In
+              </Link>
+            </div>
 
-          {/* Right: Contact Buttons (hidden on mobile) */}
-          <div className="hidden md:flex items-center gap-4 pr-4">
-            <Link
-              href="https://secure.copilotcrm.com/client/login/portal/423"
-              className="
-                inline-block px-4 py-2
-                bg-gradient-to-r from-green-600 to-green-700
-                text-white
-                rounded-md
-                transition-transform duration-300 ease-in-out
-                hover:-translate-y-0.5
-                shadow-sm
-                whitespace-nowrap
-                w-[140px]
-                text-center
-              "
-            >
-              Sign In
-            </Link>
-
-            <Link
-              href="/quotePage"
-              className="
-                inline-block px-4 py-2
-                bg-white
-                text-black
-                rounded-md
-                transition-transform duration-300 ease-in-out
-                hover:-translate-y-0.5
-                shadow-md
-                whitespace-nowrap
-                w-[140px]
-                text-center
-                
-              "
-              style={{ fontWeight: 500 }}
-            >
-              Free Quote! 🌳
-              {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
-            </Link>
+            {/* Mobile Actions (Free Quote + Hamburger) */}
+            <div className="md:hidden flex items-center gap-4">
+              <Link
+                href="/quotePage"
+                className="
+                  inline-block px-4 py-2
+                  bg-white
+                  text-black
+                  rounded-md
+                  transition-transform duration-300 ease-in-out
+                  hover:-translate-y-0.5
+                  shadow-md
+                  whitespace-nowrap
+                  w-[140px]
+                  text-center
+                "
+                style={{ fontWeight: 500 }}
+              >
+                Free Quote! 🌳
+              </Link>
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2"
+                aria-label="Toggle menu"
+              >
+                <svg
+                  className="w-6 h-6"
+                  fill="none"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  {isMobileMenuOpen ? (
+                    <path d="M6 18L18 6M6 6l12 12" />
+                  ) : (
+                    <path d="M4 6h16M4 12h16M4 18h16" />
+                  )}
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
 
@@ -173,7 +196,7 @@ export default function Navbar() {
                 Services
               </Link>
               <Link
-                href="/about"
+                href="/"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
                 About
@@ -203,19 +226,13 @@ export default function Navbar() {
                 Contact
               </Link>
 
-              {/* Mobile Contact Buttons */}
-              <div className="mt-4 space-y-2">
+              {/* Mobile Sign In Button */}
+              <div className="mt-4">
                 <Link
                   href="https://secure.copilotcrm.com/client/login/portal/423"
                   className="block w-full px-4 py-2 text-center bg-gradient-to-r from-green-600 to-green-700 text-white rounded-md"
                 >
                   Sign In
-                </Link>
-                <Link
-                  href="/quotePage"
-                  className="block w-full px-4 py-2 text-center bg-white text-black rounded-md shadow-md"
-                >
-                  Free Quote! 🌳
                 </Link>
               </div>
             </div>
