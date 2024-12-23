@@ -93,7 +93,7 @@ export default function Navbar() {
           {/* Right: Contact Buttons */}
           <div className="flex items-center gap-4 pr-4">
             <Link
-              href="/contact"
+              href="/signIn"
               className="
                 inline-block px-4 py-2
                 bg-gradient-to-r from-green-600 to-green-700

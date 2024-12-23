@@ -1,31 +1,35 @@
-// Move from components/page.tsx to app/page.tsx
-//import Image from "next/image";
-// import MainBanner from "@/components/MainBanner";
-// import AboutUs from "@/components/AboutUs";
-// import LawnPrograms from "@/components/LawnPrograms";
-// import FirewoodCTA from "@/components/FirewoodCTA";
-// import Footer from "@/components/Footer";
+// app/page.tsx
+"use client"; // Add this directive at the very top
+
+import { useEffect } from "react";
 import Navbar from "@/components/Navbar";
 import MainBanner from "@/components/MainBanner";
 import PropertySection from "@/components/PropertySection";
-// import PackageSection from "@/components/PackageSection";
 import FirewoodSection from "@/components/FirewoodSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
+  useEffect(() => {
+    // Remove all JotForm elements
+    document
+      .querySelectorAll('iframe[src*="213034589821053"]')
+      .forEach((e) => e.remove());
+    document
+      .querySelectorAll('form[action*="jotform"]')
+      .forEach((e) => e.remove());
+    document
+      .querySelectorAll('style[id*="jotform"]')
+      .forEach((e) => e.remove());
+    document.querySelectorAll('[id*="jotform"]').forEach((e) => e.remove());
+  }, []);
+
   return (
     <>
       <Navbar />
       <MainBanner />
       <PropertySection />
-      {/* <PackageSection /> */}
       <FirewoodSection />
       <Footer />
-
-      {/* <AboutUs />
-      <LawnPrograms />
-      <FirewoodCTA />
-      <Footer /> */}
     </>
   );
 }

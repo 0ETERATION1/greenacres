@@ -1,33 +1,23 @@
-import Link from "next/link";
+"use client";
+import dynamic from "next/dynamic";
+import { useEffect } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
-import JotFormFirewood from "@/components/JotFormFirewood";
+const JotFormFirewood = dynamic(() => import("@/components/JotFormFirewood"), {
+  ssr: false,
+});
 
 export default function FirewoodPage() {
+  useEffect(() => {
+    // Additional logic if needed
+  }, []);
+
   return (
     <>
-      <div className="text-center py-5">
-        <Link
-          href="/"
-          className="
-                inline-block px-4 py-2
-                bg-gradient-to-r from-green-600 to-green-700
-                text-white
-                rounded-md
-                transition-transform duration-300 ease-in-out
-                hover:-translate-y-0.5
-                shadow-md
-                whitespace-nowrap
-                w-[140px]
-                text-center
-                
-              "
-          style={{ fontWeight: 500 }}
-        >
-          Return home 🏠
-          {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
-        </Link>
-      </div>
+      <Navbar />
       <JotFormFirewood />
+      <Footer />
     </>
   );
 }
