@@ -44,10 +44,10 @@ export default function Navbar() {
           </div>
 
           {/* Center: Navigation on Desktop */}
-          <div className="flex-1">
+          <div className="flex-1 flex justify-center">
             {/* Desktop Navigation */}
-            <NavigationMenu className="hidden md:flex justify-center">
-              <NavigationMenuList className="flex items-center space-x-6">
+            <NavigationMenu className="hidden md:flex">
+              <NavigationMenuList className="flex items-center justify-center space-x-6">
                 <NavigationMenuItem>
                   <Link href="/services" legacyBehavior passHref>
                     <NavigationMenuLink className="nav-link">
@@ -57,7 +57,7 @@ export default function Navbar() {
                 </NavigationMenuItem>
 
                 <NavigationMenuItem>
-                  <Link href="/" legacyBehavior passHref>
+                  <Link href="/about" legacyBehavior passHref>
                     <NavigationMenuLink className="nav-link">
                       About
                     </NavigationMenuLink>

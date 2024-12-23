@@ -15,13 +15,18 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-6 text-[#0cabba]">
-              It starts with family
+              Its about family
             </h1>
             <p className="text-xl leading-relaxed mb-8">
-              Whether working in your garden or transforming your landscape, our
-              team strives to create beautiful outdoor spaces that bring joy to
-              each and every client. We hope that our dedication to excellence
-              inspires you to share that beauty with others, too.
+              For over three decades, Green Acres has been a true family
+              business, passed down from father to son. Our deep roots in
+              Montgomery County mean we treat every property as if it were our
+              own. Whether we&apos;re maintaining your garden or transforming
+              your landscape, our family brings the same dedication and
+              attention to detail that we&apos;ve maintained since 1990. We
+              believe that creating beautiful outdoor spaces isn&apos;t just
+              about expertise – it&apos;s about caring for our community, one
+              yard at a time.
             </p>
           </div>
         </div>
