@@ -56,7 +56,7 @@ export default function PropertySection() {
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
               Our Skillset
             </h1>
-            <p className="">
+            <p className="text-right">
               From precision mowing and seasonal maintenance to comprehensive
               lawn care, our Turf Program delivers year-round solutions that
               keep your property healthy, vibrant, and beautiful in every
