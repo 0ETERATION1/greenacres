@@ -16,7 +16,7 @@ export default function PropertySection() {
               className="rounded-image custom-image"
             />
           </div>
-          <div className="w-1/2 pl-6">
+          <div className="w-1/2">
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
               What we bring to the table
             </h1>
