@@ -15,18 +15,22 @@ export default function AboutPage() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-5xl font-bold mb-6 text-[#0cabba]">
-              Its about family
+              A Legacy of Excellence
             </h1>
             <p className="text-xl leading-relaxed mb-8">
-              For over three decades, Green Acres has been a true family
-              business, passed down from father to son. Our deep roots in
-              Montgomery County mean we treat every property as if it were our
-              own. Whether we&apos;re maintaining your garden or transforming
-              your landscape, our family brings the same dedication and
-              attention to detail that we&apos;ve maintained since 1990. We
-              believe that creating beautiful outdoor spaces isn&apos;t just
-              about expertise – it&apos;s about caring for our community, one
-              yard at a time.
+              At Green Acres Landscaping, we embody a legacy of exceptional
+              service deeply rooted in North Potomac. Founded by Adrian Guerra,
+              whose inspiring journey from Guatemala exemplifies the American
+              dream, our company stands as a testament to unwavering dedication
+              and craftsmanship. Today, under the leadership of Bradley and
+              Nicholas Guerra, we continue our father&apos;s vision of
+              excellence. Having grown up on Travilah Road and attended local
+              schools, our connection to this community runs deep. We bring not
+              only professional expertise but an intimate understanding of our
+              region&apos;s unique landscaping needs. This blend of local
+              knowledge, family values, and professional excellence has
+              established Green Acres as a trusted name in Montgomery County for
+              over three decades.
             </p>
           </div>
         </div>
@@ -49,8 +53,10 @@ export default function AboutPage() {
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
-            <p className="text-xl text-gray-700 leading-relaxed">
+            <h2 className="text-3xl font-bold mb-6 text-[#0cabba]">
+              Our Mission
+            </h2>
+            <p className="text-xl leading-relaxed">
               To provide exceptional landscaping services while nurturing the
               beauty of nature and exceeding our customers&apos; expectations
               through dedication, integrity, and expertise.
@@ -62,28 +68,40 @@ export default function AboutPage() {
       {/* History Timeline */}
       <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-16">Our Journey</h2>
+          <h2 className="text-3xl font-bold text-center mb-16 text-[#0cabba]">
+            Our Journey
+          </h2>
           <div className="max-w-4xl mx-auto">
             <div className="grid gap-12">
               <TimelineItem
+                year="1985"
+                title="A Dream Takes Root"
+                description="Adrian Guerra arrived in North Potomac from Guatemala, carrying with him a vision and an unwavering work ethic that would later become the foundation of Green Acres Landscaping."
+              />
+              <TimelineItem
                 year="1990"
-                title="Where It All Began"
-                description="Green Acres was founded with a single truck and a passion for creating beautiful outdoor spaces."
+                title="Green Acres is Born"
+                description="Adrian Guerra established Green Acres Landscaping with a single truck and an unshakeable commitment to quality service. His dedication to the North Potomac community laid the groundwork for what would become a trusted local institution."
               />
               <TimelineItem
-                year="2000"
-                title="Growing Strong"
-                description="Expanded our services to include commercial landscaping and began serving the entire Montgomery County."
+                year="2000-2010"
+                title="Growing Deep Community Roots"
+                description="As Bradley and Nicholas Guerra grew up on Travilah Road and attended Stone Mill Elementary, the business flourished alongside the family's deep connection to the community. Our understanding of local landscapes and climate became second nature."
               />
               <TimelineItem
-                year="2022"
-                title="Innovation in Service"
-                description="Introduced eco-friendly practices and sustainable landscaping solutions."
+                year="2015"
+                title="The Next Generation"
+                description="The Guerra brothers, Bradley and Nicholas, began taking on leadership roles, bringing fresh perspectives while maintaining their father's commitment to excellence and community service."
               />
               <TimelineItem
-                year="2023"
-                title="Looking Forward"
-                description="Continuing our commitment to excellence while embracing new technologies and sustainable practices."
+                year="2020"
+                title="Expanding Our Legacy"
+                description="Under the Guerra brothers' leadership, we expanded our services while staying true to our father's vision. Our intimate knowledge of North Potomac's unique landscaping needs has helped us better serve our neighbors."
+              />
+              <TimelineItem
+                year="Present Day"
+                title="Continuing the Tradition"
+                description="Today, we proudly carry forward our father's legacy, combining decades of experience with modern sustainable practices. Our family's journey from Guatemala to establishing a trusted name in Montgomery County continues to inspire our dedication to excellence."
               />
             </div>
           </div>
@@ -132,11 +150,13 @@ function TimelineItem({
   description: string;
 }) {
   return (
-    <div className="flex gap-8">
-      <div className="text-2xl font-bold text-green-700 w-24">{year}</div>
-      <div>
-        <h3 className="text-xl font-bold mb-2">{title}</h3>
-        <p className="text-gray-700">{description}</p>
+    <div className="flex gap-8 items-start">
+      <div className="text-2xl font-bold text-[#0f8c20] w-32 flex-shrink-0">
+        {year}
+      </div>
+      <div className="flex-1">
+        <h3 className="text-2xl font-bold mb-3">{title}</h3>
+        <p className="text-gray-700 text-lg leading-relaxed">{description}</p>
       </div>
     </div>
   );
