@@ -196,7 +196,7 @@ export default function Navbar() {
                 Services
               </Link>
               <Link
-                href="/"
+                href="/about"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
                 About
