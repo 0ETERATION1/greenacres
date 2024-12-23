@@ -110,9 +110,9 @@ export default function PropertySection() {
             </h1>
             <p>
               Transform your outdoor space into a stunning landscape that
-              enhances your property's beauty and value. Browse our portfolio to
-              see how we've helped countless homeowners create their dream
-              gardens and landscapes.
+              enhances your property&apos;s beauty and value. Browse our
+              portfolio to see how we&apos;ve helped countless homeowners create
+              their dream gardens and landscapes.
             </p>
             <br></br>
             <Link
