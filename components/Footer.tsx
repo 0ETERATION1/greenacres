@@ -47,11 +47,16 @@ export default function Footer() {
                 "Portfolio",
                 "Firewood",
                 "Blog",
-                "Contact",
+                { text: "Contact", path: "quotePage" },
               ].map((link) => (
-                <li key={link}>
-                  <Link href={`/${link.toLowerCase()}`} className="nav-link">
-                    {link}
+                <li key={typeof link === "string" ? link : link.text}>
+                  <Link
+                    href={`/${
+                      typeof link === "string" ? link.toLowerCase() : link.path
+                    }`}
+                    className="nav-link"
+                  >
+                    {typeof link === "string" ? link : link.text}
                   </Link>
                 </li>
               ))}
