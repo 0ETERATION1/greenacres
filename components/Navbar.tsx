@@ -81,7 +81,7 @@ export default function Navbar() {
               </NavigationMenuItem>
 
               <NavigationMenuItem>
-                <Link href="/contact" legacyBehavior passHref>
+                <Link href="/quotePage" legacyBehavior passHref>
                   <NavigationMenuLink className="nav-link">
                     Contact
                   </NavigationMenuLink>

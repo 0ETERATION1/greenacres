@@ -10,7 +10,7 @@ export default function Footer() {
           <div>
             {/* <h3 className="text-xl font-bold mb-4">Green Acres</h3> */}
             <p className="mb-4 justify-items-center text-center">
-              Green Acres is a landscape company, based in Montgomery County
+              Green Acres is a landscaping company, based in Montgomery County
               Maryland. Founded over 30 years ago, we strive to continue
               providing quality service for our clients.
             </p>
