@@ -68,7 +68,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4">Connect With Us!</h3>
             <div>
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/share/15TsUDSShQ/?mibextid=wwXIfr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="nav-link"
@@ -77,7 +77,7 @@ export default function Footer() {
                 <span className="sr-only">Facebook</span>
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/greenacresdmv/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="nav-link"
