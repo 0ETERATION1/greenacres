@@ -20,7 +20,12 @@ export default function PropertySection() {
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
               What we bring to the table
             </h1>
-            <p>TEXTTTTTTT.</p>
+            <p>
+              With over three decades of experience in Montgomery County, we
+              bring expertise, dedication, and a family-oriented approach to
+              every project. Our commitment to quality and attention to detail
+              ensures your outdoor space receives the care it deserves.
+            </p>
             <br></br>
             <Link
               href="/about"
@@ -51,7 +56,12 @@ export default function PropertySection() {
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
               Our Skillset
             </h1>
-            <p>Learn more about the Green Acres Turf Program</p>
+            <p className="pl-7">
+              From precision mowing and seasonal maintenance to comprehensive
+              lawn care, our Turf Program delivers year-round solutions that
+              keep your property healthy, vibrant, and beautiful in every
+              season.
+            </p>
             <br></br>
             <Link
               href="/services"
@@ -66,12 +76,10 @@ export default function PropertySection() {
                 whitespace-nowrap
                 w-[140px]
                 text-center
-                
               "
               style={{ fontWeight: 500 }}
             >
               Services 🛠️
-              {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
             </Link>
           </div>
           <div className="w-1/2 place-items-start px-5">
@@ -100,7 +108,12 @@ export default function PropertySection() {
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
               See your house blossom
             </h1>
-            <p>Your text here.</p>
+            <p>
+              Transform your outdoor space into a stunning landscape that
+              enhances your property's beauty and value. Browse our portfolio to
+              see how we've helped countless homeowners create their dream
+              gardens and landscapes.
+            </p>
             <br></br>
             <Link
               href="/portfolio"
