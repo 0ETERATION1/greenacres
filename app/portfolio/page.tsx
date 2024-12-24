@@ -15,6 +15,60 @@ interface PortfolioItem {
   category: "lawn" | "landscaping" | "hardscape" | "maintenance";
 }
 
+// Add a Modal component for full-screen view
+const ImageModal = ({
+  image,
+  title,
+  isOpen,
+  onClose,
+}: {
+  image: string;
+  title: string;
+  isOpen: boolean;
+  onClose: () => void;
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+      className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
+    >
+      <div className="relative w-full max-w-6xl max-h-[90vh] aspect-video">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-contain"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+        />
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+    </motion.div>
+  );
+};
+
 // Portfolio data - Add all your actual projects here
 const portfolioItems: PortfolioItem[] = [
   {
@@ -22,19 +76,27 @@ const portfolioItems: PortfolioItem[] = [
     title: "Professional Lawn Care",
     description:
       "Weekly mowing and maintenance keeping this property looking pristine year-round.",
-    imagePath: "/assets/images/portfolio/lawn1.jpg",
+    imagePath: "/assets/images/portfolio/lawn/lawn1.jpg",
     category: "lawn",
   },
   {
     id: 2,
-    title: "Landscape Design",
+    title: "Professional Lawn Care",
     description:
-      "Custom landscape design featuring native plants and seasonal colors.",
-    imagePath: "/assets/images/portfolio/landscaping1.jpg",
-    category: "landscaping",
+      "Weekly mowing and maintenance keeping this property looking pristine year-round.",
+    imagePath: "/assets/images/portfolio/lawn/lawn2.jpg",
+    category: "lawn",
   },
   {
     id: 3,
+    title: "Landscape Design",
+    description:
+      "Custom landscape design featuring native plants and seasonal colors.",
+    imagePath: "/assets/images/portfolio/landscaping/landscaping1.jpg",
+    category: "landscaping",
+  },
+  {
+    id: 4,
     title: "Spring Garden Makeover",
     description:
       "Complete garden transformation with seasonal flowers and shrubs.",
@@ -42,14 +104,14 @@ const portfolioItems: PortfolioItem[] = [
     category: "landscaping",
   },
   {
-    id: 4,
+    id: 5,
     title: "Stone Pathway Installation",
     description: "Custom stone pathway with natural materials and lighting.",
     imagePath: "/assets/images/portfolio/hardscape1.jpg",
     category: "hardscape",
   },
   {
-    id: 5,
+    id: 6,
     title: "Commercial Lawn Maintenance",
     description: "Year-round maintenance for business complex.",
     imagePath: "/assets/images/portfolio/maintenance1.jpg",
@@ -60,6 +122,9 @@ const portfolioItems: PortfolioItem[] = [
 
 export default function Portfolio() {
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedImage, setSelectedImage] = useState<PortfolioItem | null>(
+    null
+  );
 
   const filteredItems =
     selectedCategory === "all"
@@ -144,7 +209,8 @@ export default function Portfolio() {
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 key={item.id}
-                className="bg-white rounded-lg overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-300"
+                className="bg-white rounded-lg overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-300 cursor-pointer group"
+                onClick={() => setSelectedImage(item)}
               >
                 <div className="relative h-64">
                   <Image
@@ -153,6 +219,22 @@ export default function Portfolio() {
                     fill
                     className="object-cover"
                   />
+                  <div className="absolute top-2 right-2 bg-black bg-opacity-50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="h-5 w-5 text-white"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
+                      />
+                    </svg>
+                  </div>
                 </div>
                 <div className="p-6">
                   <h3 className="text-xl font-semibold text-gray-800 mb-2">
@@ -165,6 +247,19 @@ export default function Portfolio() {
           </AnimatePresence>
         </motion.div>
       </div>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedImage && (
+          <ImageModal
+            image={selectedImage.imagePath}
+            title={selectedImage.title}
+            isOpen={!!selectedImage}
+            onClose={() => setSelectedImage(null)}
+          />
+        )}
+      </AnimatePresence>
+
       <Footer />
     </>
   );
