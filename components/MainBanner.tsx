@@ -31,7 +31,7 @@ export default function MainBanner() {
           onClick={() => router.push("/quotePage")}
           className="cta-button"
         >
-          CHANGES!!!!! 🌳
+          Get a free quote! 🌳
         </button>
       </div>
     </section>
