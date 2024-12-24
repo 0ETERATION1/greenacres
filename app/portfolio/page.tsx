@@ -135,65 +135,67 @@ export default function Portfolio() {
     <>
       <Navbar />
       <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <h1 className="text-4xl font-bold text-center text-[#0cabba] mb-4">
+        <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
           Our Work
         </h1>
-        <p className="text-xl text-center mb-8">
+        <p className="text-xl text-center text-gray-600 mb-8">
           Browse through our collection of completed projects
         </p>
 
-        {/* Category Filter */}
-        <div className="flex justify-center gap-4 mb-8">
-          <button
-            onClick={() => setSelectedCategory("all")}
-            className={`px-4 py-2 rounded-lg transition-colors duration-300 ${
-              selectedCategory === "all"
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
-          >
-            All
-          </button>
-          <button
-            onClick={() => setSelectedCategory("lawn")}
-            className={`px-4 py-2 rounded-lg transition-colors duration-300 ${
-              selectedCategory === "lawn"
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
-          >
-            Lawn Care
-          </button>
-          <button
-            onClick={() => setSelectedCategory("landscaping")}
-            className={`px-4 py-2 rounded-lg transition-colors duration-300 ${
-              selectedCategory === "landscaping"
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
-          >
-            Landscaping
-          </button>
-          <button
-            onClick={() => setSelectedCategory("hardscape")}
-            className={`px-4 py-2 rounded-lg transition-colors duration-300 ${
-              selectedCategory === "hardscape"
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
-          >
-            Hardscape
-          </button>
-          <button
-            onClick={() => setSelectedCategory("maintenance")}
-            className={`px-4 py-2 rounded-lg transition-colors duration-300 ${
-              selectedCategory === "maintenance"
-                ? "bg-green-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-            }`}
-          >
-            Maintenance
-          </button>
+        {/* Updated Category Filter with horizontal scroll on mobile */}
+        <div className="overflow-x-auto pb-4 mb-8">
+          <div className="flex justify-start md:justify-center gap-2 md:gap-4 min-w-min px-4">
+            <button
+              onClick={() => setSelectedCategory("all")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "all"
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              All
+            </button>
+            <button
+              onClick={() => setSelectedCategory("lawn")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "lawn"
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              Lawn Care
+            </button>
+            <button
+              onClick={() => setSelectedCategory("landscaping")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "landscaping"
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              Landscaping
+            </button>
+            <button
+              onClick={() => setSelectedCategory("hardscape")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "hardscape"
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              Hardscape
+            </button>
+            <button
+              onClick={() => setSelectedCategory("maintenance")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "maintenance"
+                  ? "bg-green-600 text-white"
+                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+              }`}
+            >
+              Maintenance
+            </button>
+          </div>
         </div>
 
         <motion.div
