@@ -90,7 +90,7 @@ function ServiceCard({
 }: ServiceCardProps) {
   return (
     <div className="flex flex-col md:flex-row gap-8 items-start bg-white rounded-lg shadow-lg overflow-hidden">
-      <div className="md:w-1/3 relative h-[300px]">
+      <div className="w-full md:w-1/3 h-[300px] relative">
         {isVideo ? (
           <video
             className="w-full h-full object-cover"
@@ -98,15 +98,23 @@ function ServiceCard({
             muted
             loop
             playsInline
+            controls
           >
             <source src={imagePath} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         ) : (
-          <Image src={imagePath} alt={title} fill className="object-cover" />
+          <Image
+            src={imagePath}
+            alt={title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw"
+            priority
+          />
         )}
       </div>
-      <div className="md:w-2/3 p-8">
+      <div className="w-full md:w-2/3 p-8">
         <h2 className="text-2xl font-bold mb-4 text-[#0cabba]">{title}</h2>
         <p className="text-gray-700 leading-relaxed">{description}</p>
       </div>
