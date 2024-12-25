@@ -9,6 +9,7 @@ interface ServiceCardProps {
   title: string;
   description: string;
   imagePath: string;
+  isVideo?: boolean;
 }
 
 export default function ServicesPage() {
@@ -35,15 +36,40 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4">
           <div className="grid gap-12">
             <ServiceCard
-              title="6-Step Weed Control & Fertilizer Program"
-              description="Our 6-step weed control and fertilizer program is designed to enhance the health and beauty of all grass types commonly found in Montgomery County, Maryland, with a particular focus on optimizing tall fescue grass. This program combines precision weed control and balanced fertilizers tailored to promote robust growth, vivid color, and resilience against weeds. Following all Montgomery County regulations, our program provides environmentally responsible care, ensuring a lush, thriving lawn while protecting our local ecosystem."
+              title="Precise hand weeding for mulch beds"
+              description="Our meticulous hand weeding service for mulch beds is tailored to maintain the health and aesthetics of your landscaped areas. By carefully removing weeds at the root, we ensure a clean, polished look while protecting the integrity of your mulch beds. This eco-friendly approach promotes healthier plants and a well-maintained garden without the use of harsh chemicals, providing a sustainable solution that enhances the beauty of your outdoor spaces."
               imagePath="/assets/images/services/fertilizer.jpg"
             />
 
             <ServiceCard
-              title="Weekly Lawn Maintenance Service"
-              description="Our Weekly Lawn Maintenance Service is designed to keep your lawn in Montgomery County looking lush, neat, and vibrant throughout the season. Using professional-grade mowers with sharp blades, we deliver a clean, precise cut that promotes healthier grass growth. We also string-trim hard-to-reach areas, expertly edge flower beds, and use a metal blade edger for sharp, defined borders along walkways and driveways. After carefully mowing and edging, we blow away all grass clippings from hard surfaces, leaving your property spotless."
+              title="Lawn Maintenance"
+              description="Our lawn maintenance service ensures your lawn in Montgomery County stays pristine, healthy, and vibrant all season long. With professional-grade mowers and razor-sharp blades, we provide a precise cut that encourages robust grass growth. Hard-to-reach areas are meticulously trimmed, flower beds expertly edged, and walkways and driveways bordered with a clean, defined finish using a metal blade edger. To complete the service, we thoroughly clear all grass clippings from hard surfaces, leaving your property polished and immaculate."
+              imagePath="/assets/images/portfolio/lawn/lawn1.jpg"
+            />
+
+            <ServiceCard
+              title="Mulch Installation"
+              description="Our Mulch Installation Service enhances the beauty and health of your landscaping by providing a fresh, professional layer of mulch to your garden beds. Mulch not only improves the visual appeal of your outdoor spaces but also helps retain soil moisture, regulate temperature, and suppress weed growth. We carefully prepare the area, ensuring even distribution and clean edges for a polished, finished look that protects and enriches your plants while adding a touch of elegance to your property."
+              imagePath="/assets/images/port/mulchInstallation.jpg"
+            />
+
+            <ServiceCard
+              title="Bush Trimming"
+              description="Our Bush Trimming Service is designed to keep your shrubs and hedges looking neat, healthy, and well-maintained. We carefully shape and prune each bush to promote natural growth, enhance aesthetics, and prevent overgrowth. Using professional-grade tools, we ensure clean, precise cuts that improve the overall appearance of your landscaping while supporting the long-term health and vitality of your plants."
               imagePath="/assets/images/services/mowing.jpg"
+            />
+
+            <ServiceCard
+              title="Sod Installation"
+              description="Our Sod Installation Service provides a quick and effective solution for achieving a lush, green lawn. From site preparation to laying fresh, high-quality sod, we handle every step with precision and care to ensure proper rooting and long-lasting results. Whether you're starting fresh or repairing damaged areas, our service transforms your outdoor space into a vibrant, healthy lawn with minimal downtime, delivering instant curb appeal and a durable foundation for future growth."
+              imagePath="/assets/images/services/mowing.jpg"
+            />
+
+            <ServiceCard
+              title="Leaf Removal"
+              description="Our Fall Leaf Removal Service ensures your property remains clean and well-maintained as the seasons change. We efficiently remove leaves from your lawn, garden beds, and hard surfaces, preventing unsightly buildup and potential damage to your grass. Using professional equipment, we leave your property spotless, allowing your outdoor spaces to thrive through the cooler months while enhancing the overall appearance of your landscape."
+              imagePath="/assets/images/port/leafRemoval.mp4"
+              isVideo={true}
             />
 
             {/* Add remaining services... */}
@@ -56,11 +82,29 @@ export default function ServicesPage() {
   );
 }
 
-function ServiceCard({ title, description, imagePath }: ServiceCardProps) {
+function ServiceCard({
+  title,
+  description,
+  imagePath,
+  isVideo = false,
+}: ServiceCardProps) {
   return (
     <div className="flex flex-col md:flex-row gap-8 items-start bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="md:w-1/3 relative h-[300px]">
-        <Image src={imagePath} alt={title} fill className="object-cover" />
+        {isVideo ? (
+          <video
+            className="w-full h-full object-cover"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src={imagePath} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <Image src={imagePath} alt={title} fill className="object-cover" />
+        )}
       </div>
       <div className="md:w-2/3 p-8">
         <h2 className="text-2xl font-bold mb-4 text-[#0cabba]">{title}</h2>
