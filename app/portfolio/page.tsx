@@ -89,11 +89,11 @@ const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 3,
-    title: "Landscape Design",
+    title: "Professional Lawn Care",
     description:
-      "Custom landscape design featuring native plants and seasonal colors.",
-    imagePath: "/assets/images/portfolio/landscaping/landscaping1.jpg",
-    category: "landscaping",
+      "Weekly mowing and maintenance keeping this property looking pristine year-round.",
+    imagePath: "/assets/images/portfolio/lawn/lawn3.jpg",
+    category: "lawn",
   },
   {
     id: 4,
