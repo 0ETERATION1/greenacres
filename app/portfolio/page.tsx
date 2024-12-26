@@ -135,10 +135,10 @@ export default function Portfolio() {
     <>
       <Navbar />
       <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <h1 className="text-4xl font-bold text-center text-gray-800 mb-4">
+        <h1 className="text-4xl font-bold text-center text-[#0cabba] mb-4">
           Our Work
         </h1>
-        <p className="text-xl text-center text-gray-600 mb-8">
+        <p className="text-xl text-center mb-8">
           Browse through our collection of completed projects
         </p>
 
