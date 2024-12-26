@@ -100,7 +100,7 @@ const portfolioItems: PortfolioItem[] = [
     title: "Spring Garden Makeover",
     description:
       "Complete garden transformation with seasonal flowers and shrubs.",
-    imagePath: "/assets/images/portfolio/landscaping2.jpg",
+    imagePath: "/assets/images/portfolio/lawn/landscaping1.jpg",
     category: "landscaping",
   },
   {
