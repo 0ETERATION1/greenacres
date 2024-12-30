@@ -12,8 +12,16 @@ interface PortfolioItem {
   title: string;
   description: string;
   imagePath: string;
-  category: "lawn" | "landscaping" | "hardscape" | "maintenance";
+  category: ("lawn" | "landscaping" | "hardscape" | "maintenance")[];
 }
+
+// Define the category type to ensure consistency
+type CategoryType =
+  | "lawn"
+  | "landscaping"
+  | "hardscape"
+  | "maintenance"
+  | "all";
 
 // Add a Modal component for full-screen view
 const ImageModal = ({
@@ -77,23 +85,22 @@ const portfolioItems: PortfolioItem[] = [
     description:
       "Weekly mowing and maintenance keeping this property looking pristine year-round.",
     imagePath: "/assets/images/portfolio/lawn/lawn1.jpg",
-    category: "lawn",
+    category: ["lawn"],
   },
   {
     id: 2,
     title: "Professional Lawn Care",
     description:
-      "Weekly mowing and maintenance keeping this property looking pristine year-round.",
+      "Mowing, fertilizing, and weed control maintenance keeping this property looking pristine year-round.",
     imagePath: "/assets/images/portfolio/lawn/lawn2.jpg",
-    category: "lawn",
+    category: ["lawn", "maintenance"],
   },
   {
     id: 3,
     title: "Professional Lawn Care",
-    description:
-      "Weekly mowing and maintenance keeping this property looking pristine year-round.",
+    description: "Backyard Mowing, fertilizing, and weed control maintenance.",
     imagePath: "/assets/images/portfolio/lawn/lawn3.jpg",
-    category: "lawn",
+    category: ["lawn"],
   },
   {
     id: 4,
@@ -101,27 +108,27 @@ const portfolioItems: PortfolioItem[] = [
     description:
       "Complete garden transformation with seasonal flowers and shrubs.",
     imagePath: "/assets/images/portfolio/lawn/landscaping1.jpg",
-    category: "landscaping",
+    category: ["landscaping"],
   },
   {
     id: 5,
     title: "Stone Pathway Installation",
     description: "Custom stone pathway with natural materials and lighting.",
     imagePath: "/assets/images/portfolio/hardscape1.jpg",
-    category: "hardscape",
+    category: ["hardscape"],
   },
   {
     id: 6,
     title: "Commercial Lawn Maintenance",
     description: "Year-round maintenance for business complex.",
     imagePath: "/assets/images/portfolio/maintenance1.jpg",
-    category: "maintenance",
+    category: ["maintenance"],
   },
   // Add more items here...
 ];
 
 export default function Portfolio() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("all");
+  const [selectedCategory, setSelectedCategory] = useState<CategoryType>("all");
   const [selectedImage, setSelectedImage] = useState<PortfolioItem | null>(
     null
   );
@@ -129,7 +136,11 @@ export default function Portfolio() {
   const filteredItems =
     selectedCategory === "all"
       ? portfolioItems
-      : portfolioItems.filter((item) => item.category === selectedCategory);
+      : portfolioItems.filter((item) =>
+          item.category.includes(
+            selectedCategory as Exclude<CategoryType, "all">
+          )
+        );
 
   return (
     <>

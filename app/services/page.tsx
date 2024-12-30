@@ -36,37 +36,52 @@ export default function ServicesPage() {
         <div className="container mx-auto px-4">
           <div className="grid gap-12">
             <ServiceCard
-              title="Precise hand weeding for mulch beds"
-              description="Our meticulous hand weeding service for mulch beds is tailored to maintain the health and aesthetics of your landscaped areas. By carefully removing weeds at the root, we ensure a clean, polished look while protecting the integrity of your mulch beds. This eco-friendly approach promotes healthier plants and a well-maintained garden without the use of harsh chemicals, providing a sustainable solution that enhances the beauty of your outdoor spaces."
-              imagePath="/assets/images/services/fertilizer.jpg"
-            />
-
-            <ServiceCard
               title="Lawn Maintenance"
               description="Our lawn maintenance service ensures your lawn in Montgomery County stays pristine, healthy, and vibrant all season long. With professional-grade mowers and razor-sharp blades, we provide a precise cut that encourages robust grass growth. Hard-to-reach areas are meticulously trimmed, flower beds expertly edged, and walkways and driveways bordered with a clean, defined finish using a metal blade edger. To complete the service, we thoroughly clear all grass clippings from hard surfaces, leaving your property polished and immaculate."
               imagePath="/assets/images/portfolio/lawn/lawn1.jpg"
             />
 
             <ServiceCard
-              title="Mulch Installation"
+              title="6-Step weed control & Fertilizer Program for Montgomery County Lawns"
+              description="Our 6-step weed control and fertilizer program is designed to enhance the health and beauty of all grass types commonly found in Montgomery County, Maryland, with a particular focus on optimizing tall fescue grass. This program combines precision weed control and balanced fertilizers tailored to promote robust growth, vivid color, and resilience against weeds.
+
+Following all Montgomery County regulations, our program provides environmentally responsible care, ensuring a lush, thriving lawn while protecting our local ecosystem. Whether you have tall fescue or another grass type, trust us to help your lawn reach its full potential.
+"
+              imagePath="/assets/images/port/weed1.jpg"
+            />
+
+            <ServiceCard
+              title="Mulch installation"
               description="Our Mulch Installation Service enhances the beauty and health of your landscaping by providing a fresh, professional layer of mulch to your garden beds. Mulch not only improves the visual appeal of your outdoor spaces but also helps retain soil moisture, regulate temperature, and suppress weed growth. We carefully prepare the area, ensuring even distribution and clean edges for a polished, finished look that protects and enriches your plants while adding a touch of elegance to your property."
               imagePath="/assets/images/port/mulchInstallation.jpg"
             />
 
             <ServiceCard
-              title="Bush Trimming"
+              title="Precise hand weeding for mulch beds"
+              description="Our meticulous hand weeding service for mulch beds is tailored to maintain the health and aesthetics of your landscaped areas. By carefully removing weeds at the root, we ensure a clean, polished look while protecting the integrity of your mulch beds. This eco-friendly approach promotes healthier plants and a well-maintained garden without the use of harsh chemicals, providing a sustainable solution that enhances the beauty of your outdoor spaces."
+              imagePath="/assets/images/port/weedpulling.jpg"
+            />
+
+            <ServiceCard
+              title="Bush trimming"
               description="Our Bush Trimming Service is designed to keep your shrubs and hedges looking neat, healthy, and well-maintained. We carefully shape and prune each bush to promote natural growth, enhance aesthetics, and prevent overgrowth. Using professional-grade tools, we ensure clean, precise cuts that improve the overall appearance of your landscaping while supporting the long-term health and vitality of your plants."
-              imagePath="/assets/images/services/mowing.jpg"
+              imagePath="/assets/images/port/bushTrimming2.jpg"
             />
 
             <ServiceCard
-              title="Sod Installation"
+              title="Plant & small tree installation"
+              description="Our Fall Leaf Removal Service ensures your property remains clean and well-maintained as the seasons change. We efficiently remove leaves from your lawn, garden beds, and hard surfaces, preventing unsightly buildup and potential damage to your grass. Using professional equipment, we leave your property spotless, allowing your outdoor spaces to thrive through the cooler months while enhancing the overall appearance of your landscape."
+              imagePath="/assets/images/port/plantInstall3.jpg"
+            />
+
+            <ServiceCard
+              title="Sod installation"
               description="Our Sod Installation Service provides a quick and effective solution for achieving a lush, green lawn. From site preparation to laying fresh, high-quality sod, we handle every step with precision and care to ensure proper rooting and long-lasting results. Whether you're starting fresh or repairing damaged areas, our service transforms your outdoor space into a vibrant, healthy lawn with minimal downtime, delivering instant curb appeal and a durable foundation for future growth."
-              imagePath="/assets/images/services/mowing.jpg"
+              imagePath="/assets/images/port/plantInstall3.jpg"
             />
 
             <ServiceCard
-              title="Leaf Removal"
+              title="Leaf removal"
               description="Our Fall Leaf Removal Service ensures your property remains clean and well-maintained as the seasons change. We efficiently remove leaves from your lawn, garden beds, and hard surfaces, preventing unsightly buildup and potential damage to your grass. Using professional equipment, we leave your property spotless, allowing your outdoor spaces to thrive through the cooler months while enhancing the overall appearance of your landscape."
               imagePath="/assets/images/port/leafRemoval.mp4"
               isVideo={true}
