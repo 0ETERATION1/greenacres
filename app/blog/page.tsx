@@ -1,7 +1,7 @@
 "use client";
 
+import { useState, useEffect, Suspense, useMemo } from "react";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
@@ -15,6 +15,7 @@ interface BlogPost {
   date: string;
   imagePath: string;
   author: string;
+  category: "lawn-care" | "landscaping" | "maintenance" | "tips" | "seasonal";
 }
 
 // Add ShareButtons component
@@ -196,16 +197,37 @@ const blogPosts: BlogPost[] = [
     date: "12/29/2024",
     imagePath: "/assets/images/port/BradOnTacoma.JPG",
     author: "Bradley Guerra",
+    category: "lawn-care",
   },
   // Add more blog posts here
 ];
 
-export default function Blog() {
+function BlogContent() {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [sortOrder, setSortOrder] = useState<"newest" | "oldest">("newest");
+  const [selectedCategory, setSelectedCategory] = useState<string>("all");
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Handle URL parameters on component mount and updates
+  // Filter and sort posts
+  const filteredAndSortedPosts = useMemo(() => {
+    let posts = [...blogPosts];
+
+    // Apply category filter
+    if (selectedCategory !== "all") {
+      posts = posts.filter((post) => post.category === selectedCategory);
+    }
+
+    // Apply sort
+    posts.sort((a, b) => {
+      const dateA = new Date(a.date).getTime();
+      const dateB = new Date(b.date).getTime();
+      return sortOrder === "newest" ? dateB - dateA : dateA - dateB;
+    });
+
+    return posts;
+  }, [selectedCategory, sortOrder]);
+
   useEffect(() => {
     const postId = searchParams.get("post");
     if (postId) {
@@ -216,90 +238,201 @@ export default function Blog() {
     }
   }, [searchParams]);
 
-  // Update URL when a post is selected
   const handlePostSelect = (post: BlogPost | null) => {
     if (post) {
-      // Update URL with post ID
       router.push(`/blog?post=${post.id}`);
     } else {
-      // Remove post ID from URL
       router.push("/blog");
     }
     setSelectedPost(post);
   };
 
   return (
-    <>
-      <Navbar />
-      <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <h1 className="text-4xl font-bold text-center text-[#0cabba] mb-4">
-          Our Blog
-        </h1>
-        <p className="text-xl text-center mb-12">
-          Insights and tips from our landscaping experts
-        </p>
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <h1 className="text-4xl font-bold text-center text-[#0cabba] mb-4">
+        Our Blog
+      </h1>
+      <p className="text-xl text-center mb-8">
+        Insights and tips from our landscaping experts
+      </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {blogPosts.map((post) => (
-            <motion.div
-              key={post.id}
-              layout
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3 }}
-              className="bg-white rounded-lg overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-300 cursor-pointer group"
-              onClick={() => handlePostSelect(post)}
-            >
-              <div className="relative h-48">
-                <Image
-                  src={post.imagePath}
-                  alt={post.title}
-                  fill
-                  className="object-cover"
-                />
-                {/* Expand Icon */}
-                <div className="absolute top-2 right-2 bg-black bg-opacity-50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-white"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-2">
-                  <span className="text-sm text-gray-500">{post.date}</span>
-                  <span className="text-sm text-gray-500">{post.author}</span>
-                </div>
-                <h2 className="text-xl font-semibold text-gray-800 mb-2">
-                  {post.title}
-                </h2>
-                <p className="text-gray-600 line-clamp-2">{post.excerpt}</p>
-              </div>
-            </motion.div>
-          ))}
+      {/* Filters Section - Updated to match portfolio styling */}
+      <div className="mb-12">
+        <div className="flex flex-wrap justify-center gap-4 mb-8">
+          <button
+            onClick={() => setSelectedCategory("all")}
+            className={`px-6 py-2 rounded-lg transition-all duration-300 ${
+              selectedCategory === "all"
+                ? "bg-[#0cabba] text-white shadow-lg scale-105"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            }`}
+          >
+            All
+          </button>
+          <button
+            onClick={() => setSelectedCategory("lawn-care")}
+            className={`px-6 py-2 rounded-lg transition-all duration-300 ${
+              selectedCategory === "lawn-care"
+                ? "bg-[#0cabba] text-white shadow-lg scale-105"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            }`}
+          >
+            Lawn Care
+          </button>
+          <button
+            onClick={() => setSelectedCategory("landscaping")}
+            className={`px-6 py-2 rounded-lg transition-all duration-300 ${
+              selectedCategory === "landscaping"
+                ? "bg-[#0cabba] text-white shadow-lg scale-105"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            }`}
+          >
+            Landscaping
+          </button>
+          <button
+            onClick={() => setSelectedCategory("maintenance")}
+            className={`px-6 py-2 rounded-lg transition-all duration-300 ${
+              selectedCategory === "maintenance"
+                ? "bg-[#0cabba] text-white shadow-lg scale-105"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            }`}
+          >
+            Maintenance
+          </button>
+          <button
+            onClick={() => setSelectedCategory("tips")}
+            className={`px-6 py-2 rounded-lg transition-all duration-300 ${
+              selectedCategory === "tips"
+                ? "bg-[#0cabba] text-white shadow-lg scale-105"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            }`}
+          >
+            Tips & Tricks
+          </button>
+          <button
+            onClick={() => setSelectedCategory("seasonal")}
+            className={`px-6 py-2 rounded-lg transition-all duration-300 ${
+              selectedCategory === "seasonal"
+                ? "bg-[#0cabba] text-white shadow-lg scale-105"
+                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+            }`}
+          >
+            Seasonal
+          </button>
         </div>
 
-        {/* Modal */}
-        <AnimatePresence>
-          {selectedPost && (
-            <BlogModal
-              post={selectedPost}
-              isOpen={!!selectedPost}
-              onClose={() => handlePostSelect(null)}
-            />
-          )}
-        </AnimatePresence>
+        {/* Sort Order - Styled to match */}
+        <div className="flex justify-center items-center gap-2">
+          <select
+            value={sortOrder}
+            onChange={(e) =>
+              setSortOrder(e.target.value as "newest" | "oldest")
+            }
+            className="px-6 py-2 rounded-lg border border-gray-200 bg-gray-100 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#0cabba] transition-all duration-300"
+          >
+            <option value="newest">Newest First</option>
+            <option value="oldest">Oldest First</option>
+          </select>
+        </div>
       </div>
+
+      {/* Blog Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {filteredAndSortedPosts.map((post) => (
+          <motion.div
+            key={post.id}
+            layout
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3 }}
+            className="bg-white rounded-lg overflow-hidden shadow-lg hover:-translate-y-2 transition-transform duration-300 cursor-pointer group"
+            onClick={() => handlePostSelect(post)}
+          >
+            <div className="relative h-48">
+              <Image
+                src={post.imagePath}
+                alt={post.title}
+                fill
+                className="object-cover"
+              />
+              {/* Expand Icon */}
+              <div className="absolute top-2 right-2 bg-black bg-opacity-50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5v-4m0 4h-4m4 0l-5-5"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-2">
+                <span className="text-sm text-gray-500">{post.date}</span>
+                <span className="text-sm text-gray-500">{post.author}</span>
+              </div>
+              <h2 className="text-xl font-semibold text-gray-800 mb-2">
+                {post.title}
+              </h2>
+              <p className="text-gray-600 line-clamp-2">{post.excerpt}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Show message if no posts match filters */}
+      {filteredAndSortedPosts.length === 0 && (
+        <div className="text-center py-12">
+          <p className="text-gray-600">
+            No blog posts found for the selected category.
+          </p>
+        </div>
+      )}
+
+      <AnimatePresence>
+        {selectedPost && (
+          <BlogModal
+            post={selectedPost}
+            isOpen={!!selectedPost}
+            onClose={() => handlePostSelect(null)}
+          />
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// Loading component
+function BlogLoading() {
+  return (
+    <div className="container mx-auto px-4 py-8 max-w-7xl">
+      <div className="animate-pulse">
+        <div className="h-10 bg-gray-200 rounded w-1/2 mx-auto mb-4"></div>
+        <div className="h-6 bg-gray-200 rounded w-1/3 mx-auto mb-12"></div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="bg-gray-200 rounded-lg h-80"></div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function Blog() {
+  return (
+    <>
+      <Navbar />
+      <Suspense fallback={<BlogLoading />}>
+        <BlogContent />
+      </Suspense>
       <Footer />
     </>
   );
