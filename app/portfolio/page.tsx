@@ -13,6 +13,7 @@ interface PortfolioItem {
   description: string;
   imagePath: string;
   category: ("lawn" | "landscaping" | "maintenance")[];
+  isVideo?: boolean;
 }
 
 // Define the category type to ensure consistency
@@ -22,11 +23,13 @@ type CategoryType = "lawn" | "landscaping" | "maintenance" | "all";
 const ImageModal = ({
   image,
   title,
+  isVideo,
   isOpen,
   onClose,
 }: {
   image: string;
   title: string;
+  isVideo?: boolean;
   isOpen: boolean;
   onClose: () => void;
 }) => {
@@ -41,13 +44,26 @@ const ImageModal = ({
       className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
     >
       <div className="relative w-full max-w-6xl max-h-[90vh] aspect-video">
-        <Image
-          src={image}
-          alt={title}
-          fill
-          className="object-contain"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-        />
+        {isVideo ? (
+          <video
+            className="w-full h-full object-contain"
+            controls
+            autoPlay
+            muted
+            loop
+          >
+            <source src={image} type="video/mp4" />
+            Your browser does not support video playback.
+          </video>
+        ) : (
+          <Image
+            src={image}
+            alt={title}
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+          />
+        )}
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-white bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-75 transition-all"
@@ -154,6 +170,46 @@ const portfolioItems: PortfolioItem[] = [
     imagePath: "/assets/images/port/sod/sod3.jpg",
     category: ["landscaping"],
   },
+
+  {
+    id: 10,
+    title: "Plant Install",
+    description:
+      "Complete garden transformation featuring removal of overgrown vegetation and installation of carefully selected new plantings, revitalizing the property's curb appeal.",
+    imagePath:
+      "/assets/images/port/PlantInstall/Complete renovation of front garden. We ripped out the old and overgrown plants and installed new plants.jpg",
+    category: ["landscaping"],
+  },
+
+  {
+    id: 11,
+    title: "Plant Install",
+    description:
+      "Custom landscape design featuring strategic plant installation complemented by decorative river rock, creating a low-maintenance, visually striking garden bed.",
+    imagePath:
+      "/assets/images/port/PlantInstall/Plant install, we installed the plants and the river rock 2.jpg",
+    category: ["landscaping"],
+  },
+
+  {
+    id: 12,
+    title: "Plant Install",
+    description:
+      "Complete garden bed transformation featuring expert plant placement and river rock installation, balancing beauty with functionality.",
+    imagePath:
+      "/assets/images/port/PlantInstall/Plant install, we installed the plants and the river rock.jpg",
+    category: ["landscaping"],
+  },
+
+  {
+    id: 13,
+    title: "Plant Install",
+    description:
+      "Complete garden bed transformation featuring expert plant placement and river rock installation, balancing beauty with functionality.",
+    imagePath: "/assets/images/port/PlantInstall/plantVideo.mp4",
+    category: ["landscaping"],
+    isVideo: true,
+  },
   // Add more items here...
 ];
 
@@ -246,12 +302,25 @@ export default function Portfolio() {
                 onClick={() => setSelectedImage(item)}
               >
                 <div className="relative h-64">
-                  <Image
-                    src={item.imagePath}
-                    alt={item.title}
-                    fill
-                    className="object-cover"
-                  />
+                  {item.isVideo ? (
+                    <video
+                      className="w-full h-full object-cover"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    >
+                      <source src={item.imagePath} type="video/mp4" />
+                      Your browser does not support video playback.
+                    </video>
+                  ) : (
+                    <Image
+                      src={item.imagePath}
+                      alt={item.title}
+                      fill
+                      className="object-cover"
+                    />
+                  )}
                   <div className="absolute top-2 right-2 bg-black bg-opacity-50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -287,6 +356,7 @@ export default function Portfolio() {
           <ImageModal
             image={selectedImage.imagePath}
             title={selectedImage.title}
+            isVideo={selectedImage.isVideo}
             isOpen={!!selectedImage}
             onClose={() => setSelectedImage(null)}
           />
