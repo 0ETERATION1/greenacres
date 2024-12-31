@@ -299,7 +299,7 @@ const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 22,
-    title: "Loading fresh mulch",
+    title: "Loading Fresh Mulch",
     description:
       "Efficient bulk mulch preparation and handling for large-scale landscape projects.",
     imagePath:
@@ -368,6 +368,33 @@ const portfolioItems: PortfolioItem[] = [
       "Special attention was given to the area around the air conditioning units, with precision mulch installation to maintain functionality and aesthetics.",
     imagePath:
       "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114923.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
+  },
+  {
+    id: 30,
+    title: "Mulch Installation",
+    description:
+      "A stunning transformation for these expansive mulch beds: We pulled weeds, trimmed bushes, edged the flower beds, and installed fresh mulch for a polished finish.",
+    imagePath:
+      "/assets/images/port/Mulch install/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105526.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
+  },
+  {
+    id: 31,
+    title: "Mulch Installation",
+    description:
+      "Big mulch beds, big results: We meticulously trimmed, weeded, edged, and mulched to create a vibrant, well-maintained landscape.",
+    imagePath:
+      "/assets/images/port/Mulch install/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105623.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
+  },
+  {
+    id: 32,
+    title: "Mulch Installation",
+    description:
+      "Bringing order to large mulch beds with seamless mulch installation and a focus on creating a tidy, professional finish.",
+    imagePath:
+      "/assets/images/port/Mulch install/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105636.jpg",
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
   // Add more items here...
