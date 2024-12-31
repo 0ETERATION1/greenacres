@@ -43,10 +43,16 @@ const ImageModal = ({
       onClick={onClose}
       className="fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4"
     >
-      <div className="relative w-full max-w-6xl max-h-[90vh] aspect-video">
+      <div
+        className={`relative ${
+          isVideo
+            ? "w-auto h-[90vh]"
+            : "w-full max-w-6xl max-h-[90vh] aspect-video"
+        }`}
+      >
         {isVideo ? (
           <video
-            className="w-full h-full object-contain"
+            className="h-full w-auto max-w-full object-contain"
             controls
             autoPlay
             muted
@@ -303,16 +309,18 @@ export default function Portfolio() {
               >
                 <div className="relative h-64">
                   {item.isVideo ? (
-                    <video
-                      className="w-full h-full object-cover"
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    >
-                      <source src={item.imagePath} type="video/mp4" />
-                      Your browser does not support video playback.
-                    </video>
+                    <div className="w-full h-full flex justify-center bg-black">
+                      <video
+                        className="h-full w-auto object-contain"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                      >
+                        <source src={item.imagePath} type="video/mp4" />
+                        Your browser does not support video playback.
+                      </video>
+                    </div>
                   ) : (
                     <Image
                       src={item.imagePath}
