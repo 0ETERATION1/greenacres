@@ -12,16 +12,11 @@ interface PortfolioItem {
   title: string;
   description: string;
   imagePath: string;
-  category: ("lawn" | "landscaping" | "hardscape" | "maintenance")[];
+  category: ("lawn" | "landscaping" | "maintenance")[];
 }
 
 // Define the category type to ensure consistency
-type CategoryType =
-  | "lawn"
-  | "landscaping"
-  | "hardscape"
-  | "maintenance"
-  | "all";
+type CategoryType = "lawn" | "landscaping" | "maintenance" | "all";
 
 // Add a Modal component for full-screen view
 const ImageModal = ({
@@ -100,7 +95,7 @@ const portfolioItems: PortfolioItem[] = [
     title: "Professional Lawn Care",
     description: "Backyard Mowing, fertilizing, and weed control maintenance.",
     imagePath: "/assets/images/portfolio/lawn/lawn3.jpg",
-    category: ["lawn"],
+    category: ["lawn", "maintenance"],
   },
   {
     id: 4,
@@ -110,19 +105,54 @@ const portfolioItems: PortfolioItem[] = [
     imagePath: "/assets/images/portfolio/lawn/landscaping1.jpg",
     category: ["landscaping"],
   },
+
   {
     id: 5,
-    title: "Stone Pathway Installation",
-    description: "Custom stone pathway with natural materials and lighting.",
-    imagePath: "/assets/images/portfolio/hardscape1.jpg",
-    category: ["hardscape"],
+    title: "Sod Installation",
+    description:
+      "Lawn preparation and soil conditioning prior to sod installation.",
+    imagePath:
+      "/assets/images/port/sod/Prep work before a sod installation_.jpg",
+    category: ["landscaping"],
   },
+
   {
     id: 6,
-    title: "Commercial Lawn Maintenance",
-    description: "Year-round maintenance for business complex.",
-    imagePath: "/assets/images/portfolio/maintenance1.jpg",
-    category: ["maintenance"],
+    title: "Sod Installation",
+    description:
+      "Professional sod installation creating a seamless, pristine lawn.",
+    imagePath:
+      "/assets/images/port/sod/Prep work before a sod installation. Completed_.jpg",
+    category: ["landscaping"],
+  },
+
+  {
+    id: 7,
+    title: "Sod Installation",
+    description:
+      "Large-scale sod renovation transforming this property's front lawn with premium turf.",
+    imagePath:
+      "/assets/images/port/sod/Property where large sections of the front lawn were replaced with fresh sod 2.jpg",
+    category: ["landscaping"],
+  },
+
+  {
+    id: 8,
+    title: "Sod Installation",
+    description:
+      "Major front lawn transformation through professional sod replacement, creating a lush, healthy landscape.",
+    imagePath:
+      "/assets/images/port/sod/Property where large sections of the front lawn were replaced with fresh sod.jpg",
+    category: ["landscaping"],
+  },
+
+  {
+    id: 9,
+    title: "Sod Installation",
+    description:
+      "Complete yard transformation through expert sod installation. Our team regraded the terrain and installed premium sod, implementing proper drainage solutions to ensure lasting lawn health and prevent water accumulation.",
+    imagePath: "/assets/images/port/sod/sod3.jpg",
+    category: ["landscaping"],
   },
   // Add more items here...
 ];
@@ -185,16 +215,6 @@ export default function Portfolio() {
               }`}
             >
               Landscaping
-            </button>
-            <button
-              onClick={() => setSelectedCategory("hardscape")}
-              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
-                selectedCategory === "hardscape"
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-              }`}
-            >
-              Hardscape
             </button>
             <button
               onClick={() => setSelectedCategory("maintenance")}
