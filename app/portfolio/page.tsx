@@ -12,12 +12,21 @@ interface PortfolioItem {
   title: string;
   description: string;
   imagePath: string;
-  category: ("lawn" | "landscaping" | "maintenance")[];
+  category: Exclude<CategoryType, "all">[];
   isVideo?: boolean;
 }
 
 // Define the category type to ensure consistency
-type CategoryType = "lawn" | "landscaping" | "maintenance" | "all";
+type CategoryType =
+  | "lawn-maintenance"
+  | "weed-control"
+  | "mulch"
+  | "hand-weeding"
+  | "bush-trimming"
+  | "plant-installation"
+  | "sod-installation"
+  | "leaf-removal"
+  | "all";
 
 // Add a Modal component for full-screen view
 const ImageModal = ({
@@ -102,7 +111,7 @@ const portfolioItems: PortfolioItem[] = [
     description:
       "Weekly mowing and maintenance keeping this property looking pristine year-round.",
     imagePath: "/assets/images/portfolio/lawn/lawn1.jpg",
-    category: ["lawn"],
+    category: ["lawn-maintenance"],
   },
   {
     id: 2,
@@ -110,14 +119,14 @@ const portfolioItems: PortfolioItem[] = [
     description:
       "Mowing, fertilizing, and weed control maintenance keeping this property looking pristine year-round.",
     imagePath: "/assets/images/portfolio/lawn/lawn2.jpg",
-    category: ["lawn", "maintenance"],
+    category: ["lawn-maintenance"],
   },
   {
     id: 3,
     title: "Professional Lawn Care",
     description: "Backyard Mowing, fertilizing, and weed control maintenance.",
     imagePath: "/assets/images/portfolio/lawn/lawn3.jpg",
-    category: ["lawn", "maintenance"],
+    category: ["lawn-maintenance"],
   },
   {
     id: 4,
@@ -125,7 +134,7 @@ const portfolioItems: PortfolioItem[] = [
     description:
       "Complete garden transformation with seasonal flowers and shrubs.",
     imagePath: "/assets/images/portfolio/lawn/landscaping1.jpg",
-    category: ["landscaping"],
+    category: ["plant-installation"],
   },
 
   {
@@ -135,7 +144,7 @@ const portfolioItems: PortfolioItem[] = [
       "Lawn preparation and soil conditioning prior to sod installation.",
     imagePath:
       "/assets/images/port/sod/Prep work before a sod installation_.jpg",
-    category: ["landscaping"],
+    category: ["sod-installation"],
   },
 
   {
@@ -145,7 +154,7 @@ const portfolioItems: PortfolioItem[] = [
       "Professional sod installation creating a seamless, pristine lawn.",
     imagePath:
       "/assets/images/port/sod/Prep work before a sod installation. Completed_.jpg",
-    category: ["landscaping"],
+    category: ["sod-installation"],
   },
 
   {
@@ -155,7 +164,7 @@ const portfolioItems: PortfolioItem[] = [
       "Large-scale sod renovation transforming this property's front lawn with premium turf.",
     imagePath:
       "/assets/images/port/sod/Property where large sections of the front lawn were replaced with fresh sod 2.jpg",
-    category: ["landscaping"],
+    category: ["sod-installation"],
   },
 
   {
@@ -165,7 +174,7 @@ const portfolioItems: PortfolioItem[] = [
       "Major front lawn transformation through professional sod replacement, creating a lush, healthy landscape.",
     imagePath:
       "/assets/images/port/sod/Property where large sections of the front lawn were replaced with fresh sod.jpg",
-    category: ["landscaping"],
+    category: ["sod-installation"],
   },
 
   {
@@ -174,7 +183,7 @@ const portfolioItems: PortfolioItem[] = [
     description:
       "Complete yard transformation through expert sod installation. Our team regraded the terrain and installed premium sod, implementing proper drainage solutions to ensure lasting lawn health and prevent water accumulation.",
     imagePath: "/assets/images/port/sod/sod3.jpg",
-    category: ["landscaping"],
+    category: ["sod-installation"],
   },
 
   {
@@ -184,7 +193,7 @@ const portfolioItems: PortfolioItem[] = [
       "Complete garden transformation featuring removal of overgrown vegetation and installation of carefully selected new plantings, revitalizing the property's curb appeal.",
     imagePath:
       "/assets/images/port/PlantInstall/Complete renovation of front garden. We ripped out the old and overgrown plants and installed new plants.jpg",
-    category: ["landscaping"],
+    category: ["plant-installation"],
   },
 
   {
@@ -194,7 +203,7 @@ const portfolioItems: PortfolioItem[] = [
       "Custom landscape design featuring strategic plant installation complemented by decorative river rock, creating a low-maintenance, visually striking garden bed.",
     imagePath:
       "/assets/images/port/PlantInstall/Plant install, we installed the plants and the river rock 2.jpg",
-    category: ["landscaping"],
+    category: ["plant-installation"],
   },
 
   {
@@ -204,16 +213,16 @@ const portfolioItems: PortfolioItem[] = [
       "Complete garden bed transformation featuring expert plant placement and river rock installation, balancing beauty with functionality.",
     imagePath:
       "/assets/images/port/PlantInstall/Plant install, we installed the plants and the river rock.jpg",
-    category: ["landscaping"],
+    category: ["plant-installation"],
   },
 
   {
     id: 13,
     title: "Plant Install",
     description:
-      "Complete garden bed transformation featuring expert plant placement and river rock installation, balancing beauty with functionality.",
+      "Skilled operation of specialized equipment for safe and efficient tree transportation during our landscape installation process.",
     imagePath: "/assets/images/port/PlantInstall/plantVideo.mp4",
-    category: ["landscaping"],
+    category: ["plant-installation"],
     isVideo: true,
   },
   // Add more items here...
@@ -252,41 +261,91 @@ export default function Portfolio() {
               onClick={() => setSelectedCategory("all")}
               className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
                 selectedCategory === "all"
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
               }`}
             >
               All
             </button>
             <button
-              onClick={() => setSelectedCategory("lawn")}
+              onClick={() => setSelectedCategory("lawn-maintenance")}
               className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
-                selectedCategory === "lawn"
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                selectedCategory === "lawn-maintenance"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
               }`}
             >
-              Lawn Care
+              Lawn Maintenance
             </button>
             <button
-              onClick={() => setSelectedCategory("landscaping")}
+              onClick={() => setSelectedCategory("weed-control")}
               className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
-                selectedCategory === "landscaping"
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                selectedCategory === "weed-control"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
               }`}
             >
-              Landscaping
+              Weed Control & Fertilizer
             </button>
             <button
-              onClick={() => setSelectedCategory("maintenance")}
+              onClick={() => setSelectedCategory("mulch")}
               className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
-                selectedCategory === "maintenance"
-                  ? "bg-green-600 text-white"
-                  : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+                selectedCategory === "mulch"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
               }`}
             >
-              Maintenance
+              Mulch Installation
+            </button>
+            <button
+              onClick={() => setSelectedCategory("hand-weeding")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "hand-weeding"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              Hand Weeding
+            </button>
+            <button
+              onClick={() => setSelectedCategory("bush-trimming")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "bush-trimming"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              Bush Trimming
+            </button>
+            <button
+              onClick={() => setSelectedCategory("plant-installation")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "plant-installation"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              Plant Installation
+            </button>
+            <button
+              onClick={() => setSelectedCategory("sod-installation")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "sod-installation"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              Sod Installation
+            </button>
+            <button
+              onClick={() => setSelectedCategory("leaf-removal")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "leaf-removal"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              Leaf Removal
             </button>
           </div>
         </div>
