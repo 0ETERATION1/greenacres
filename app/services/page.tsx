@@ -77,7 +77,7 @@ Following all Montgomery County regulations, our program provides environmentall
             <ServiceCard
               title="Sod installation"
               description="Our Sod Installation Service provides a quick and effective solution for achieving a lush, green lawn. From site preparation to laying fresh, high-quality sod, we handle every step with precision and care to ensure proper rooting and long-lasting results. Whether you're starting fresh or repairing damaged areas, our service transforms your outdoor space into a vibrant, healthy lawn with minimal downtime, delivering instant curb appeal and a durable foundation for future growth."
-              imagePath="/assets/images/port/plantInstall3.jpg"
+              imagePath="/assets/images/port/sod/Property where large sections of the front lawn were replaced with fresh sod 2.jpg"
             />
 
             <ServiceCard
