@@ -231,7 +231,7 @@ const portfolioItems: PortfolioItem[] = [
     description: "Before image of a small clean-up and mulch install",
     imagePath:
       "/assets/images/port/Mulch install/Before and After of a mulch installation /goodBefore.jpg",
-    category: ["mulch"],
+    category: ["mulch", "hand-weeding"],
   },
   {
     id: 15,
@@ -239,7 +239,7 @@ const portfolioItems: PortfolioItem[] = [
     description: "After image of a small clean-up and mulch install",
     imagePath:
       "/assets/images/port/Mulch install/Before and After of a mulch installation /goodAfter.jpg",
-    category: ["mulch"],
+    category: ["mulch", "hand-weeding"],
   },
   {
     id: 16,
@@ -277,7 +277,7 @@ const portfolioItems: PortfolioItem[] = [
       "Complete garden bed rejuvenation featuring bush trimming, weed removal, crisp edge definition, and premium mulch installation.",
     imagePath:
       "/assets/images/port/Mulch install/Major clean up we completed/Before photo of major clean up we completed. Frontyard 2.jpg",
-    category: ["mulch", "hand-weeding"],
+    category: ["mulch", "hand-weeding", "bush-trimming"],
   },
   {
     id: 20,
@@ -296,6 +296,79 @@ const portfolioItems: PortfolioItem[] = [
     imagePath:
       "/assets/images/port/Mulch install/Mulch install/20240420_152614.jpg",
     category: ["mulch", "hand-weeding", "plant-installation"],
+  },
+  {
+    id: 22,
+    title: "Loading fresh mulch",
+    description:
+      "Efficient bulk mulch preparation and handling for large-scale landscape projects.",
+    imagePath:
+      "/assets/images/port/Mulch install/Loading fresh mulch to install for our customers_.mp4",
+    category: ["mulch"],
+    isVideo: true,
+  },
+  {
+    id: 23,
+    title: "Mulch Installation",
+    description:
+      "We carefully removed debris, reshaped the bushes for a polished look, and refreshed the mulch beds to keep them weed-free and healthy.",
+    imagePath:
+      "/assets/images/port/Mulch install/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173002.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
+  },
+  {
+    id: 24,
+    title: "Mulch Installation",
+    description:
+      "We tackled overgrowth, reshaped the hedges, and revitalized the mulch beds, ensuring this yard stays beautiful and low-maintenance year-round.",
+    imagePath:
+      "/assets/images/port/Mulch install/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173019.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
+  },
+  {
+    id: 25,
+    title: "Mulch Installation",
+    description:
+      "A complete Spring Clean-Up: Bushes were trimmed, weeds pulled, and mulch refreshed to bring new life to this home’s exterior.",
+    imagePath:
+      "/assets/images/port/Mulch install/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173055.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
+  },
+  {
+    id: 26,
+    title: "Mulch Installation",
+    description:
+      "This Spring Clean-Up included bush trimming, meticulous weed removal, clean flower bed edging, and a layer of vibrant mulch.",
+    imagePath:
+      "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114828.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
+  },
+  {
+    id: 27,
+    title: "Mulch Installation",
+    description:
+      "We gave this yard a seasonal refresh with trimmed greenery, weed-free beds, precise edging, and new mulch to tie it all together.",
+    imagePath:
+      "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114835.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
+  },
+  {
+    id: 28,
+    title: "Mulch Installation",
+    description:
+      "We tackled this backyard with a thorough clean-up, including weed removal, bed edging, and a fresh layer of mulch to complete the look.",
+    imagePath:
+      "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114916.jpg",
+    category: ["mulch", "hand-weeding"],
+  },
+  {
+    id: 29,
+    title: "Mulch Installation",
+    description:
+      "Special attention was given to the area around the air conditioning units, with precision mulch installation to maintain functionality and aesthetics.",
+    imagePath:
+      "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114923.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
   },
   // Add more items here...
 ];
