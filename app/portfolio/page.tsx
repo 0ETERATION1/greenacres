@@ -225,6 +225,78 @@ const portfolioItems: PortfolioItem[] = [
     category: ["plant-installation"],
     isVideo: true,
   },
+  {
+    id: 14,
+    title: "Mulch Installation (Before)",
+    description: "Before image of a small clean-up and mulch install",
+    imagePath:
+      "/assets/images/port/Mulch install/Before and After of a mulch installation /goodBefore.jpg",
+    category: ["mulch"],
+  },
+  {
+    id: 15,
+    title: "Mulch Installation (After)",
+    description: "After image of a small clean-up and mulch install",
+    imagePath:
+      "/assets/images/port/Mulch install/Before and After of a mulch installation /goodAfter.jpg",
+    category: ["mulch"],
+  },
+  {
+    id: 16,
+    title: "Mulch Installation",
+    description:
+      "Comprehensive garden bed transformation: We trimmed bushes, pulled weeds, edged beds, and installed mulch to create a pristine, low-maintenance landscape.",
+    imagePath:
+      "/assets/images/port/Mulch install/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_132941.jpg",
+    category: ["mulch", "hand-weeding"],
+  },
+
+  {
+    id: 17,
+    title: "Mulch Installation",
+    description:
+      "Thorough landscape enhancement including strategic bush trimming, detailed weed removal, precise bed edging, and fresh mulch application.",
+    imagePath:
+      "/assets/images/port/Mulch install/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_133000.jpg",
+    category: ["mulch", "hand-weeding", "bush-trimming"],
+  },
+
+  {
+    id: 18,
+    title: "Mulch Installation (Before)",
+    description:
+      "Overgrown bushes and weeds before mulch installation and cleanup.",
+    imagePath:
+      "/assets/images/port/Mulch install/Major clean up we completed/Before photo of major clean up we completed.jpg",
+    category: ["mulch", "hand-weeding"],
+  },
+  {
+    id: 19,
+    title: "Mulch Installation (After)",
+    description:
+      "Complete garden bed rejuvenation featuring bush trimming, weed removal, crisp edge definition, and premium mulch installation.",
+    imagePath:
+      "/assets/images/port/Mulch install/Major clean up we completed/Before photo of major clean up we completed. Frontyard 2.jpg",
+    category: ["mulch", "hand-weeding"],
+  },
+  {
+    id: 20,
+    title: "Mulch Installation",
+    description:
+      "Freshly installed mulch adds a clean, vibrant touch to your garden beds, enhancing curb appeal instantly.",
+    imagePath:
+      "/assets/images/port/Mulch install/Mulch install/20240420_152433.jpg",
+    category: ["mulch", "hand-weeding"],
+  },
+  {
+    id: 21,
+    title: "Mulch Installation",
+    description:
+      "Professional landscape installation combining carefully selected plants for a refined, sustainable design.",
+    imagePath:
+      "/assets/images/port/Mulch install/Mulch install/20240420_152614.jpg",
+    category: ["mulch", "hand-weeding", "plant-installation"],
+  },
   // Add more items here...
 ];
 
