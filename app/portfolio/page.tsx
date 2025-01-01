@@ -37,6 +37,7 @@ type CategoryType =
   | "plant-installation"
   | "sod-installation"
   | "leaf-removal"
+  | "firewood"
   | "all";
 
 // Add a Modal component for full-screen view
@@ -975,6 +976,38 @@ const portfolioItems: PortfolioItem[] = [
     isVideo: true,
   },
 
+  {
+    id: 46,
+    title: "Firewood Delivery",
+    description: (
+      <>
+        Delivered and stacked{" "}
+        <span className="highlight-animation">firewood</span> for our client.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/Firewood /Firewood we delivered and stacked 2.jpg",
+
+    category: ["firewood"],
+  },
+
+  {
+    id: 47,
+    title: "Firewood ",
+    description: (
+      <>
+        Delivered and stacked{" "}
+        <span className="highlight-animation">firewood</span> for our client.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/Firewood /Firewood we delivered and stacked.jpg",
+
+    category: ["firewood"],
+  },
+
   // Add more items here...
 ];
 
@@ -1108,6 +1141,17 @@ export default function Portfolio() {
               }`}
             >
               Leaf Removal
+            </button>
+
+            <button
+              onClick={() => setSelectedCategory("firewood")}
+              className={`whitespace-nowrap px-4 py-2 rounded-lg transition-colors duration-300 ${
+                selectedCategory === "firewood"
+                  ? "bg-green-600 text-white shadow-lg scale-105"
+                  : "bg-gray-200 text-gray-600 hover:bg-gray-200"
+              }`}
+            >
+              Firewood
             </button>
           </div>
         </div>
