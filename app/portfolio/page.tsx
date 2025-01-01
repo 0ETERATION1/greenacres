@@ -203,7 +203,7 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 5,
 
-    title: "Sod Installation",
+    title: "Sod Installation (Before",
 
     description: (
       <>
@@ -221,7 +221,7 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 6,
 
-    title: "Sod Installation",
+    title: "Sod Installation (After)",
 
     description: (
       <>
