@@ -373,7 +373,12 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation (Before)",
 
-    description: "Before image of a small clean-up and mulch install",
+    description: (
+      <>
+        Before image of a small clean-up and{" "}
+        <span className="highlight-animation">mulch install</span>
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Before and After of a mulch installation /goodBefore.jpg",
@@ -386,7 +391,12 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation (After)",
 
-    description: "After image of a small clean-up and mulch install",
+    description: (
+      <>
+        After image of a small clean-up and{" "}
+        <span className="highlight-animation">mulch install</span>
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Before and After of a mulch installation /goodAfter.jpg",
@@ -399,8 +409,15 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "Comprehensive garden bed transformation: We trimmed bushes, pulled weeds, edged beds, and installed mulch to create a pristine, low-maintenance landscape.",
+    description: (
+      <>
+        Comprehensive garden bed transformation: We{" "}
+        <span className="highlight-animation">trimmed bushes</span>,{" "}
+        <span className="highlight-animation">pulled weeds</span>, edged beds,
+        and <span className="highlight-animation">installed mulch </span>to
+        create a pristine, low-maintenance landscape.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_132941.jpg",
@@ -413,8 +430,15 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "Thorough landscape enhancement including strategic bush trimming, detailed weed removal, precise bed edging, and fresh mulch application.",
+    description: (
+      <>
+        Thorough landscape enhancement including strategic{" "}
+        <span className="highlight-animation">bush trimming</span>, detailed{" "}
+        <span className="highlight-animation">weed removal</span>, precise bed
+        edging, and{" "}
+        <span className="highlight-animation">fresh mulch application</span>.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_133000.jpg",
@@ -427,8 +451,13 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation (Before)",
 
-    description:
-      "Overgrown bushes and weeds before mulch installation and cleanup.",
+    description: (
+      <>
+        Overgrown bushes and weeds before{" "}
+        <span className="highlight-animation">mulch installation</span> and
+        cleanup.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Major clean up we completed/Before photo of major clean up we completed.jpg",
@@ -463,8 +492,13 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "Freshly installed mulch adds a clean, vibrant touch to your garden beds, enhancing curb appeal instantly.",
+    description: (
+      <>
+        Freshly <span className="highlight-animation">installed mulch</span>{" "}
+        adds a clean, vibrant touch to your garden beds, enhancing curb appeal
+        instantly.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Mulch install/20240420_152433.jpg",
@@ -477,8 +511,13 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation With Plant Installation",
 
-    description:
-      "Professional landscape installation combining carefully selected plants for a refined, sustainable design.",
+    description: (
+      <>
+        Professional landscape installation combining carefully selected{" "}
+        <span className="highlight-animation">plants</span> for a refined,
+        sustainable design.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Mulch install/20240420_152614.jpg",
@@ -507,8 +546,16 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "We carefully removed debris, reshaped the bushes for a polished look, and refreshed the mulch beds to keep them weed-free and healthy.",
+    description: (
+      <>
+        We carefully removed debris,{" "}
+        <span className="highlight-animation">reshaped the bushes</span> for a
+        polished look, and{" "}
+        <span className="highlight-animation">refreshed the mulch beds </span>to
+        keep them <span className="highlight-animation">weed-free</span> and
+        healthy.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173002.jpg",
@@ -521,8 +568,14 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "We tackled overgrowth, reshaped the hedges, and revitalized the mulch beds, ensuring this yard stays beautiful and low-maintenance year-round.",
+    description: (
+      <>
+        We tackled overgrowth,{" "}
+        <span className="highlight-animation">reshaped the hedges</span>, and{" "}
+        <span className="highlight-animation">revitalized the mulch beds</span>,
+        ensuring this yard stays beautiful and low-maintenance year-round.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173019.jpg",
@@ -535,8 +588,15 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "A complete Spring Clean-Up: Bushes were trimmed, weeds pulled, and mulch refreshed to bring new life to this home’s exterior.",
+    description: (
+      <>
+        A complete Spring Clean-Up:{" "}
+        <span className="highlight-animation">Bushes were trimmed</span>,{" "}
+        <span className="highlight-animation">weeds pulled</span>, and{" "}
+        <span className="highlight-animation">mulch refreshed </span>to bring
+        new life to this home’s exterior.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173055.jpg",
@@ -549,8 +609,15 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "This Spring Clean-Up included bush trimming, meticulous weed removal, clean flower bed edging, and a layer of vibrant mulch.",
+    description: (
+      <>
+        This Spring Clean-Up included{" "}
+        <span className="highlight-animation">bush trimming</span>,{" "}
+        <span className="highlight-animation">meticulous weed removal</span>,{" "}
+        clean flower bed edging, and a layer of{" "}
+        <span className="highlight-animation">vibrant mulch</span>.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114828.jpg",
@@ -563,8 +630,15 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "We gave this yard a seasonal refresh with trimmed greenery, weed-free beds, precise edging, and new mulch to tie it all together.",
+    description: (
+      <>
+        We gave this yard a seasonal refresh with{" "}
+        <span className="highlight-animation">trimmed greenery</span>,{" "}
+        <span className="highlight-animation">weed-free beds</span>, precise
+        edging, and <span className="highlight-animation">new mulch</span> to
+        tie it all together.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114835.jpg",
@@ -577,8 +651,14 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "We tackled this backyard with a thorough clean-up, including weed removal, bed edging, and a fresh layer of mulch to complete the look.",
+    description: (
+      <>
+        We tackled this backyard with a thorough clean-up, including{" "}
+        <span className="highlight-animation">weed removal</span>, bed edging,
+        and a <span className="highlight-animation">fresh layer of mulch</span>{" "}
+        to complete the look.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114916.jpg",
@@ -591,8 +671,14 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "Special attention was given to the area around the air conditioning units, with precision mulch installation to maintain functionality and aesthetics.",
+    description: (
+      <>
+        Special attention was given to the area around the air conditioning
+        units, with precision{" "}
+        <span className="highlight-animation">mulch installation</span> to
+        maintain functionality and aesthetics.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114923.jpg",
@@ -605,8 +691,16 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "A stunning transformation for these expansive mulch beds: We pulled weeds, trimmed bushes, edged the flower beds, and installed fresh mulch for a polished finish.",
+    description: (
+      <>
+        A stunning transformation for these expansive mulch beds: We{" "}
+        <span className="highlight-animation">pulled weeds</span>,{" "}
+        <span className="highlight-animation">trimmed bushes</span>, edged the
+        flower beds, and{" "}
+        <span className="highlight-animation">installed fresh mulch</span> for a
+        polished finish.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105526.jpg",
@@ -619,8 +713,15 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "Big mulch beds, big results: We meticulously trimmed, weeded, edged, and mulched to create a vibrant, well-maintained landscape.",
+    description: (
+      <>
+        Big mulch beds, big results: We meticulously{" "}
+        <span className="highlight-animation">trimmed</span>,{" "}
+        <span className="highlight-animation">weeded</span>, edged, and{" "}
+        <span className="highlight-animation">mulched</span> to create a
+        vibrant, well-maintained landscape.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105623.jpg",
@@ -633,8 +734,13 @@ const portfolioItems: PortfolioItem[] = [
 
     title: "Mulch Installation",
 
-    description:
-      "Bringing order to large mulch beds with seamless mulch installation and a focus on creating a tidy, professional finish.",
+    description: (
+      <>
+        Bringing order to large mulch beds with seamless{" "}
+        <span className="highlight-animation">mulch installation</span> and a
+        focus on creating a tidy, professional finish.
+      </>
+    ),
 
     imagePath:
       "/assets/images/port/Mulch install/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105636.jpg",
