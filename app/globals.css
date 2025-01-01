@@ -653,10 +653,49 @@
 
 
 @layer base {
+
   * {
-    @apply border-border;
+  
+  @apply border-border;
+  
   }
+  
   body {
-    @apply bg-background text-foreground;
+  
+  @apply bg-background text-foreground;
+  
   }
-}
+  
+  }
+  
+    
+  
+  @keyframes highlightText {
+  
+  0%, 45% { /* Start and stay gray */
+  
+  color: #4B5563; /* This is the Tailwind text-gray-600 color */
+  
+  }
+  
+  50%, 95% { /* Change to teal and hold */
+  
+  color: #0cabba;
+  
+  }
+  
+  100% { /* Back to gray */
+  
+  color: #4B5563;
+  
+  }
+  
+  }
+  
+    
+  
+  .highlight-animation {
+  
+  animation: highlightText 4s linear infinite;
+  
+  }
