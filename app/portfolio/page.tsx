@@ -862,7 +862,7 @@ const portfolioItems: PortfolioItem[] = [
     description: (
       <>
         Nicholas on duty <span className="highlight-animation">mowing</span> a
-        client's lawn.
+        client&apos;s lawn.
       </>
     ),
 
