@@ -748,6 +748,184 @@ const portfolioItems: PortfolioItem[] = [
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
 
+  {
+    id: 33,
+
+    title: "Lawn Maintenance",
+
+    description: (
+      <>
+        A crew member mowing a lawn with a commercial grade lawn mowers. Leaving
+        behind a great cut
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LawnMaintenance /A crew member mowing a lawn with a commercial grade lawn mowers. Leaving behind a great cut.mp4",
+
+    category: ["lawn-maintenance"],
+
+    isVideo: true,
+  },
+
+  {
+    id: 34,
+
+    title: "Lawn Maintenance",
+
+    description: (
+      <>
+        A front yard of a property where we{" "}
+        <span className="highlight-animation">maintain the lawn</span> and the
+        flower beds.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LawnMaintenance /A front yard of a property where we maintain the lawn and the flower beds.jpg",
+
+    category: ["lawn-maintenance"],
+  },
+
+  {
+    id: 35,
+
+    title: "Lawn Maintenance",
+
+    description: (
+      <>
+        A well maintained backyard that was just{" "}
+        <span className="highlight-animation">mowed</span>.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LawnMaintenance /A well maintained backyard that was just mowed.jpg",
+
+    category: ["lawn-maintenance"],
+  },
+
+  {
+    id: 36,
+
+    title: "Lawn Maintenance",
+
+    description: (
+      <>
+        A freshly mowed <span className="highlight-animation">lawn</span>.
+      </>
+    ),
+
+    imagePath: "/assets/images/port/LawnMaintenance /Feshly mowed lawn.jpg",
+
+    category: ["lawn-maintenance"],
+  },
+
+  {
+    id: 37,
+
+    title: "Lawn Maintenance",
+
+    description: (
+      <>
+        <span className="highlight-animation">Mowing stripes</span> on a bright
+        green lawn we maintain.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LawnMaintenance /Mowing stripes on a bright green lawn we maintain_.jpg",
+
+    category: ["lawn-maintenance"],
+  },
+
+  {
+    id: 38,
+    title: "Lawn Maintenance",
+    description: (
+      <>
+        More<span className="highlight-animation">Mowing stripes</span>.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LawnMaintenance /Mowing stripes on a property we maintain_.jpg",
+
+    category: ["lawn-maintenance"],
+  },
+
+  {
+    id: 39,
+
+    title: "Lawn Maintenance",
+
+    description: (
+      <>
+        Nicholas on duty <span className="highlight-animation">mowing</span> a
+        client's lawn.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LawnMaintenance /Nick mowing a large property we maintain_.mp4",
+
+    category: ["lawn-maintenance"],
+    isVideo: true,
+  },
+
+  {
+    id: 40,
+
+    title: "Lawn Maintenance",
+
+    description: (
+      <>
+        Keeping lawns pristine with expert{" "}
+        <span className="highlight-animation">mowing. </span>Straight lines,
+        even cuts, and a flawless finish every time.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LawnMaintenance /Nick mowing a larger property we maintain_.jpg",
+
+    category: ["lawn-maintenance"],
+  },
+
+  {
+    id: 41,
+    title: "Lawn Maintenance",
+    description: (
+      <>
+        A perfectly <span className="highlight-animation">mowed lawn</span> that
+        enhances curb appeal and shows the difference professional care can
+        make.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LawnMaintenance /Stripes from a mow on this large property we maintain_.jpg",
+
+    category: ["lawn-maintenance"],
+  },
+
+  {
+    id: 42,
+    title: "Lawn Maintenance",
+    description: (
+      <>
+        The crew working on a lawn with a beautiful{" "}
+        <span className="highlight-animation">mowing pattern.</span>
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LawnMaintenance /The crew working on a lawn with a beautiful mowing pattern_.mp4",
+
+    category: ["lawn-maintenance"],
+    isVideo: true,
+  },
+
   // Add more items here...
 ];
 
