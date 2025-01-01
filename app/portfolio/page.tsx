@@ -245,7 +245,7 @@ const portfolioItems: PortfolioItem[] = [
       <>
         Large-scale{" "}
         <span className="highlight-animation">sod installation</span>{" "}
-        transforming this property's front lawn with premium turf.
+        transforming this property&apos;s front lawn with premium turf.
       </>
     ),
 
@@ -296,20 +296,16 @@ const portfolioItems: PortfolioItem[] = [
 
   {
     id: 10,
-
     title: "Plant Install",
-
     description: (
       <>
         Complete garden transformation featuring removal of overgrown vegetation
         and <span className="highlight-animation">plant installation</span>,
-        revitalizing the property's curb appeal.
+        revitalizing the property&apos;s curb appeal.
       </>
     ),
-
     imagePath:
       "/assets/images/port/PlantInstall/Complete renovation of front garden. We ripped out the old and overgrown plants and installed new plants.jpg",
-
     category: ["plant-installation"],
   },
 
