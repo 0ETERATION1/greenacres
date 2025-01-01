@@ -856,16 +856,13 @@ const portfolioItems: PortfolioItem[] = [
 
   {
     id: 39,
-
     title: "Lawn Maintenance",
-
     description: (
       <>
         Nicholas on duty <span className="highlight-animation">mowing</span> a
         client&apos;s lawn.
       </>
     ),
-
     imagePath:
       "/assets/images/port/LawnMaintenance /Nick mowing a large property we maintain_.mp4",
 
@@ -918,11 +915,63 @@ const portfolioItems: PortfolioItem[] = [
         <span className="highlight-animation">mowing pattern.</span>
       </>
     ),
-
     imagePath:
       "/assets/images/port/LawnMaintenance /The crew working on a lawn with a beautiful mowing pattern_.mp4",
 
     category: ["lawn-maintenance"],
+    isVideo: true,
+  },
+
+  {
+    id: 43,
+    title: "Leaf Removal",
+    description: (
+      <>
+        Gathered and ready for removal: A neatly formed{" "}
+        <span className="highlight-animation">pile of leaves</span> showcasing
+        our efficient leaf care services, keeping your yard clean and seasonal
+        debris-free.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LeafRemoval /Pile of leaves we collected before hauling them away.jpg",
+
+    category: ["leaf-removal"],
+  },
+
+  {
+    id: 44,
+    title: "Leaf Removal",
+    description: (
+      <>
+        Hard at work: Our team expertly uses leaf blowers to clear your yard,
+        ensuring all <span className="highlight-animation">leaves </span>are
+        gathered efficiently for collection and removal.
+      </>
+    ),
+
+    imagePath:
+      "/assets/images/port/LeafRemoval /The guys blowing leaves towards the curb so we can vacuum it and haul away.mp4",
+
+    category: ["leaf-removal"],
+    isVideo: true,
+  },
+
+  {
+    id: 45,
+    title: "Leaf Removal",
+    description: (
+      <>
+        Watch as our high-powered truck vacuums up{" "}
+        <span className="highlight-animation">leaves</span>, providing a quick
+        and thorough cleanup for your property.
+      </>
+    ),
+
+    imagePath: "/assets/images/port/leafRemoval.mp4",
+
+    category: ["leaf-removal"],
     isVideo: true,
   },
 
