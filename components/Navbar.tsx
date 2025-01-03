@@ -44,53 +44,53 @@ export default function Navbar() {
           </div>
 
           {/* Center: Navigation on Desktop */}
-          <div className="flex-1 flex justify-center">
+          <div className="flex-1 flex justify-center items-center">
             {/* Desktop Navigation */}
             <NavigationMenu className="hidden md:flex">
-              <NavigationMenuList className="flex items-center justify-center gap-8">
-                <NavigationMenuItem>
+              <NavigationMenuList className="flex items-center justify-center gap-12">
+                <NavigationMenuItem className="flex items-center">
                   <Link href="/services" legacyBehavior passHref>
-                    <NavigationMenuLink className="nav-link">
+                    <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                       Services
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
+                <NavigationMenuItem className="flex items-center">
                   <Link href="/about" legacyBehavior passHref>
-                    <NavigationMenuLink className="nav-link">
+                    <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                       About
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
+                <NavigationMenuItem className="flex items-center">
                   <Link href="/portfolio" legacyBehavior passHref>
-                    <NavigationMenuLink className="nav-link">
+                    <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                       Portfolio
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
+                <NavigationMenuItem className="flex items-center">
                   <Link href="/firewood" legacyBehavior passHref>
-                    <NavigationMenuLink className="nav-link">
+                    <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                       Firewood
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
+                <NavigationMenuItem className="flex items-center">
                   <Link href="/blog" legacyBehavior passHref>
-                    <NavigationMenuLink className="nav-link">
+                    <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                       Blog
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
 
-                <NavigationMenuItem>
+                <NavigationMenuItem className="flex items-center">
                   <Link href="/quotePage" legacyBehavior passHref>
-                    <NavigationMenuLink className="nav-link">
+                    <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                       Contact
                     </NavigationMenuLink>
                   </Link>
