@@ -39,7 +39,7 @@ export default function Navbar() {
           <div className="flex-1 flex justify-center items-center">
             <NavigationMenu className="hidden md:flex w-full max-w-4xl">
               <NavigationMenuList className="w-full flex items-center justify-center">
-                <div className="flex items-center justify-center gap-12 pl-28">
+                <div className="flex items-center justify-center gap-12 pl-30">
                   <NavigationMenuItem className="flex items-center">
                     <Link href="/portfolio" legacyBehavior passHref>
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
