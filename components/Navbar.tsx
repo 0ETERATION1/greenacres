@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { useScrollPosition } from "@/hooks/useScrollPosition";
-import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -12,7 +10,6 @@ import {
 } from "@/components/ui/navigation-menu";
 
 export default function Navbar() {
-  const { scrollPosition } = useScrollPosition();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const toggleMobileMenu = () => {
