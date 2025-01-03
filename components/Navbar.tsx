@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <div className="sticky top-0 w-full z-50 transition-all duration-300 border-b bg-white/95 backdrop-blur-sm shadow-sm">
-      <div className="container mx-auto px-4 max-w-[100vw] overflow-x-hidden">
+      <div className="container mx-auto px-4 max-w-[100vw]">
         <div className="flex items-center justify-between h-20">
           {/* Left: Logo */}
           <div className="w-[150px]">
@@ -39,7 +39,7 @@ export default function Navbar() {
           <div className="flex-1 flex justify-center items-center">
             <NavigationMenu className="hidden md:flex w-full max-w-4xl">
               <NavigationMenuList className="w-full flex items-center justify-center">
-                <div className="flex items-center justify-center gap-12 pl-20">
+                <div className="flex items-center justify-center gap-12 pl-24">
                   <NavigationMenuItem className="flex items-center">
                     <Link href="/portfolio" legacyBehavior passHref>
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
