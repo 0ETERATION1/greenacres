@@ -20,12 +20,7 @@ export default function Navbar() {
   };
 
   return (
-    <div
-      className={cn(
-        "sticky top-0 w-full z-50 transition-all duration-300 border-b bg-white/95 backdrop-blur-sm",
-        scrollPosition > 0 ? "shadow-md" : ""
-      )}
-    >
+    <div className="sticky top-0 w-full z-50 transition-all duration-300 border-b bg-white/95 backdrop-blur-sm shadow-sm">
       <div className="container mx-auto px-4 max-w-[100vw] overflow-x-hidden">
         <div className="flex items-center justify-between h-20">
           {/* Left: Logo */}
@@ -35,7 +30,7 @@ export default function Navbar() {
                 <NavigationMenuItem className="pl-0">
                   <Link href="/" legacyBehavior passHref>
                     <NavigationMenuLink className="navbar-logo">
-                      <div className="logo" />
+                      <div className="logo"></div>
                     </NavigationMenuLink>
                   </Link>
                 </NavigationMenuItem>
@@ -49,9 +44,9 @@ export default function Navbar() {
               <NavigationMenuList className="w-full flex items-center justify-center">
                 <div className="flex items-center justify-center gap-12">
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/services" legacyBehavior passHref>
+                    <Link href="/portfolio" legacyBehavior passHref>
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
-                        Services
+                        Portfolio
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
@@ -65,9 +60,9 @@ export default function Navbar() {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/portfolio" legacyBehavior passHref>
+                    <Link href="/services" legacyBehavior passHref>
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
-                        Portfolio
+                        Services
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
@@ -190,10 +185,10 @@ export default function Navbar() {
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
               <Link
-                href="/services"
+                href="/portfolio"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
-                Services
+                Portfolio
               </Link>
               <Link
                 href="/about"
@@ -202,10 +197,10 @@ export default function Navbar() {
                 About
               </Link>
               <Link
-                href="/portfolio"
+                href="/services"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
-                Portfolio
+                Services
               </Link>
               <Link
                 href="/firewood"
