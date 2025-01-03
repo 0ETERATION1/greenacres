@@ -45,8 +45,7 @@ export default function Navbar() {
 
           {/* Center: Navigation on Desktop */}
           <div className="flex-1 flex justify-center items-center">
-            {/* Desktop Navigation */}
-            <NavigationMenu className="hidden md:flex w-full max-w-5xl">
+            <NavigationMenu className="hidden md:flex w-full max-w-4xl">
               <NavigationMenuList className="w-full flex items-center justify-center">
                 <div className="flex items-center justify-center gap-12">
                   <NavigationMenuItem className="flex items-center">
@@ -101,9 +100,8 @@ export default function Navbar() {
             </NavigationMenu>
           </div>
 
-          {/* Right: Desktop Buttons and Mobile Actions */}
-          <div className="flex items-center gap-4 pr-4">
-            {/* Desktop Buttons */}
+          {/* Right: Desktop Buttons */}
+          <div className="w-[300px] flex items-center justify-end gap-4 pr-4">
             <div className="hidden md:flex items-center gap-4">
               <Link
                 href="/quotePage"
