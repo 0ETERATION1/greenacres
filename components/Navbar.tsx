@@ -41,14 +41,6 @@ export default function Navbar() {
               <NavigationMenuList className="w-full flex items-center justify-center">
                 <div className="flex items-center justify-center gap-12 pl-32">
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/portfolio" legacyBehavior passHref>
-                      <NavigationMenuLink className="nav-link py-2 px-1 text-base">
-                        Portfolio
-                      </NavigationMenuLink>
-                    </Link>
-                  </NavigationMenuItem>
-
-                  <NavigationMenuItem className="flex items-center">
                     <Link href="/about" legacyBehavior passHref>
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                         About
@@ -60,6 +52,14 @@ export default function Navbar() {
                     <Link href="/services" legacyBehavior passHref>
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                         Services
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+
+                  <NavigationMenuItem className="flex items-center">
+                    <Link href="/portfolio" legacyBehavior passHref>
+                      <NavigationMenuLink className="nav-link py-2 px-1 text-base">
+                        Our Work
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>
