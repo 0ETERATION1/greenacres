@@ -116,19 +116,21 @@ export default function AboutPage() {
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <ValueCard
-              title="Excellence"
-              description="We strive for excellence in every project, no matter the size."
+              title="Reliability"
+              description="We provide consistent and dependable lawn care services. Our team never misses a mow, delivering reliable landscaping maintenance that homeowners and businesses can trust. With professional communication and attention to detail, we ensure your lawn stays in pristine condition year-round."
+              icon="✅"
+            />
+
+            <ValueCard
+              title="Quality"
+              description="Our experienced landscaping crew specializes in delivering high-quality lawn care. From perfectly manicured lawns to expertly trimmed hedges, we never cut corners. With a focus on sustainable practices, we use top-tier equipment and techniques to achieve beautiful, eco-friendly results that enhance your property’s curb appeal."
               icon="🌟"
             />
+
             <ValueCard
               title="Integrity"
-              description="We conduct our business with honesty and transparency."
+              description="At Green Acres Landscaping we operate with honesty and transparency in all our landscaping and lawn care services. Clients trust us to provide clear communication, reliable service, and environmentally conscious practices that align with their values. From pricing to performance, integrity is at the heart of what we do."
               icon="🤝"
-            />
-            <ValueCard
-              title="Sustainability"
-              description="We're committed to environmental stewardship in all our practices."
-              icon="🌱"
             />
           </div>
         </div>
