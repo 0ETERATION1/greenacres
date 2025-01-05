@@ -756,7 +756,7 @@ const portfolioItems: PortfolioItem[] = [
 
     description: (
       <>
-        A crew member mowing a lawn with a commercial grade lawn mowers. Leaving
+        A crew member mowing a lawn with a commercial grade lawn mower. Leaving
         behind a great cut
       </>
     ),
