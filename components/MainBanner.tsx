@@ -24,8 +24,8 @@ export default function MainBanner() {
           Care Easy.
         </h1>
         <h2 className="banner-subtitle">
-          From mowing and lawn treatments to landscaping and hardscaping.
-          We&apos;ve got you covered.
+          From mowing and lawn treatments to landscaping. We&apos;ve got you
+          covered.
         </h2>
         <button
           onClick={() => router.push("/quotePage")}
