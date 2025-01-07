@@ -203,7 +203,7 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 5,
 
-    title: "Sod Installation (Before",
+    title: "Sod Installation (Before)",
 
     description: (
       <>
@@ -845,7 +845,7 @@ const portfolioItems: PortfolioItem[] = [
     title: "Lawn Maintenance",
     description: (
       <>
-        More<span className="highlight-animation">Mowing stripes</span>.
+        More<span className="highlight-animation"> Mowing stripes</span>.
       </>
     ),
 
