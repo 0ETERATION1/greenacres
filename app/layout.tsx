@@ -1,9 +1,10 @@
+import Script from "next/script";
 import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Green Acres | Landscaping",
-  description: "Lawn and Landscape Company in Maryland",
+  description: "Lawn and Landscaping Company in Maryland",
 };
 
 export default function RootLayout({
@@ -15,6 +16,18 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Script
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-43PVN04QCD"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-43PVN04QCD');
+          `}
+        </Script>
       </head>
       <body>{children}</body>
     </html>
