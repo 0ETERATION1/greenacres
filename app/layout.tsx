@@ -5,6 +5,9 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Green Acres | Landscaping",
   description: "Lawn and Landscaping Company in Maryland",
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
