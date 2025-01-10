@@ -18,19 +18,20 @@ export default function AboutPage() {
               A Legacy of Excellence
             </h1>
             <p className="text-xl leading-relaxed mb-8">
-              At Green Acres Landscaping, we embody a legacy of exceptional
-              service deeply rooted in North Potomac. Founded by Adrian Guerra,
-              whose inspiring journey from Guatemala exemplifies the American
-              dream, our company stands as a testament to unwavering dedication
-              and craftsmanship. Today, under the leadership of Bradley and
-              Nicholas Guerra, we continue our father&apos;s vision of
-              excellence. Having grown up on Travilah Road and attended local
-              schools, our connection to this community runs deep. We bring not
-              only professional expertise but an intimate understanding of our
-              region&apos;s unique landscaping needs. This blend of local
-              knowledge, family values, and professional excellence has
-              established Green Acres as a trusted name in Montgomery County for
-              over three decades.
+              At Green Acres Landscaping, we proudly carry forward a legacy of
+              dedication, resilience, and exceptional service rooted in the
+              heart of North Potomac. Founded by Adrian Guerra, whose journey
+              from Guatemala to the United States embodies the spirit of
+              perseverance and the American dream, Green Acres stands as a
+              testament to the values of hard work and integrity. Now led by his
+              sons, Bradley and Nicholas Guerra, the company combines decades of
+              experience with modern sustainable practices. Our deep connection
+              to the community, paired with an intimate understanding of its
+              unique landscaping needs, allows us to deliver services that
+              reflect both professionalism and care. For over 30 years, Green
+              Acres Landscaping has remained a trusted partner to Montgomery
+              County, transforming outdoor spaces while staying true to the
+              values that shaped its foundation.
             </p>
           </div>
         </div>
@@ -76,32 +77,40 @@ export default function AboutPage() {
               <TimelineItem
                 year="1985"
                 title="A Dream Takes Root"
-                description="Adrian Guerra arrived in North Potomac from Guatemala, carrying with him a vision and an unwavering work ethic that would later become the foundation of Green Acres Landscaping."
+                description="At just 20 years old, Adrian Guerra arrived in the United States from a small, rural town in Guatemala with no money, no knowledge of English, and a vision fueled by an unshakable work ethic. Despite coming from one of the poorest regions in his country, he carried with him the determination to build a better future—an ambition that would later become the foundation of Green Acres Landscaping."
               />
               <TimelineItem
                 year="1990"
                 title="Green Acres is Born"
-                description="Adrian Guerra established Green Acres Landscaping with a single truck and an unshakeable commitment to quality service. His dedication to the North Potomac community laid the groundwork for what would become a trusted local institution."
+                description="After five challenging years of mastering the landscaping trade and learning English, Adrian Guerra and his wife, Dora Chinchilla, planted the seeds of their future in North Potomac. They founded Green Acres Landscaping with a single truck and an unwavering commitment to delivering quality service. At the same time, they began building their family on Travilah Road, creating strong roots in the community. Their hard work and dedication laid the foundation for what would grow into a trusted local business.
+
+"
               />
               <TimelineItem
                 year="2000-2010"
                 title="Growing Deep Community Roots"
-                description="As Bradley and Nicholas Guerra grew up on Travilah Road and attended Stone Mill Elementary, the business flourished alongside the family's deep connection to the community. Our understanding of local landscapes and climate became second nature."
+                description="Adrian Guerra wasn't just a business owner in the community—he was part of it. His three children, Adriana, Bradley, and Nicholas, attended local schools, which gave Adrian an even deeper connection to the community he served. His involvement extended beyond work, as he became personally invested in taking care of the place his family called home. 
+
+
+Bradley fondly recalls the time Adrian picked him up from elementary school on his lawn mower, a moment that perfectly captured both his love for his children and his passion for his work."
               />
               <TimelineItem
-                year="2015"
+                year="2010-2020"
                 title="The Next Generation"
-                description="The Guerra brothers, Bradley and Nicholas, began taking on leadership roles, bringing fresh perspectives while maintaining their father's commitment to excellence and community service."
+                description="From a young age, Adrian Guerra instilled in his children the values that had guided his own journey: hard work, resilience, and unwavering dedication. He believed that success wasn't just about effort but about doing things the right way, with care and integrity. Whether it was helping with small tasks around the house or assisting with the family business, Adrian taught his children that giving anything less than their best was never an option. He led by example, showing them the importance of perseverance and pride in their work, lessons that continue to shape their lives and values today.
+
+Bradley and Nicholas naturally began aligning their education and efforts with the goal of continuing their father's legacy. While Nicholas was finishing high school and working alongside Adrian after school, Bradley took his passion a step further by enrolling at Montgomery College to study horticulture and turfgrass management. In addition to his studies, Bradley spent every spare moment in the field, gaining invaluable hands-on experience with his father. Their combined efforts and dedication reflected a shared commitment to honoring and advancing the foundation Adrian had built.
+"
               />
-              <TimelineItem
+              {/* <TimelineItem
                 year="2020"
                 title="Expanding Our Legacy"
                 description="Under the Guerra brothers' leadership, we expanded our services while staying true to our father's vision. Our intimate knowledge of North Potomac's unique landscaping needs has helped us better serve our neighbors."
-              />
+              /> */}
               <TimelineItem
-                year="Present Day"
-                title="Continuing the Tradition"
-                description="Today, we proudly carry forward our father's legacy, combining decades of experience with modern sustainable practices. Our family's journey from Guatemala to establishing a trusted name in Montgomery County continues to inspire our dedication to excellence."
+                year="2020-Present Day"
+                title="Expanding Our Legacy"
+                description="Passing the torch to his sons, the Guerra brothers took over the family business, building on decades of experience while incorporating modern sustainable practices. Their commitment to work is driven by the deep love they have for their family, their neighbors, and the community they proudly call home. With every project, they honor their father's principles of hard work, integrity, and dedication, ensuring that Green Acres Landscaping continues to thrive as a trusted name in Montgomery County. "
               />
             </div>
           </div>
