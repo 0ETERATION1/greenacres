@@ -1,13 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import styles from "../styles/PropertySection.module.css";
 
 export default function PropertySection() {
   return (
-    <section className="py-10">
+    <section className={`py-10 ${styles.mobileSection}`}>
       <div className="container mx-auto">
         {/* First Image and Text */}
         <div className="flex items-center mb-10">
-          <div className="w-1/2 place-items-end px-5">
+          <div
+            className={`w-1/2 place-items-end px-5 ${styles.imageContainer}`}
+          >
             <Image
               src="/assets/images/port/bradleyAndDad.JPG"
               alt="Dad mowing Lawn and leaving stripes in Montgomery County Maryland"
@@ -16,7 +19,7 @@ export default function PropertySection() {
               className="rounded-image custom-image"
             />
           </div>
-          <div className="w-1/2 pl-6">
+          <div className={`w-1/2 pl-6 ${styles.textContainer}`}>
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
               What we bring to the table
             </h1>
@@ -52,7 +55,9 @@ export default function PropertySection() {
 
         {/* Second Image and Text */}
         <div className="flex items-center mb-10">
-          <div className="w-1/2 place-items-end px-5">
+          <div
+            className={`w-1/2 place-items-end px-5 ${styles.imageContainer}`}
+          >
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
               Our Skillset
             </h1>
@@ -82,7 +87,9 @@ export default function PropertySection() {
               Services 🛠️
             </Link>
           </div>
-          <div className="w-1/2 place-items-start px-5">
+          <div
+            className={`w-1/2 place-items-start px-5 ${styles.imageContainer}`}
+          >
             <Image
               src="/assets/images/port/dadMowing.jpg"
               alt="Description of the second image"
@@ -95,7 +102,9 @@ export default function PropertySection() {
 
         {/* Third Image and Text */}
         <div className="flex items-center">
-          <div className="w-1/2 place-items-end px-5">
+          <div
+            className={`w-1/2 place-items-end px-5 ${styles.imageContainer}`}
+          >
             <Image
               src="/assets/images/port/Houseblossom.jpg"
               alt="Description of the third image"
@@ -104,7 +113,7 @@ export default function PropertySection() {
               className="rounded-image custom-image"
             />
           </div>
-          <div className="w-1/2 pl-6">
+          <div className={`w-1/2 pl-6 ${styles.textContainer}`}>
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
               See your house blossom
             </h1>
