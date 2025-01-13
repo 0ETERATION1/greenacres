@@ -57,9 +57,9 @@ export default function Navbar() {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/portfolio" legacyBehavior passHref>
+                    <Link href="/gallery" legacyBehavior passHref>
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
-                        Our Work
+                        Gallery
                       </NavigationMenuLink>
                     </Link>
                   </NavigationMenuItem>

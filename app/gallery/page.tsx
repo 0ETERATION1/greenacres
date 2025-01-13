@@ -1033,7 +1033,7 @@ export default function Portfolio() {
 
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <h1 className="text-4xl font-bold text-center text-[#0cabba] mb-4">
-          Our Work
+          Gallery
         </h1>
 
         <p className="text-xl text-center mb-8">
