@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
-import { useRouter } from "next/navigation";
 
 export default function Footer() {
-  const router = useRouter();
-
   return (
     <footer className="bg-white/95 backdrop-blur-md text-gray-800 py-6 shadow-inner">
       <div className="container mx-auto px-4 py-8">
