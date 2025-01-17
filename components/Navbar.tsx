@@ -185,40 +185,40 @@ export default function Navbar() {
                 href="/about"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
-                About
+                About 📖
               </Link>
 
               <Link
                 href="/services"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
-                Services
+                Services 🛠️
               </Link>
 
               <Link
-                href="/portfolio"
+                href="/gallery"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
-                Our Work
+                Gallery 🖼
               </Link>
 
               <Link
                 href="/firewood"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
-                Firewood
+                Firewood 🔥🪵
               </Link>
               <Link
                 href="/blog"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
-                Blog
+                Blog 📝
               </Link>
               <Link
                 href="/quotePage"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
-                Contact
+                Contact 📞
               </Link>
 
               {/* Mobile Sign In Button */}
