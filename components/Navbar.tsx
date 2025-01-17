@@ -98,16 +98,7 @@ export default function Navbar() {
               <Link
                 href="/quotePage"
                 className="
-                  inline-block px-4 py-2
-                  bg-white
-                  text-black
-                  rounded-md
-                  transition-transform duration-300 ease-in-out
-                  hover:-translate-y-0.5
-                  shadow-md
-                  whitespace-nowrap
-                  w-[130px]
-                  text-center
+                  inline-block px-3 py-2 bg-white text-black rounded-md transition-transform duration-300 ease-in-out hover:-translate-y-0.5 shadow-md whitespace-nowrap w-[130px] text-center 
                 "
                 style={{ fontWeight: 500 }}
               >
