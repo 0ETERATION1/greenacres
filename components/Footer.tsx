@@ -1,7 +1,10 @@
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Footer() {
+  const router = useRouter();
+
   return (
     <footer className="bg-white/95 backdrop-blur-md text-gray-800 py-6 shadow-inner">
       <div className="container mx-auto px-4 py-8">
@@ -62,10 +65,16 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Social Media Links */}
-          <div className="flex flex-col items-center">
-            <h3 className="text-xl font-bold mb-4">Connect With Us!</h3>
-            <div>
+          {/* Quote Button and Social Media Links Container */}
+          <div className="flex flex-col items-center -mt-6">
+            {/* Quote Button */}
+            <Link href="/quotePage" className="cta-button">
+              Get a free quote! 🌳
+            </Link>
+
+            {/* Social Media Links */}
+            <h3 className="text-xl font-bold mt-8 mb-4">Connect With Us!</h3>
+            <div className="flex gap-4">
               <a
                 href="https://www.facebook.com/share/15TsUDSShQ/?mibextid=wwXIfr"
                 target="_blank"
