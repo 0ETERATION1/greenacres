@@ -106,7 +106,7 @@ export default function Navbar() {
                   hover:-translate-y-0.5
                   shadow-md
                   whitespace-nowrap
-                  w-[140px]
+                  w-[130px]
                   text-center
                 "
                 style={{ fontWeight: 500 }}
