@@ -1,14 +1,81 @@
 "use client";
+import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
 export default function QuotePage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const renderSizeOptions = () => {
+    if (selectedService !== "mowing") return null;
+
+    const sizeOptions = [
+      { name: "Small", image: "/assets/images/small-yard.jpg" },
+      { name: "Medium", image: "/assets/images/medium-yard.jpg" },
+      { name: "Large", image: "/assets/images/large-yard.jpg" },
+      { name: "Other", image: "/assets/images/other-yard.jpg" },
+    ];
+
+    return (
+      <div className="max-w-4xl mx-auto mt-12 mb-16 px-4">
+        <h2 className="text-2xl text-center font-semibold mb-6 text-[#0cabba]">
+          Select Your Yard Size
+        </h2>
+        <div className="grid md:grid-cols-2 gap-6">
+          {sizeOptions.map((size) => (
+            <div
+              key={size.name}
+              onClick={() => setSelectedSize(size.name.toLowerCase())}
+              className={`
+                border rounded-lg cursor-pointer transition-all
+                hover:shadow-lg flex flex-col relative overflow-hidden
+                min-h-[300px]
+                ${
+                  selectedSize === size.name.toLowerCase()
+                    ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
+                    : "border-gray-200"
+                }
+              `}
+            >
+              <div
+                className={`relative z-10 bg-white p-4 rounded-t-lg border-b
+                ${
+                  selectedSize === size.name.toLowerCase()
+                    ? "border-[#0cabba]"
+                    : ""
+                }`}
+              >
+                <h3
+                  className={`text-xl font-semibold text-center
+                  ${
+                    selectedSize === size.name.toLowerCase() ? "font-bold" : ""
+                  }`}
+                >
+                  {size.name}
+                </h3>
+              </div>
+              <div className="absolute inset-0 top-[56px] z-0">
+                <Image
+                  src={size.image}
+                  alt={`${size.name} Yard`}
+                  fill
+                  quality={100}
+                  priority
+                  className="object-cover"
+                />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
 
   return (
     <>
@@ -70,7 +137,9 @@ export default function QuotePage() {
                       src="/assets/images/port/LawnMaintenance /Nick mowing a larger property we maintain_.jpg"
                       alt="Mowing Service"
                       fill
-                      className="object-cover opacity-80"
+                      quality={100}
+                      priority
+                      className="object-cover"
                     />
                   </div>
                 </div>
@@ -109,15 +178,21 @@ export default function QuotePage() {
                       src="/assets/images/port/plantInstall3.jpg"
                       alt="Landscaping Service"
                       fill
-                      className="object-cover opacity-80"
+                      quality={100}
+                      priority
+                      className="object-cover"
                     />
                   </div>
                 </div>
               </div>
             </div>
+
+            {/* Size Selection Menu */}
+            {renderSizeOptions()}
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
