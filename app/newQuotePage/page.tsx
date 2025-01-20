@@ -1,17 +1,21 @@
 "use client";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function QuotePage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <>
       <Navbar />
       <div className="min-h-screen bg-white">
         {/* Hero Section */}
-        <section className="pt-24 pb-16 bg-white">
+        <section className="container mx-auto px-4 py-8 max-w-7xl">
           <div className="container mx-auto px-4">
             <h1 className="text-5xl font-bold text-center mb-8 text-[#0cabba]">
               Get a Quote
@@ -41,10 +45,10 @@ export default function QuotePage() {
                   className={`
                   border rounded-lg cursor-pointer transition-all
                   hover:shadow-lg flex flex-col relative overflow-hidden
-                  min-h-[400px]
+                  min-h-[400px] text-[#0cabba]
                   ${
                     selectedService === "mowing"
-                      ? "border-[#557A46] border-2 shadow-xl scale-[1.02]"
+                      ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
                       : "border-gray-200"
                   }
                 `}
@@ -52,7 +56,7 @@ export default function QuotePage() {
                 >
                   <div
                     className={`relative z-10 bg-white p-4 rounded-t-lg border-b
-                    ${selectedService === "mowing" ? "border-[#557A46]" : ""}`}
+                    ${selectedService === "mowing" ? "border-[#0cabba]" : ""}`}
                   >
                     <h3
                       className={`text-xl font-semibold text-center
@@ -76,10 +80,10 @@ export default function QuotePage() {
                   className={`
                   border rounded-lg cursor-pointer transition-all
                   hover:shadow-lg flex flex-col relative overflow-hidden
-                  min-h-[400px]
+                  min-h-[400px] text-[#0cabba]
                   ${
                     selectedService === "landscaping"
-                      ? "border-[#557A46] border-2 shadow-xl scale-[1.02]"
+                      ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
                       : "border-gray-200"
                   }
                 `}
@@ -89,7 +93,7 @@ export default function QuotePage() {
                     className={`relative z-10 bg-white p-4 rounded-t-lg border-b
                     ${
                       selectedService === "landscaping"
-                        ? "border-[#557A46]"
+                        ? "border-[#0cabba]"
                         : ""
                     }`}
                   >
@@ -102,7 +106,7 @@ export default function QuotePage() {
                   </div>
                   <div className="absolute inset-0 top-[56px] z-0">
                     <Image
-                      src="/assets/images/leaf-man.png"
+                      src="/assets/images/port/plantInstall3.jpg"
                       alt="Landscaping Service"
                       fill
                       className="object-cover opacity-80"
