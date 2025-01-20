@@ -16,14 +16,14 @@ export default function QuotePage() {
     if (selectedService !== "mowing") return null;
 
     const sizeOptions = [
-      { name: "Small", image: "/assets/images/small-yard.jpg" },
-      { name: "Medium", image: "/assets/images/medium-yard.jpg" },
-      { name: "Large", image: "/assets/images/large-yard.jpg" },
+      { name: "Small", image: "/assets/images/yards/smallYard.jpg" },
+      { name: "Medium", image: "/assets/images/yards/mediumYard.jpg" },
+      { name: "Large", image: "/assets/images/yards/largeYard.jpg" },
       { name: "Other", image: "/assets/images/other-yard.jpg" },
     ];
 
     return (
-      <div className="max-w-4xl mx-auto mt-12 mb-16 px-4">
+      <div className="max-w-4xl mx-auto mt-12 mb-32 px-4">
         <h2 className="text-2xl text-center font-semibold mb-6 text-[#0cabba]">
           Select Your Yard Size
         </h2>
