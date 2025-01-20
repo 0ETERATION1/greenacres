@@ -39,26 +39,34 @@ export default function QuotePage() {
                 {/* Mowing Service Box */}
                 <div
                   className={`
-                  p-6 border rounded-lg cursor-pointer transition-all
-                  hover:shadow-lg
+                  border rounded-lg cursor-pointer transition-all
+                  hover:shadow-lg flex flex-col relative overflow-hidden
+                  min-h-[400px]
                   ${
                     selectedService === "mowing"
-                      ? "border-[#557A46] shadow-lg"
+                      ? "border-[#557A46] border-2 shadow-xl scale-[1.02]"
                       : "border-gray-200"
                   }
                 `}
                   onClick={() => setSelectedService("mowing")}
                 >
-                  <h3 className="text-xl mb-4 text-center">
-                    Mowing Service (Instant Price)
-                  </h3>
-                  <div className="flex justify-center">
+                  <div
+                    className={`relative z-10 bg-white p-4 rounded-t-lg border-b
+                    ${selectedService === "mowing" ? "border-[#557A46]" : ""}`}
+                  >
+                    <h3
+                      className={`text-xl font-semibold text-center
+                      ${selectedService === "mowing" ? "font-bold" : ""}`}
+                    >
+                      Mowing Service (Instant Price)
+                    </h3>
+                  </div>
+                  <div className="absolute inset-0 top-[56px] z-0">
                     <Image
                       src="/assets/images/port/LawnMaintenance /Nick mowing a larger property we maintain_.jpg"
                       alt="Mowing Service"
-                      width={200}
-                      height={200}
-                      className="object-contain"
+                      fill
+                      className="object-cover opacity-80"
                     />
                   </div>
                 </div>
@@ -66,26 +74,38 @@ export default function QuotePage() {
                 {/* Landscaping Service Box */}
                 <div
                   className={`
-                  p-6 border rounded-lg cursor-pointer transition-all
-                  hover:shadow-lg
+                  border rounded-lg cursor-pointer transition-all
+                  hover:shadow-lg flex flex-col relative overflow-hidden
+                  min-h-[400px]
                   ${
                     selectedService === "landscaping"
-                      ? "border-[#557A46] shadow-lg"
+                      ? "border-[#557A46] border-2 shadow-xl scale-[1.02]"
                       : "border-gray-200"
                   }
                 `}
                   onClick={() => setSelectedService("landscaping")}
                 >
-                  <h3 className="text-xl mb-4 text-center">
-                    Landscaping/ Property Cleanup/ Other
-                  </h3>
-                  <div className="flex justify-center">
+                  <div
+                    className={`relative z-10 bg-white p-4 rounded-t-lg border-b
+                    ${
+                      selectedService === "landscaping"
+                        ? "border-[#557A46]"
+                        : ""
+                    }`}
+                  >
+                    <h3
+                      className={`text-xl font-semibold text-center
+                      ${selectedService === "landscaping" ? "font-bold" : ""}`}
+                    >
+                      Landscaping / Property Cleanup / Other
+                    </h3>
+                  </div>
+                  <div className="absolute inset-0 top-[56px] z-0">
                     <Image
                       src="/assets/images/leaf-man.png"
                       alt="Landscaping Service"
-                      width={200}
-                      height={200}
-                      className="object-contain"
+                      fill
+                      className="object-cover opacity-80"
                     />
                   </div>
                 </div>
