@@ -7,6 +7,8 @@ import { useState, useEffect } from "react";
 export default function QuotePage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
+  const [yardDetails, setYardDetails] = useState<string>("");
+  const [videoFile, setVideoFile] = useState<File | null>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,11 +17,17 @@ export default function QuotePage() {
   const renderSizeOptions = () => {
     if (selectedService !== "mowing") return null;
 
-    const sizeOptions = [
+    interface SizeOption {
+      name: string;
+      image?: string;
+      isText?: boolean;
+    }
+
+    const sizeOptions: SizeOption[] = [
       { name: "Small", image: "/assets/images/yards/smallYard.jpg" },
       { name: "Medium", image: "/assets/images/yards/mediumYard.jpg" },
       { name: "Large", image: "/assets/images/yards/largeYard.jpg" },
-      { name: "Other", image: "/assets/images/other-yard.jpg" },
+      { name: "Other", isText: true },
     ];
 
     return (
@@ -60,19 +68,87 @@ export default function QuotePage() {
                   {size.name}
                 </h3>
               </div>
-              <div className="absolute inset-0 top-[56px] z-0">
-                <Image
-                  src={size.image}
-                  alt={`${size.name} Yard`}
-                  fill
-                  quality={100}
-                  priority
-                  className="object-cover"
-                />
-              </div>
+              {size.isText ? (
+                <div className="flex items-center justify-center h-full p-8 text-center text-gray-800 text-lg">
+                  My Yard Does not Match the Current Options
+                </div>
+              ) : (
+                <div className="absolute inset-0 top-[56px] z-0">
+                  <Image
+                    src={size.image!}
+                    alt={`${size.name} Yard`}
+                    fill
+                    quality={100}
+                    priority
+                    className="object-cover"
+                  />
+                </div>
+              )}
             </div>
           ))}
         </div>
+      </div>
+    );
+  };
+
+  const renderOtherYardForm = () => {
+    console.log("111111", { selectedService, selectedSize });
+    if (selectedService !== "mowing" || selectedSize !== "other") {
+      console.log("Current states:", { selectedService, selectedSize });
+      return null;
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => {
+      console.log("YOOOOOOO", { selectedService, selectedSize });
+      e.preventDefault();
+
+      const formData = new FormData();
+      if (yardDetails) formData.append("details", yardDetails);
+      if (videoFile) formData.append("video", videoFile);
+
+      const subject = encodeURIComponent("NEW LEAD: My Property is Different");
+      const body = encodeURIComponent(yardDetails);
+      window.location.href = `mailto:brad@greenacresdmv.com?subject=${subject}&body=${body}`;
+    };
+
+    return (
+      <div className="max-w-2xl mx-auto mt-8 mb-32 p-6 bg-white rounded-lg shadow-md border border-[#0cabba]">
+        <h3 className="text-xl font-semibold mb-6 text-center text-[#0cabba]">
+          Tell Us About Your Yard
+        </h3>
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div>
+            <label className="block text-gray-700 mb-2">
+              Describe your yard details:
+            </label>
+            <textarea
+              value={yardDetails}
+              onChange={(e) => setYardDetails(e.target.value)}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+              rows={4}
+              placeholder="Please enter your yard details..."
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-700 mb-2">
+              Or upload a video of your lawn:
+            </label>
+            <input
+              type="file"
+              accept="video/*"
+              onChange={(e) => setVideoFile(e.target.files?.[0] || null)}
+              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-[#0cabba] text-white py-3 px-6 rounded-lg hover:bg-[#0b9aa7] transition-colors"
+          >
+            Submit Details
+          </button>
+        </form>
       </div>
     );
   };
@@ -109,8 +185,7 @@ export default function QuotePage() {
               <div className="grid md:grid-cols-2 gap-6 mt-6">
                 {/* Mowing Service Box */}
                 <div
-                  className={`
-                  border rounded-lg cursor-pointer transition-all
+                  className={`                  border rounded-lg cursor-pointer transition-all
                   hover:shadow-lg flex flex-col relative overflow-hidden
                   min-h-[400px] text-[#0cabba]
                   ${
@@ -189,6 +264,9 @@ export default function QuotePage() {
 
             {/* Size Selection Menu */}
             {renderSizeOptions()}
+
+            {/* Other Yard Form */}
+            {renderOtherYardForm()}
           </div>
         </div>
       </div>
