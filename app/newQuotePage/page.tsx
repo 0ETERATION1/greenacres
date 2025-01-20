@@ -27,7 +27,7 @@ export default function QuotePage() {
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="mb-8">
-              <h2 className="text-2xl text-centerfont-semibold mb-4 bg-green-600 text-white shadow-lg p-4 rounded-t-lg">
+              <h2 className="text-2xl text-center font-semibold mb-4 bg-green-600 text-white shadow-lg p-4 rounded-t-lg">
                 Select your Service
               </h2>
               {/* <p className="text-lg text-white bg-[#557A46] p-4 -mt-4">
@@ -54,7 +54,7 @@ export default function QuotePage() {
                   </h3>
                   <div className="flex justify-center">
                     <Image
-                      src="/assets/images/mowing-man.png"
+                      src="/assets/images/port/LawnMaintenance /Nick mowing a larger property we maintain_.jpg"
                       alt="Mowing Service"
                       width={200}
                       height={200}
