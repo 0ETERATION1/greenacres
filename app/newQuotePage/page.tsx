@@ -104,22 +104,21 @@ export default function QuotePage() {
       if (videoFile) formData.append("video", videoFile);
 
       try {
-        // Changed to use Next.js API route
         const response = await fetch("/api/submit-form", {
           method: "POST",
           body: formData,
         });
 
         if (response.ok) {
-          alert("Details sent successfully!");
+          alert("Thank you! Your submission has been received.");
           setYardDetails("");
           setVideoFile(null);
         } else {
-          alert("Failed to send details.");
+          alert("Failed to send details. Please try again.");
         }
       } catch (error) {
         console.error("Error:", error);
-        alert("An error occurred.");
+        alert("An error occurred. Please try again.");
       }
     };
 
