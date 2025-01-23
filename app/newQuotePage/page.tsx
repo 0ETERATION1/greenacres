@@ -97,25 +97,22 @@ export default function QuotePage() {
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
 
-      // Prepare FormData (required for file uploads)
       const formData = new FormData();
-      formData.append("Service", selectedService || "");
-      formData.append("Yard Size", selectedSize || "");
-      formData.append("Details", yardDetails);
-      if (videoFile) formData.append("Video", videoFile); // Append the video file
+      formData.append("service", selectedService || "");
+      formData.append("size", selectedSize || "");
+      formData.append("details", yardDetails);
+      if (videoFile) formData.append("video", videoFile);
 
       try {
-        const response = await fetch(process.env.FORMSPREE_ENDPOINT!, {
+        // Changed to use Next.js API route
+        const response = await fetch("/api/submit-form", {
           method: "POST",
           body: formData,
-          headers: {
-            Accept: "application/json",
-          },
         });
 
         if (response.ok) {
           alert("Details sent successfully!");
-          setYardDetails(""); // Clear form fields
+          setYardDetails("");
           setVideoFile(null);
         } else {
           alert("Failed to send details.");
