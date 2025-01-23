@@ -92,23 +92,41 @@ export default function QuotePage() {
   };
 
   const renderOtherYardForm = () => {
-    console.log("111111", { selectedService, selectedSize });
-    if (selectedService !== "mowing" || selectedSize !== "other") {
-      console.log("Current states:", { selectedService, selectedSize });
-      return null;
-    }
+    if (selectedService !== "mowing" || selectedSize !== "other") return null;
 
     const handleSubmit = async (e: React.FormEvent) => {
-      console.log("YOOOOOOO", { selectedService, selectedSize });
       e.preventDefault();
 
+      // Prepare FormData (required for file uploads)
       const formData = new FormData();
-      if (yardDetails) formData.append("details", yardDetails);
-      if (videoFile) formData.append("video", videoFile);
+      formData.append("Service", selectedService || "");
+      formData.append("Yard Size", selectedSize || "");
+      formData.append("Details", yardDetails);
+      if (videoFile) formData.append("Video", videoFile); // Append the video file
 
-      const subject = encodeURIComponent("NEW LEAD: My Property is Different");
-      const body = encodeURIComponent(yardDetails);
-      window.location.href = `mailto:brad@greenacresdmv.com?subject=${subject}&body=${body}`;
+      try {
+        const response = await fetch(
+          process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT!,
+          {
+            method: "POST",
+            body: formData,
+            headers: {
+              Accept: "application/json",
+            },
+          }
+        );
+
+        if (response.ok) {
+          alert("Details sent successfully!");
+          setYardDetails(""); // Clear form fields
+          setVideoFile(null);
+        } else {
+          alert("Failed to send details.");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("An error occurred.");
+      }
     };
 
     return (
