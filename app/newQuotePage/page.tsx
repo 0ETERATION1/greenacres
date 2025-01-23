@@ -114,7 +114,8 @@ export default function QuotePage() {
           setYardDetails("");
           setVideoFile(null);
         } else {
-          alert("Failed to send details. Please try again.");
+          const data = await response.json();
+          alert(data.error || "Failed to send details. Please try again.");
         }
       } catch (error) {
         console.error("Error:", error);
