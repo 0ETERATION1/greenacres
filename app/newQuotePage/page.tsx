@@ -105,16 +105,13 @@ export default function QuotePage() {
       if (videoFile) formData.append("Video", videoFile); // Append the video file
 
       try {
-        const response = await fetch(
-          process.env.NEXT_PUBLIC_FORMSPREE_ENDPOINT!,
-          {
-            method: "POST",
-            body: formData,
-            headers: {
-              Accept: "application/json",
-            },
-          }
-        );
+        const response = await fetch(process.env.FORMSPREE_ENDPOINT!, {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        });
 
         if (response.ok) {
           alert("Details sent successfully!");
