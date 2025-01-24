@@ -9,6 +9,11 @@ export default function QuotePage() {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [yardDetails, setYardDetails] = useState<string>("");
   const [videoFile, setVideoFile] = useState<File | null>(null);
+  const [videoLink, setVideoLink] = useState<string>("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -97,11 +102,38 @@ export default function QuotePage() {
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
 
+      if (!name) {
+        alert("Please enter your name");
+        return;
+      }
+
+      if (!email && !phone) {
+        alert("Please enter either an email or phone number");
+        return;
+      }
+
+      if (videoFile && videoFile.size > 100 * 1024 * 1024) {
+        alert("Video file size must be less than 100MB");
+        return;
+      }
+
+      setIsSubmitting(true);
+
       const formData = new FormData();
+      formData.append("_subject", "NEW LEAD: My Property is Different");
+      formData.append("name", name);
+      formData.append("contactMethod", "email");
+      if (email) formData.append("email", email);
+      if (phone) formData.append("phone", phone);
       formData.append("service", selectedService || "");
       formData.append("size", selectedSize || "");
       formData.append("details", yardDetails);
-      if (videoFile) formData.append("video", videoFile);
+
+      if (videoFile) {
+        formData.append("video", videoFile);
+      }
+
+      formData.append("videoLink", videoLink);
 
       try {
         const response = await fetch("/api/submit-form", {
@@ -109,58 +141,141 @@ export default function QuotePage() {
           body: formData,
         });
 
+        const data = await response.json();
+        console.log("Response data:", data);
+
         if (response.ok) {
           alert("Thank you! Your submission has been received.");
           setYardDetails("");
           setVideoFile(null);
+          setName("");
+          setEmail("");
+          setPhone("");
         } else {
-          const data = await response.json();
-          alert(data.error || "Failed to send details. Please try again.");
+          console.error("Form submission error:", data);
+          alert(
+            data.error ||
+              data.details ||
+              "Failed to send details. Please try again."
+          );
         }
       } catch (error) {
-        console.error("Error:", error);
-        alert("An error occurred. Please try again.");
+        console.error("Form submission error:", error);
+        alert(
+          "An error occurred. Please try again. Check the console for more details."
+        );
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        if (file.size > 5 * 1024 * 1024) {
+          alert("Video file size must be less than 5MB");
+          e.target.value = "";
+          return;
+        }
+        setVideoFile(file);
       }
     };
 
     return (
-      <div className="max-w-2xl mx-auto mt-8 mb-32 p-6 bg-white rounded-lg shadow-md border border-[#0cabba]">
-        <h3 className="text-xl font-semibold mb-6 text-center text-[#0cabba]">
+      <div className="max-w-4xl mx-auto mt-12 mb-32">
+        <h2 className="text-2xl text-center font-semibold mb-6 text-[#0cabba]">
           Tell Us About Your Yard
-        </h3>
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div>
-            <label className="block text-gray-700 mb-2">
-              Describe your yard details:
-            </label>
-            <textarea
-              value={yardDetails}
-              onChange={(e) => setYardDetails(e.target.value)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-              rows={4}
-              placeholder="Please enter your yard details..."
-            />
-          </div>
+        </h2>
 
-          <div>
-            <label className="block text-gray-700 mb-2">
-              Or upload a video of your lawn:
-            </label>
-            <input
-              type="file"
-              accept="video/*"
-              onChange={(e) => setVideoFile(e.target.files?.[0] || null)}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-            />
-          </div>
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md border border-[#0cabba]">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
 
-          <button
-            type="submit"
-            className="w-full bg-[#0cabba] text-white py-3 px-6 rounded-lg hover:bg-[#0b9aa7] transition-colors"
-          >
-            Submit Details
-          </button>
-        </form>
+            <div className="text-gray-700 mb-2">
+              Please provide at least one way for us to contact you:
+            </div>
+
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Enter your email{" "}
+                {!phone && <span className="text-red-500">*</span>}
+              </label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                placeholder="Enter your email address"
+                required={!phone}
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Enter your phone number{" "}
+                {!email && <span className="text-red-500">*</span>}
+              </label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                placeholder="Enter your phone number"
+                required={!email}
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Describe your yard details:
+              </label>
+              <textarea
+                value={yardDetails}
+                onChange={(e) => setYardDetails(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                rows={4}
+                placeholder="Please tell us about your yard..."
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Or upload a video of your lawn:
+              </label>
+              <input
+                type="file"
+                accept="video/*"
+                onChange={handleFileChange}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+              />
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`w-full bg-[#0cabba] text-white py-3 px-6 rounded-lg transition-colors
+                ${
+                  isSubmitting
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-[#0b9aa7]"
+                }`}
+            >
+              {isSubmitting ? "Submitting..." : "Submit Details"}
+            </button>
+          </form>
+        </div>
       </div>
     );
   };
@@ -233,8 +348,7 @@ export default function QuotePage() {
 
                 {/* Landscaping Service Box */}
                 <div
-                  className={`
-                  border rounded-lg cursor-pointer transition-all
+                  className={`                  border rounded-lg cursor-pointer transition-all
                   hover:shadow-lg flex flex-col relative overflow-hidden
                   min-h-[400px] text-[#0cabba]
                   ${

@@ -5,10 +5,18 @@ import { NextResponse } from "next/server";
 //   append(name: string, value: string | Blob, fileName?: string): void;
 // };
 
+export const config = {
+  api: {
+    bodyParser: false,
+    responseLimit: '150mb',  // Increased to handle larger files
+  },
+};
+
 export async function POST(request: Request) {
   const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT;
 
   if (!FORMSPREE_ENDPOINT) {
+    console.error("Formspree endpoint not configured");
     return NextResponse.json(
       { error: "Formspree endpoint not configured" },
       { status: 500 }
@@ -17,35 +25,55 @@ export async function POST(request: Request) {
 
   try {
     const formData = await request.formData();
-    const service = formData.get("service");
-    const size = formData.get("size");
-    const details = formData.get("details");
-    const video = formData.get("video");
-
-    // Create new FormData for Formspree
-    const formspreeData = new FormData();
-    formspreeData.append("service", service as string);
-    formspreeData.append("size", size as string);
-    formspreeData.append("details", details as string);
     
-    if (video) {
-      formspreeData.append("video", video as Blob);
-    }
-
-    const response = await fetch(FORMSPREE_ENDPOINT, {
-      method: "POST",
-      body: formspreeData,
+    // Log the received data
+    console.log("Form data received:", {
+      service: formData.get("service"),
+      size: formData.get("size"),
+      details: formData.get("details"),
+      hasVideo: formData.has("video")
     });
 
-    if (!response.ok) {
-      throw new Error("Formspree request failed");
+    // Send directly to Formspree without recreating FormData
+    const response = await fetch(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      body: formData,
+      headers: {
+        'Accept': 'application/json',
+        // Remove Content-Type header to let the browser set it with the boundary
+      },
+    });
+
+    const responseText = await response.text();
+    let responseJson;
+    try {
+      responseJson = JSON.parse(responseText);
+    } catch (e) {
+      console.error("Failed to parse Formspree response as JSON:", responseText);
     }
 
-    return NextResponse.json({ success: true });
+    if (!response.ok) {
+      return NextResponse.json(
+        { 
+          error: "Failed to submit form", 
+          details: responseJson?.errors || responseText || `Formspree error: ${response.status} ${response.statusText}`
+        },
+        { status: response.status }
+      );
+    }
+
+    return NextResponse.json({ 
+      success: true,
+      message: "Form submitted successfully"
+    });
+
   } catch (error) {
-    console.error("Error submitting form:", error);
+    console.error("Error in form submission:", error);
     return NextResponse.json(
-      { error: "Failed to submit form" },
+      { 
+        error: "Failed to submit form",
+        details: error instanceof Error ? error.message : 'Unknown error'
+      },
       { status: 500 }
     );
   }
