@@ -111,55 +111,60 @@ export default function QuotePage() {
         return;
       }
 
-      if (videoFile && videoFile.size > 100 * 1024 * 1024) {
-        alert("Video file size must be less than 100MB");
+      if (videoFile && videoFile.size > 200 * 1024 * 1024) {
+        alert("Video file size must be less than 200MB");
         return;
       }
 
       setIsSubmitting(true);
 
-      const formData = new FormData();
-      formData.append("_subject", "NEW LEAD: My Property is Different");
-      formData.append("name", name);
-      formData.append("contactMethod", "email");
-      if (email) formData.append("email", email);
-      if (phone) formData.append("phone", phone);
-      formData.append("service", selectedService || "");
-      formData.append("size", selectedSize || "");
-      formData.append("details", yardDetails);
-
-      if (videoFile) {
-        formData.append("video", videoFile);
-      }
-
       try {
+        const formData = new FormData();
+        formData.append("name", name);
+        if (email) formData.append("email", email);
+        if (phone) formData.append("phone", phone);
+        formData.append("service", selectedService || "");
+        formData.append("size", selectedSize || "");
+        formData.append("details", yardDetails);
+
+        if (videoFile) {
+          formData.append("video", videoFile);
+        }
+
+        console.log("Submitting form data:", {
+          name,
+          email,
+          phone,
+          service: selectedService,
+          size: selectedSize,
+          details: yardDetails,
+          hasVideo: !!videoFile,
+        });
+
         const response = await fetch("/api/submit-form", {
           method: "POST",
           body: formData,
         });
 
         const data = await response.json();
-        console.log("Response data:", data);
+        console.log("Response from server:", data);
 
-        if (response.ok) {
-          alert("Thank you! Your submission has been received.");
-          setYardDetails("");
-          setVideoFile(null);
-          setName("");
-          setEmail("");
-          setPhone("");
-        } else {
-          console.error("Form submission error:", data);
-          alert(
-            data.error ||
-              data.details ||
-              "Failed to send details. Please try again."
-          );
+        if (!response.ok) {
+          throw new Error(data.error || "Failed to submit form");
         }
+
+        alert("Thank you! Your submission has been received.");
+        setYardDetails("");
+        setVideoFile(null);
+        setName("");
+        setEmail("");
+        setPhone("");
       } catch (error) {
         console.error("Form submission error:", error);
         alert(
-          "An error occurred. Please try again. Check the console for more details."
+          error instanceof Error
+            ? error.message
+            : "Failed to submit form. Please try again."
         );
       } finally {
         setIsSubmitting(false);
@@ -169,8 +174,8 @@ export default function QuotePage() {
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0];
       if (file) {
-        if (file.size > 5 * 1024 * 1024) {
-          alert("Video file size must be less than 5MB");
+        if (file.size > 200 * 1024 * 1024) {
+          alert("Video file size must be less than 200MB");
           e.target.value = "";
           return;
         }
