@@ -9,7 +9,6 @@ export default function QuotePage() {
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [yardDetails, setYardDetails] = useState<string>("");
   const [videoFile, setVideoFile] = useState<File | null>(null);
-  const [videoLink, setVideoLink] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -132,8 +131,6 @@ export default function QuotePage() {
       if (videoFile) {
         formData.append("video", videoFile);
       }
-
-      formData.append("videoLink", videoLink);
 
       try {
         const response = await fetch("/api/submit-form", {

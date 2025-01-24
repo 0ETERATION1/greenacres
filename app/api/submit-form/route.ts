@@ -45,18 +45,17 @@ export async function POST(request: Request) {
     });
 
     const responseText = await response.text();
-    let responseJson;
-    try {
-      responseJson = JSON.parse(responseText);
-    } catch (e) {
-      console.error("Failed to parse Formspree response as JSON:", responseText);
-    }
+    console.log("Formspree response:", {
+      status: response.status,
+      text: responseText
+    });
 
     if (!response.ok) {
       return NextResponse.json(
         { 
           error: "Failed to submit form", 
-          details: responseJson?.errors || responseText || `Formspree error: ${response.status} ${response.statusText}`
+          details: `Formspree error: ${response.status} ${response.statusText}`,
+          response: responseText
         },
         { status: response.status }
       );
