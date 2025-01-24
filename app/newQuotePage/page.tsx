@@ -179,101 +179,105 @@ export default function QuotePage() {
     };
 
     return (
-      <div className="max-w-4xl mx-auto mt-12 mb-32">
-        <h2 className="text-2xl text-center font-semibold mb-6 text-[#0cabba]">
-          Tell Us About Your Yard
-        </h2>
-
-        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md border border-[#0cabba]">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block text-gray-700 mb-2">
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-                placeholder="Enter your name"
-                required
-              />
-            </div>
-
-            <div className="text-gray-700 mb-2">
-              Please provide at least one way for us to contact you:
-            </div>
-
-            <div>
-              <label className="block text-gray-700 mb-2">
-                Enter your email{" "}
-                {!phone && <span className="text-red-500">*</span>}
-              </label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-                placeholder="Enter your email address"
-                required={!phone}
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 mb-2">
-                Enter your phone number{" "}
-                {!email && <span className="text-red-500">*</span>}
-              </label>
-              <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-                placeholder="Enter your phone number"
-                required={!email}
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 mb-2">
-                Describe your yard details:
-              </label>
-              <textarea
-                value={yardDetails}
-                onChange={(e) => setYardDetails(e.target.value)}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-                rows={4}
-                placeholder="Please tell us about your yard..."
-              />
-            </div>
-
-            <div>
-              <label className="block text-gray-700 mb-2">
-                Or upload a video of your lawn:
-              </label>
-              <input
-                type="file"
-                accept="video/*"
-                onChange={handleFileChange}
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-              />
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`w-full bg-[#0cabba] text-white py-3 px-6 rounded-lg transition-colors
-                ${
-                  isSubmitting
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:bg-[#0b9aa7]"
-                }`}
-            >
-              {isSubmitting ? "Submitting..." : "Submit Details"}
-            </button>
-          </form>
+      <>
+        <div className="max-w-4xl mx-auto -mt-24 mb-6 px-4">
+          <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
+            Tell Us About Your Yard
+          </h2>
         </div>
-      </div>
+
+        <div className="max-w-4xl mx-auto mb-32 px-4">
+          <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md border border-[#0cabba]">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div>
+                <label className="block text-gray-700 mb-2">
+                  Name <span className="text-red-500">*</span>
+                </label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                  placeholder="Enter your name"
+                  required
+                />
+              </div>
+
+              <div className="text-gray-700 mb-2">
+                Please provide at least one way for us to contact you:
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-2">
+                  Enter your email{" "}
+                  {!phone && <span className="text-red-500">*</span>}
+                </label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                  placeholder="Enter your email address"
+                  required={!phone}
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-2">
+                  Enter your phone number{" "}
+                  {!email && <span className="text-red-500">*</span>}
+                </label>
+                <input
+                  type="tel"
+                  value={phone}
+                  onChange={(e) => setPhone(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                  placeholder="Enter your phone number"
+                  required={!email}
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-2">
+                  Describe your yard details:
+                </label>
+                <textarea
+                  value={yardDetails}
+                  onChange={(e) => setYardDetails(e.target.value)}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                  rows={4}
+                  placeholder="Please tell us about your yard..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-gray-700 mb-2">
+                  Or upload a video of your lawn:
+                </label>
+                <input
+                  type="file"
+                  accept="video/*"
+                  onChange={handleFileChange}
+                  className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={`w-full bg-[#0cabba] text-white py-3 px-6 rounded-lg transition-colors
+                  ${
+                    isSubmitting
+                      ? "opacity-50 cursor-not-allowed"
+                      : "hover:bg-[#0b9aa7]"
+                  }`}
+              >
+                {isSubmitting ? "Submitting..." : "Submit Details"}
+              </button>
+            </form>
+          </div>
+        </div>
+      </>
     );
   };
 
