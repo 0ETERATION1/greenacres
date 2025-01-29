@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { initializeApp } from "firebase/app";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
+import { FirebaseError } from 'firebase/app';
+
+interface StorageError extends FirebaseError {
+  serverResponse?: string;
+}
 
 const firebaseConfig = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -43,12 +48,13 @@ export async function POST(request: Request) {
         contentType: chunk.type
       });
       console.log("Chunk uploaded successfully");
-    } catch (uploadError) {
+    } catch (error: unknown) {
+      const uploadError = error as StorageError;
       console.error("Firebase upload error:", {
         error: uploadError,
-        message: uploadError instanceof Error ? uploadError.message : "Unknown error",
-        code: (uploadError as any).code,
-        serverResponse: (uploadError as any).serverResponse
+        message: uploadError.message,
+        code: uploadError.code,
+        serverResponse: uploadError.serverResponse
       });
       throw uploadError;
     }
