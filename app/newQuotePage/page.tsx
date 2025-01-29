@@ -6,6 +6,157 @@ import { useState, useEffect, useRef } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../lib/firebase";
 
+interface PricingInfo {
+  weekly: number;
+  biweekly: number;
+  size: string;
+  sqft: string;
+}
+
+const PRICING_DATA: Record<string, PricingInfo> = {
+  small: {
+    weekly: 45,
+    biweekly: 65,
+    size: "Small",
+    sqft: "10,000 sq ft and under",
+  },
+  medium: {
+    weekly: 70,
+    biweekly: 105,
+    size: "Medium",
+    sqft: "10,001 to 27,000 sq ft",
+  },
+  large: {
+    weekly: 95,
+    biweekly: 142.5,
+    size: "Large",
+    sqft: "27,001 to 43,560 sq ft (1 acre)",
+  },
+};
+
+const PricingDisplay = ({ size }: { size: string }) => {
+  const pricing = PRICING_DATA[size];
+  if (!pricing) return null;
+
+  return (
+    <div className="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg border-2 border-[#0cabba]">
+      <h3 className="text-2xl font-bold text-center text-[#0cabba] mb-6">
+        {pricing.size} Lawn Pricing
+        <span className="block text-sm font-normal text-gray-600 mt-1">
+          ({pricing.sqft})
+        </span>
+      </h3>
+
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+          <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
+            Weekly Service
+          </h4>
+          <p className="text-3xl font-bold text-gray-800">${pricing.weekly}</p>
+          <p className="text-gray-600 text-sm">per visit</p>
+          <p className="mt-2 text-sm text-gray-600">
+            Most popular choice for optimal lawn health
+          </p>
+        </div>
+
+        <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+          <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
+            Biweekly Service
+          </h4>
+          <p className="text-3xl font-bold text-gray-800">
+            ${pricing.biweekly}
+          </p>
+          <p className="text-gray-600 text-sm">per visit</p>
+          <p className="mt-2 text-sm text-gray-600">
+            Flexible option for moderate growth seasons
+          </p>
+        </div>
+      </div>
+
+      <div className="mt-6 text-center text-sm text-gray-600">
+        <p>Prices include basic lawn mowing service.</p>
+        <p className="mt-1">Additional services available upon request.</p>
+      </div>
+    </div>
+  );
+};
+
+const TermsAndService = ({
+  setAcceptedTerms,
+}: {
+  setAcceptedTerms: (value: boolean) => void;
+}) => {
+  return (
+    <div className="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg border border-gray-200">
+      <h3 className="text-xl font-bold text-[#0cabba] mb-4">
+        Seasonal Service Policy
+      </h3>
+
+      <div className="space-y-4 text-gray-700">
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <h4 className="font-semibold mb-2">Peak Season Requirements</h4>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              Weekly service is required from March through May to maintain the
+              health and appearance of your lawn during the peak growth season.
+            </li>
+            <li>
+              If you wish to change the frequency of service after May, please
+              contact us to discuss adjustments.
+            </li>
+          </ul>
+        </div>
+
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <h4 className="font-semibold mb-2">
+            Initial Mowing and Overgrown Lawn Policy
+          </h4>
+          <ul className="list-disc pl-5 space-y-2">
+            <li>
+              The first mowing service will be billed at $1.50 per minute per
+              person if the lawn is overgrown or in poor condition.
+            </li>
+            <li>
+              This ensures fair compensation for the extra time and labor
+              required to bring the property up to standard.
+            </li>
+            <li>
+              After the first service, regular pricing will apply, but rates may
+              be adjusted based on the scope of work needed to maintain the
+              property.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="mt-6 flex items-center justify-center space-x-4">
+        <button
+          type="button"
+          onClick={() => setAcceptedTerms(true)}
+          className={`px-6 py-2 rounded-lg transition-colors ${
+            true
+              ? "bg-green-600 text-white"
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          }`}
+        >
+          Accept Terms
+        </button>
+        <button
+          type="button"
+          onClick={() => setAcceptedTerms(false)}
+          className={`px-6 py-2 rounded-lg transition-colors ${
+            false
+              ? "bg-red-600 text-white"
+              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+          }`}
+        >
+          Decline Terms
+        </button>
+      </div>
+    </div>
+  );
+};
+
 export default function QuotePage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -16,6 +167,7 @@ export default function QuotePage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
 
   // Reference to file input for resetting
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -330,6 +482,41 @@ export default function QuotePage() {
     );
   };
 
+  const renderPricing = () => {
+    if (
+      selectedService !== "mowing" ||
+      !selectedSize ||
+      selectedSize === "other"
+    ) {
+      return null;
+    }
+
+    return (
+      <>
+        <PricingDisplay size={selectedSize} />
+        <TermsAndService setAcceptedTerms={setAcceptedTerms} />
+        <div className="max-w-2xl mx-auto mt-8 mb-32">
+          <button
+            type="submit"
+            disabled={!acceptedTerms || isSubmitting}
+            className={`w-full py-4 rounded-lg text-lg font-semibold transition-colors ${
+              !acceptedTerms || isSubmitting
+                ? "bg-gray-300 cursor-not-allowed"
+                : "bg-[#0cabba] text-white hover:bg-[#0b9aa7]"
+            }`}
+          >
+            {isSubmitting ? "Submitting..." : "Submit Quote Request"}
+          </button>
+          {!acceptedTerms && (
+            <p className="text-red-500 text-center mt-2">
+              Please accept the terms to proceed
+            </p>
+          )}
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       <Navbar />
@@ -440,6 +627,9 @@ export default function QuotePage() {
 
             {/* Size Selection Menu */}
             {renderSizeOptions()}
+
+            {/* Pricing Display */}
+            {renderPricing()}
 
             {/* Other Yard Form */}
             {renderOtherYardForm()}
