@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps } from "firebase/app";
 import { getStorage, ref, uploadBytes } from "firebase/storage";
 import { FirebaseError } from 'firebase/app';
 
@@ -23,7 +23,8 @@ console.log("[Upload-Chunk] Full config:", {
   apiKey: "REDACTED"  // Don't log the API key
 });
 
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase only if no apps exist
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const storage = getStorage(app);
 
 export async function POST(request: Request) {
@@ -71,9 +72,18 @@ export async function POST(request: Request) {
     
     try {
       const buffer = await chunk.arrayBuffer();
-      console.log("[Upload-Chunk] Starting Firebase upload:", chunkRef.fullPath);
-      await uploadBytes(chunkRef, buffer, {
+      console.log("[Upload-Chunk] Starting Firebase upload:", {
+        path: chunkRef.fullPath,
+        bucket: storage.app.options.storageBucket,
         contentType: chunk.type
+      });
+      
+      await uploadBytes(chunkRef, buffer, {
+        contentType: chunk.type,
+        customMetadata: {
+          originalName: fileName,
+          chunkIndex: chunkIndex.toString()
+        }
       });
       console.log("[Upload-Chunk] Upload successful");
     } catch (error: unknown) {
