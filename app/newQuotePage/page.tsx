@@ -14,6 +14,8 @@ export default function QuotePage() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
+  const MAX_CHUNK_SIZE = 2 * 1024 * 1024; // 2MB chunks
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -116,9 +118,10 @@ export default function QuotePage() {
         return;
       }
 
-      setIsSubmitting(true);
-
       try {
+        setIsSubmitting(true);
+
+        // Handle regular form data first
         const formData = new FormData();
         formData.append("name", name);
         if (email) formData.append("email", email);
@@ -127,30 +130,43 @@ export default function QuotePage() {
         formData.append("size", selectedSize || "");
         formData.append("details", yardDetails);
 
+        // If there's a video, handle it in chunks
         if (videoFile) {
-          formData.append("video", videoFile);
+          const totalChunks = Math.ceil(videoFile.size / MAX_CHUNK_SIZE);
+
+          for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
+            const start = chunkIndex * MAX_CHUNK_SIZE;
+            const end = Math.min(start + MAX_CHUNK_SIZE, videoFile.size);
+            const chunk = videoFile.slice(start, end);
+
+            const chunkFormData = new FormData();
+            chunkFormData.append("chunk", chunk);
+            chunkFormData.append("fileName", videoFile.name);
+            chunkFormData.append("chunkIndex", chunkIndex.toString());
+            chunkFormData.append("totalChunks", totalChunks.toString());
+
+            const chunkResponse = await fetch("/api/upload-chunk", {
+              method: "POST",
+              body: chunkFormData,
+            });
+
+            if (!chunkResponse.ok) {
+              throw new Error(`Failed to upload chunk ${chunkIndex}`);
+            }
+          }
+
+          // After all chunks are uploaded, add the video filename to the main form
+          formData.append("videoFileName", videoFile.name);
         }
 
-        console.log("Submitting form data:", {
-          name,
-          email,
-          phone,
-          service: selectedService,
-          size: selectedSize,
-          details: yardDetails,
-          hasVideo: !!videoFile,
-        });
-
+        // Submit the rest of the form data
         const response = await fetch("/api/submit-form", {
           method: "POST",
           body: formData,
         });
 
-        const data = await response.json();
-        console.log("Response from server:", data);
-
         if (!response.ok) {
-          throw new Error(data.error || "Failed to submit form");
+          throw new Error(`Server error: ${response.status}`);
         }
 
         alert("Thank you! Your submission has been received.");
@@ -161,11 +177,7 @@ export default function QuotePage() {
         setPhone("");
       } catch (error) {
         console.error("Form submission error:", error);
-        alert(
-          error instanceof Error
-            ? error.message
-            : "Failed to submit form. Please try again."
-        );
+        alert(error instanceof Error ? error.message : "Failed to submit form");
       } finally {
         setIsSubmitting(false);
       }

@@ -3,12 +3,16 @@
     "app/api/submit-form/route.ts": {
       "maxDuration": 60,
       "memory": 1024
+    },
+    "app/api/upload-chunk/route.ts": {
+      "maxDuration": 60,
+      "memory": 1024
     }
   },
   "routes": [
     {
-      "src": "/api/submit-form",
-      "dest": "/api/submit-form",
+      "src": "/api/(submit-form|upload-chunk)",
+      "dest": "/api/$1",
       "methods": ["POST"],
       "headers": {
         "Access-Control-Allow-Origin": "*",
