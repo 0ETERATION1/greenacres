@@ -17,9 +17,10 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
-console.log("[Upload-Chunk] Initializing with config:", {
-  projectId: firebaseConfig.projectId,
-  storageBucket: firebaseConfig.storageBucket
+console.log("[Upload-Chunk] Storage bucket from env:", process.env.FIREBASE_STORAGE_BUCKET);
+console.log("[Upload-Chunk] Full config:", {
+  ...firebaseConfig,
+  apiKey: "REDACTED"  // Don't log the API key
 });
 
 const app = initializeApp(firebaseConfig);
