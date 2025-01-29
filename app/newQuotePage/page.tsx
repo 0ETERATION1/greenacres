@@ -14,8 +14,6 @@ export default function QuotePage() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
 
-  const MAX_CHUNK_SIZE = 2 * 1024 * 1024; // 2MB chunks
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -105,46 +103,13 @@ export default function QuotePage() {
 
       try {
         setIsSubmitting(true);
-        let videoUrl = "";
 
-        // Handle video upload first if there's a video
-        if (videoFile) {
-          const totalChunks = Math.ceil(videoFile.size / MAX_CHUNK_SIZE);
-          const finalFileName = `${Date.now()}-${videoFile.name}`;
-
-          for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
-            const start = chunkIndex * MAX_CHUNK_SIZE;
-            const end = Math.min(start + MAX_CHUNK_SIZE, videoFile.size);
-            const chunk = videoFile.slice(start, end);
-
-            const chunkFormData = new FormData();
-            chunkFormData.append("chunk", chunk);
-            chunkFormData.append("fileName", finalFileName);
-            chunkFormData.append("chunkIndex", chunkIndex.toString());
-            chunkFormData.append("totalChunks", totalChunks.toString());
-
-            const chunkResponse = await fetch("/api/upload-chunk", {
-              method: "POST",
-              body: chunkFormData,
-            });
-
-            if (!chunkResponse.ok) {
-              const errorData = await chunkResponse.json();
-              throw new Error(
-                `Failed to upload chunk ${chunkIndex}: ${
-                  errorData.details || chunkResponse.statusText
-                }`
-              );
-            }
-
-            const responseData = await chunkResponse.json();
-            if (responseData.videoUrl) {
-              videoUrl = responseData.videoUrl;
-            }
-          }
+        // Check video file size if present
+        if (videoFile && videoFile.size > 200 * 1024 * 1024) {
+          throw new Error("Video file size must be less than 200MB");
         }
 
-        // Now submit the form with the video URL
+        // Submit everything in one request
         const formData = new FormData();
         formData.append("name", name);
         if (email) formData.append("email", email);
@@ -152,7 +117,7 @@ export default function QuotePage() {
         formData.append("service", selectedService || "");
         formData.append("size", selectedSize || "");
         formData.append("details", yardDetails);
-        if (videoUrl) formData.append("videoUrl", videoUrl);
+        if (videoFile) formData.append("video", videoFile);
 
         const response = await fetch("/api/submit-form", {
           method: "POST",
