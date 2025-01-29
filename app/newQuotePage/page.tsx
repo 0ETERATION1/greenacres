@@ -10,7 +10,6 @@ interface PricingInfo {
   weekly: number;
   biweekly: number;
   size: string;
-  sqft: string;
 }
 
 const PRICING_DATA: Record<string, PricingInfo> = {
@@ -18,19 +17,16 @@ const PRICING_DATA: Record<string, PricingInfo> = {
     weekly: 45,
     biweekly: 65,
     size: "Small",
-    sqft: "10,000 sq ft and under",
   },
   medium: {
     weekly: 70,
     biweekly: 105,
     size: "Medium",
-    sqft: "10,001 to 27,000 sq ft",
   },
   large: {
     weekly: 95,
     biweekly: 142.5,
     size: "Large",
-    sqft: "27,001 to 43,560 sq ft (1 acre)",
   },
 };
 
@@ -39,45 +35,54 @@ const PricingDisplay = ({ size }: { size: string }) => {
   if (!pricing) return null;
 
   return (
-    <div className="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg border-2 border-[#0cabba]">
-      <h3 className="text-2xl font-bold text-center text-[#0cabba] mb-6">
-        {pricing.size} Lawn Pricing
-        <span className="block text-sm font-normal text-gray-600 mt-1">
+    <>
+      {/* <div className="max-w-4xl mx-auto mt-12 mb-8 px-4">
+        <h2 className="text-2xl text-center font-semibold mb-6 text-[#0cabba]">
+          Please Review our Terms and Conditions
+        </h2>
+      </div> */}
+      <div className="max-w-2xl mx-auto mt-8 p-6 bg-white rounded-lg shadow-lg border-2 border-[#0cabba]">
+        <h3 className="text-2xl font-bold text-center text-[#0cabba] mb-6">
+          {pricing.size} Lawn Pricing
+          {/* <span className="block text-sm font-normal text-gray-600 mt-1">
           ({pricing.sqft})
-        </span>
-      </h3>
+        </span> */}
+        </h3>
 
-      <div className="grid md:grid-cols-2 gap-6">
-        <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-          <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
-            Weekly Service
-          </h4>
-          <p className="text-3xl font-bold text-gray-800">${pricing.weekly}</p>
-          <p className="text-gray-600 text-sm">per visit</p>
-          <p className="mt-2 text-sm text-gray-600">
-            Most popular choice for optimal lawn health
-          </p>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+            <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
+              Weekly Service
+            </h4>
+            <p className="text-3xl font-bold text-gray-800">
+              ${pricing.weekly}
+            </p>
+            <p className="text-gray-600 text-sm">per visit</p>
+            <p className="mt-2 text-sm text-gray-600">
+              Most popular choice for optimal lawn health
+            </p>
+          </div>
+
+          <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+            <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
+              Biweekly Service
+            </h4>
+            <p className="text-3xl font-bold text-gray-800">
+              ${pricing.biweekly}
+            </p>
+            <p className="text-gray-600 text-sm">per visit</p>
+            <p className="mt-2 text-sm text-gray-600">
+              Flexible option for moderate growth seasons
+            </p>
+          </div>
         </div>
 
-        <div className="p-4 bg-gray-50 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
-          <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
-            Biweekly Service
-          </h4>
-          <p className="text-3xl font-bold text-gray-800">
-            ${pricing.biweekly}
-          </p>
-          <p className="text-gray-600 text-sm">per visit</p>
-          <p className="mt-2 text-sm text-gray-600">
-            Flexible option for moderate growth seasons
-          </p>
+        <div className="mt-6 text-center text-sm text-gray-600">
+          <p>Prices include basic lawn mowing service.</p>
+          <p className="mt-1">Additional services available upon request.</p>
         </div>
       </div>
-
-      <div className="mt-6 text-center text-sm text-gray-600">
-        <p>Prices include basic lawn mowing service.</p>
-        <p className="mt-1">Additional services available upon request.</p>
-      </div>
-    </div>
+    </>
   );
 };
 
@@ -193,16 +198,17 @@ export default function QuotePage() {
     ];
 
     return (
-      <div className="max-w-4xl mx-auto mt-12 mb-32 px-4">
-        <h2 className="text-2xl text-center font-semibold mb-6 text-[#0cabba]">
-          Select Your Yard Size
-        </h2>
-        <div className="grid md:grid-cols-2 gap-6">
-          {sizeOptions.map((size) => (
-            <div
-              key={size.name}
-              onClick={() => setSelectedSize(size.name.toLowerCase())}
-              className={`
+      <>
+        <div className="max-w-4xl mx-auto mt-12 mb-32 px-4">
+          <h2 className="text-2xl text-center font-semibold mb-6 text-[#0cabba]">
+            Select Your Yard Size
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {sizeOptions.map((size) => (
+              <div
+                key={size.name}
+                onClick={() => setSelectedSize(size.name.toLowerCase())}
+                className={`
                 border rounded-lg cursor-pointer transition-all
                 hover:shadow-lg flex flex-col relative overflow-hidden
                 min-h-[300px]
@@ -212,44 +218,45 @@ export default function QuotePage() {
                     : "border-gray-200"
                 }
               `}
-            >
-              <div
-                className={`relative z-10 bg-white p-4 rounded-t-lg border-b
+              >
+                <div
+                  className={`relative z-10 bg-white p-4 rounded-t-lg border-b
                 ${
                   selectedSize === size.name.toLowerCase()
                     ? "border-[#0cabba]"
                     : ""
                 }`}
-              >
-                <h3
-                  className={`text-xl font-semibold text-center
+                >
+                  <h3
+                    className={`text-xl font-semibold text-center
                   ${
                     selectedSize === size.name.toLowerCase() ? "font-bold" : ""
                   }`}
-                >
-                  {size.name}
-                </h3>
+                  >
+                    {size.name}
+                  </h3>
+                </div>
+                {size.isText ? (
+                  <div className="flex items-center justify-center h-full p-8 text-center text-gray-800 text-lg">
+                    My Yard Does not Match the Current Options
+                  </div>
+                ) : (
+                  <div className="absolute inset-0 top-[56px] z-0">
+                    <Image
+                      src={size.image!}
+                      alt={`${size.name} Yard`}
+                      fill
+                      quality={100}
+                      priority
+                      className="object-cover"
+                    />
+                  </div>
+                )}
               </div>
-              {size.isText ? (
-                <div className="flex items-center justify-center h-full p-8 text-center text-gray-800 text-lg">
-                  My Yard Does not Match the Current Options
-                </div>
-              ) : (
-                <div className="absolute inset-0 top-[56px] z-0">
-                  <Image
-                    src={size.image!}
-                    alt={`${size.name} Yard`}
-                    fill
-                    quality={100}
-                    priority
-                    className="object-cover"
-                  />
-                </div>
-              )}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      </>
     );
   };
 
@@ -493,6 +500,11 @@ export default function QuotePage() {
 
     return (
       <>
+        <div className="max-w-4xl mx-auto -mt-24 mb-6 px-4">
+          <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
+            Please Review our Terms and Conditions
+          </h2>
+        </div>
         <PricingDisplay size={selectedSize} />
         <TermsAndService setAcceptedTerms={setAcceptedTerms} />
         <div className="max-w-2xl mx-auto mt-8 mb-32">
