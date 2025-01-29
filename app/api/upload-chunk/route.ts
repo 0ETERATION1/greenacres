@@ -17,20 +17,32 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
-console.log("Storage bucket:", process.env.FIREBASE_STORAGE_BUCKET);
+console.log("[Upload-Chunk] Initializing with config:", {
+  projectId: firebaseConfig.projectId,
+  storageBucket: firebaseConfig.storageBucket
+});
 
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 export async function POST(request: Request) {
   try {
+    console.log("[Upload-Chunk] Starting chunk upload");
     const formData = await request.formData();
     const chunk = formData.get("chunk") as File;
     const fileName = formData.get("fileName") as string;
     const chunkIndex = parseInt(formData.get("chunkIndex") as string);
     const totalChunks = parseInt(formData.get("totalChunks") as string);
 
-    console.log("Processing chunk:", {
+    if (!chunk || !fileName) {
+      console.error("[Upload-Chunk] Missing required fields:", { chunk: !!chunk, fileName: !!fileName });
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    console.log("[Upload-Chunk] Processing chunk:", {
       fileName,
       chunkIndex,
       totalChunks,
@@ -38,23 +50,22 @@ export async function POST(request: Request) {
       type: chunk.type
     });
 
-    // Upload directly to videos folder
     const chunkRef = ref(storage, `videos/${fileName}-${chunkIndex}`);
     
     try {
       const buffer = await chunk.arrayBuffer();
-      console.log("Uploading chunk to Firebase:", chunkRef.fullPath);
+      console.log("[Upload-Chunk] Starting Firebase upload:", chunkRef.fullPath);
       await uploadBytes(chunkRef, buffer, {
         contentType: chunk.type
       });
-      console.log("Chunk uploaded successfully");
+      console.log("[Upload-Chunk] Upload successful");
     } catch (error: unknown) {
       const uploadError = error as StorageError;
-      console.error("Firebase upload error:", {
-        error: uploadError,
+      console.error("[Upload-Chunk] Firebase upload error:", {
         message: uploadError.message,
         code: uploadError.code,
-        serverResponse: uploadError.serverResponse
+        serverResponse: uploadError.serverResponse,
+        stack: uploadError.stack
       });
       throw uploadError;
     }
@@ -64,7 +75,7 @@ export async function POST(request: Request) {
       message: `Chunk ${chunkIndex + 1} of ${totalChunks} uploaded successfully`
     });
   } catch (error) {
-    console.error("Detailed chunk upload error:", {
+    console.error("[Upload-Chunk] Detailed error:", {
       error,
       message: error instanceof Error ? error.message : "Unknown error",
       stack: error instanceof Error ? error.stack : undefined
