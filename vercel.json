@@ -1,0 +1,19 @@
+{
+  "functions": {
+    "api/submit-form": {
+      "maxDuration": 60,
+      "memory": 1024
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/submit-form",
+      "dest": "/api/submit-form",
+      "methods": ["POST"],
+      "headers": {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "POST"
+      }
+    }
+  ]
+} 
