@@ -1,8 +1,7 @@
-import { initializeApp } from "firebase/app";
-import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
 import { NextResponse } from "next/server";
-import { FirebaseError } from "firebase/app"; // FirebaseError comes from firebase/app
+import { initializeApp, getApps } from "firebase/app";
+import { getStorage, ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 // Log environment variables
 console.log("Environment Variables:", {
@@ -23,21 +22,16 @@ const firebaseConfig = {
 
 console.log("Firebase Config:", firebaseConfig);
 
-// Initialize Firebase Services
-const app = initializeApp(firebaseConfig);
+// Initialize Firebase only if no apps exist
+const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 const storage = getStorage(app);
 const db = getFirestore(app);
-
-// Define a TypeScript interface for Firebase Errors
-interface StorageError extends FirebaseError {
-  status_?: number;
-}
 
 // Configure API Route
 export const config = {
   api: {
     bodyParser: false,
-    responseLimit: "150mb" // Increased to handle larger files
+    responseLimit: "250mb"
   }
 };
 
@@ -59,72 +53,42 @@ export async function POST(request: Request) {
 
     if (video) {
       try {
-        console.log("Processing video:", {
-          name: video.name,
-          type: video.type,
-          size: video.size,
-          storageBucket: storage.app.options.storageBucket
-        });
-
-        const buffer = Buffer.from(await video.arrayBuffer());
         const fileName = `videos/${Date.now()}-${video.name}`;
         const storageRef = ref(storage, fileName);
-
-        // Log the full storage reference
-        console.log("Storage Reference:", {
-          fullPath: storageRef.fullPath,
-          bucket: storageRef.bucket,
-          name: storageRef.name
+        
+        console.log("[Submit-Form] Starting video upload:", {
+          fileName,
+          contentType: video.type
         });
 
+        // Stream upload
+        const buffer = Buffer.from(await video.arrayBuffer());
         const uploadTask = uploadBytesResumable(storageRef, buffer, {
           contentType: video.type
         });
 
-        // Await the upload process
+        // Wait for upload completion
         await new Promise<void>((resolve, reject) => {
           uploadTask.on(
             "state_changed",
             (snapshot) => {
               const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log("Upload progress:", progress + "%");
+              console.log("[Submit-Form] Upload progress:", progress.toFixed(2) + "%");
             },
-            (error: unknown) => {
-              if (error instanceof FirebaseError) {
-                console.error("Upload error:", {
-                  code: error.code,
-                  message: error.message,
-                  serverResponse: (error as StorageError).customData?.serverResponse,
-                  status: (error as StorageError).status_
-                });
-              } else {
-                console.error("Unknown Upload error:", error);
-              }
-              reject(error);
-            },
+            (error) => reject(error),
             () => resolve()
           );
         });
 
-        // Retrieve the download URL
         videoUrl = await getDownloadURL(storageRef);
-        console.log("File available at:", videoUrl);
-      } catch (error: unknown) {
-        if (error instanceof FirebaseError) {
-          console.error("Upload Error:", {
-            code: error.code,
-            message: error.message,
-            serverResponse: (error as StorageError).customData?.serverResponse,
-            status: (error as StorageError).status_
-          });
-        } else {
-          console.error("Unexpected Upload Error:", error);
-        }
+        console.log("[Submit-Form] Video uploaded successfully:", videoUrl);
+      } catch (error) {
+        console.error("[Submit-Form] Video upload error:", error);
         throw error;
       }
     }
 
-    // Save form data & video URL to Firestore
+    // Save form data to Firestore
     const docRef = await addDoc(collection(db, "inquiries"), {
       name: formData.get("name"),
       email: formData.get("email"),
@@ -137,13 +101,15 @@ export async function POST(request: Request) {
       status: "new"
     });
 
+    console.log("[Submit-Form] Form data saved to Firestore:", docRef.id);
+
     return NextResponse.json({
       success: true,
       message: "Form submitted successfully",
       id: docRef.id,
       videoUrl
     });
-  } catch (error: unknown) {
+  } catch (error) {
     console.error("[Submit-Form] Error processing form:", {
       error,
       message: error instanceof Error ? error.message : "Unknown error",
