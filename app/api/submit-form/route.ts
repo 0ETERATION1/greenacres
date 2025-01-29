@@ -39,6 +39,17 @@ export const config = {
 export async function POST(request: Request) {
   console.log("[Submit-Form] Starting form submission");
   
+  // Add CORS headers
+  const headers = new Headers({
+    "Access-Control-Allow-Origin": "*",
+    "Access-Control-Allow-Methods": "POST, OPTIONS"
+  });
+
+  // Handle preflight requests
+  if (request.method === "OPTIONS") {
+    return new NextResponse(null, { status: 204, headers });
+  }
+  
   try {
     const formData = await request.formData();
     const video = formData.get("video") as File | null;
@@ -103,12 +114,15 @@ export async function POST(request: Request) {
 
     console.log("[Submit-Form] Form data saved to Firestore:", docRef.id);
 
-    return NextResponse.json({
-      success: true,
-      message: "Form submitted successfully",
-      id: docRef.id,
-      videoUrl
-    });
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Form submitted successfully",
+        id: docRef.id,
+        videoUrl
+      },
+      { headers }
+    );
   } catch (error) {
     console.error("[Submit-Form] Error processing form:", {
       error,
@@ -118,7 +132,7 @@ export async function POST(request: Request) {
     
     return NextResponse.json(
       { error: "Failed to process form submission" },
-      { status: 500 }
+      { status: 500, headers }
     );
   }
 }
