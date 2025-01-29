@@ -134,7 +134,6 @@ export default function QuotePage() {
 
       try {
         setIsSubmitting(true);
-        setUploadProgress(0);
         let videoUrl = "";
 
         if (videoFile) {
@@ -151,16 +150,11 @@ export default function QuotePage() {
                 const progress =
                   (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 setUploadProgress(progress);
-                console.log("Upload progress:", progress.toFixed(0) + "%");
               },
-              (error) => {
-                console.error("Upload error:", error);
-                reject(error);
-              },
+              reject,
               async () => {
                 try {
-                  const url = await getDownloadURL(uploadTask.snapshot.ref);
-                  videoUrl = url;
+                  videoUrl = await getDownloadURL(uploadTask.snapshot.ref);
                   resolve();
                 } catch (error) {
                   reject(error);
@@ -169,6 +163,8 @@ export default function QuotePage() {
             );
           });
         }
+
+        console.log("Video URL before form submission:", videoUrl);
 
         const formData = new FormData();
         formData.append("name", name);
