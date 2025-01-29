@@ -27,6 +27,22 @@ const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
 export async function POST(request: Request) {
+  // Check origin first
+  const allowedOrigins = [
+    'https://greenacresdmv.com',
+    'https://www.greenacresdmv.com',
+    'http://localhost:3000' // For development
+  ];
+  
+  const origin = request.headers.get('origin');
+  if (!origin || !allowedOrigins.includes(origin)) {
+    console.error('[Upload-Chunk] Unauthorized origin:', origin);
+    return NextResponse.json(
+      { error: 'Unauthorized request' },
+      { status: 403 }
+    );
+  }
+
   try {
     console.log("[Upload-Chunk] Starting chunk upload");
     const formData = await request.formData();
