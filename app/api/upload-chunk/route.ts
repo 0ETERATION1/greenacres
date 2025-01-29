@@ -12,6 +12,8 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
+console.log("Storage bucket:", process.env.FIREBASE_STORAGE_BUCKET);
+
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 
@@ -23,21 +25,50 @@ export async function POST(request: Request) {
     const chunkIndex = parseInt(formData.get("chunkIndex") as string);
     const totalChunks = parseInt(formData.get("totalChunks") as string);
 
+    console.log("Processing chunk:", {
+      fileName,
+      chunkIndex,
+      totalChunks,
+      chunkSize: chunk.size,
+      type: chunk.type
+    });
+
     // Upload directly to videos folder
     const chunkRef = ref(storage, `videos/${fileName}-${chunkIndex}`);
-    await uploadBytes(chunkRef, await chunk.arrayBuffer());
-
-    // If this is the last chunk, combine all chunks
-    if (chunkIndex === totalChunks - 1) {
-      // Logic to combine chunks will go here
-      // For now, just return success
+    
+    try {
+      const buffer = await chunk.arrayBuffer();
+      console.log("Uploading chunk to Firebase:", chunkRef.fullPath);
+      await uploadBytes(chunkRef, buffer, {
+        contentType: chunk.type
+      });
+      console.log("Chunk uploaded successfully");
+    } catch (uploadError) {
+      console.error("Firebase upload error:", {
+        error: uploadError,
+        message: uploadError instanceof Error ? uploadError.message : "Unknown error",
+        code: (uploadError as any).code,
+        serverResponse: (uploadError as any).serverResponse
+      });
+      throw uploadError;
     }
 
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ 
+      success: true,
+      message: `Chunk ${chunkIndex + 1} of ${totalChunks} uploaded successfully`
+    });
   } catch (error) {
-    console.error("Chunk upload error:", error);
+    console.error("Detailed chunk upload error:", {
+      error,
+      message: error instanceof Error ? error.message : "Unknown error",
+      stack: error instanceof Error ? error.stack : undefined
+    });
+    
     return NextResponse.json(
-      { error: "Failed to upload chunk" },
+      { 
+        error: "Failed to upload chunk",
+        details: error instanceof Error ? error.message : "Unknown error"
+      },
       { status: 500 }
     );
   }
