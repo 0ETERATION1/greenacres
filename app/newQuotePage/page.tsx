@@ -103,25 +103,48 @@ export default function QuotePage() {
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
 
-      if (!name) {
-        alert("Please enter your name");
-        return;
-      }
-
-      if (!email && !phone) {
-        alert("Please enter either an email or phone number");
-        return;
-      }
-
-      if (videoFile && videoFile.size > 200 * 1024 * 1024) {
-        alert("Video file size must be less than 200MB");
-        return;
-      }
-
       try {
         setIsSubmitting(true);
+        let videoUrl = "";
 
-        // Handle regular form data first
+        // Handle video upload first if there's a video
+        if (videoFile) {
+          const totalChunks = Math.ceil(videoFile.size / MAX_CHUNK_SIZE);
+          const finalFileName = `${Date.now()}-${videoFile.name}`;
+
+          for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
+            const start = chunkIndex * MAX_CHUNK_SIZE;
+            const end = Math.min(start + MAX_CHUNK_SIZE, videoFile.size);
+            const chunk = videoFile.slice(start, end);
+
+            const chunkFormData = new FormData();
+            chunkFormData.append("chunk", chunk);
+            chunkFormData.append("fileName", finalFileName);
+            chunkFormData.append("chunkIndex", chunkIndex.toString());
+            chunkFormData.append("totalChunks", totalChunks.toString());
+
+            const chunkResponse = await fetch("/api/upload-chunk", {
+              method: "POST",
+              body: chunkFormData,
+            });
+
+            if (!chunkResponse.ok) {
+              const errorData = await chunkResponse.json();
+              throw new Error(
+                `Failed to upload chunk ${chunkIndex}: ${
+                  errorData.details || chunkResponse.statusText
+                }`
+              );
+            }
+
+            const responseData = await chunkResponse.json();
+            if (responseData.videoUrl) {
+              videoUrl = responseData.videoUrl;
+            }
+          }
+        }
+
+        // Now submit the form with the video URL
         const formData = new FormData();
         formData.append("name", name);
         if (email) formData.append("email", email);
@@ -129,55 +152,8 @@ export default function QuotePage() {
         formData.append("service", selectedService || "");
         formData.append("size", selectedSize || "");
         formData.append("details", yardDetails);
+        if (videoUrl) formData.append("videoUrl", videoUrl);
 
-        // If there's a video, handle it in chunks
-        if (videoFile) {
-          try {
-            const totalChunks = Math.ceil(videoFile.size / MAX_CHUNK_SIZE);
-
-            for (let chunkIndex = 0; chunkIndex < totalChunks; chunkIndex++) {
-              const start = chunkIndex * MAX_CHUNK_SIZE;
-              const end = Math.min(start + MAX_CHUNK_SIZE, videoFile.size);
-              const chunk = videoFile.slice(start, end);
-
-              const chunkFormData = new FormData();
-              chunkFormData.append("chunk", chunk);
-              chunkFormData.append("fileName", videoFile.name);
-              chunkFormData.append("chunkIndex", chunkIndex.toString());
-              chunkFormData.append("totalChunks", totalChunks.toString());
-
-              console.log(`Uploading chunk ${chunkIndex + 1}/${totalChunks}`);
-              const chunkResponse = await fetch("/api/upload-chunk", {
-                method: "POST",
-                body: chunkFormData,
-              });
-
-              if (!chunkResponse.ok) {
-                const errorData = await chunkResponse.json();
-                throw new Error(
-                  `Failed to upload chunk ${chunkIndex}: ${
-                    errorData.details || chunkResponse.statusText
-                  }`
-                );
-              }
-
-              const responseData = await chunkResponse.json();
-              console.log(
-                `Chunk ${chunkIndex + 1} upload response:`,
-                responseData
-              );
-            }
-          } catch (error) {
-            console.error("Video upload error:", error);
-            throw new Error(
-              `Video upload failed: ${
-                error instanceof Error ? error.message : "Unknown error"
-              }`
-            );
-          }
-        }
-
-        // Submit the rest of the form data
         const response = await fetch("/api/submit-form", {
           method: "POST",
           body: formData,
