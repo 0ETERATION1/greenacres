@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { initializeApp, getApps } from "firebase/app";
-import { getStorage, ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 // Log environment variables
@@ -24,7 +23,6 @@ console.log("Firebase Config:", firebaseConfig);
 
 // Initialize Firebase only if no apps exist
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
-const storage = getStorage(app);
 const db = getFirestore(app);
 
 // Configure API Route
@@ -35,71 +33,43 @@ export const config = {
   }
 };
 
-// Handle POST Request
+// Handle POST Request (NO VIDEO UPLOAD HERE)
 export async function POST(request: Request) {
   console.log("[Submit-Form] Starting form submission");
   
   // Add CORS headers
   const headers = new Headers({
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Methods": "POST, OPTIONS"
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type"
   });
 
-  // Handle preflight requests
+  // Handle CORS preflight requests
   if (request.method === "OPTIONS") {
     return new NextResponse(null, { status: 204, headers });
   }
   
   try {
     const formData = await request.formData();
-    const video = formData.get("video") as File | null;
-    
+
     console.log("[Submit-Form] Form data received:", {
-      hasVideo: !!video,
-      videoSize: video ? `${(video.size / (1024 * 1024)).toFixed(2)}MB` : 'N/A',
-      videoType: video?.type
+      name: formData.get("name"),
+      email: formData.get("email"),
+      phone: formData.get("phone"),
+      service: formData.get("service"),
+      videoUrl: formData.get("videoUrl") // ✅ Expecting only a URL now
     });
 
-    let videoUrl = "";
+    const videoUrl = formData.get("videoUrl"); // ✅ Now expecting only the Firebase video URL
 
-    if (video) {
-      try {
-        const fileName = `videos/${Date.now()}-${video.name}`;
-        const storageRef = ref(storage, fileName);
-        
-        console.log("[Submit-Form] Starting video upload:", {
-          fileName,
-          contentType: video.type
-        });
-
-        // Stream upload
-        const buffer = Buffer.from(await video.arrayBuffer());
-        const uploadTask = uploadBytesResumable(storageRef, buffer, {
-          contentType: video.type
-        });
-
-        // Wait for upload completion
-        await new Promise<void>((resolve, reject) => {
-          uploadTask.on(
-            "state_changed",
-            (snapshot) => {
-              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-              console.log("[Submit-Form] Upload progress:", progress.toFixed(2) + "%");
-            },
-            (error) => reject(error),
-            () => resolve()
-          );
-        });
-
-        videoUrl = await getDownloadURL(storageRef);
-        console.log("[Submit-Form] Video uploaded successfully:", videoUrl);
-      } catch (error) {
-        console.error("[Submit-Form] Video upload error:", error);
-        throw error;
-      }
+    if (!videoUrl) {
+      return NextResponse.json(
+        { error: "Missing video URL. Ensure the video is uploaded first." },
+        { status: 400, headers }
+      );
     }
 
-    // Save form data to Firestore
+    // ✅ Save form data & video URL to Firestore
     const docRef = await addDoc(collection(db, "inquiries"), {
       name: formData.get("name"),
       email: formData.get("email"),
@@ -107,7 +77,7 @@ export async function POST(request: Request) {
       service: formData.get("service"),
       size: formData.get("size"),
       details: formData.get("details"),
-      videoUrl,
+      videoUrl, // ✅ No video file, just the URL
       timestamp: new Date().toISOString(),
       status: "new"
     });

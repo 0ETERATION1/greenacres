@@ -2,7 +2,9 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { storage } from "../../lib/firebase";
 
 export default function QuotePage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
@@ -10,9 +12,13 @@ export default function QuotePage() {
   const [yardDetails, setYardDetails] = useState<string>("");
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState(0);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+
+  // Reference to file input for resetting
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -98,27 +104,72 @@ export default function QuotePage() {
   const renderOtherYardForm = () => {
     if (selectedService !== "mowing" || selectedSize !== "other") return null;
 
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        if (file.size > 200 * 1024 * 1024) {
+          alert("Video file size must be less than 200MB");
+          e.target.value = "";
+          return;
+        }
+        setVideoFile(file);
+      }
+    };
+
+    const resetForm = () => {
+      setYardDetails("");
+      setVideoFile(null);
+      setName("");
+      setEmail("");
+      setPhone("");
+      setUploadProgress(0);
+      // Reset file input
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
 
       try {
         setIsSubmitting(true);
+        setUploadProgress(0);
+        let videoUrl = "";
 
-        // Log file details if present
         if (videoFile) {
-          console.log("Video file details:", {
-            name: videoFile.name,
-            size: `${(videoFile.size / (1024 * 1024)).toFixed(2)}MB`,
-            type: videoFile.type,
+          const storageRef = ref(
+            storage,
+            `videos/${Date.now()}-${videoFile.name}`
+          );
+          const uploadTask = uploadBytesResumable(storageRef, videoFile);
+
+          await new Promise<void>((resolve, reject) => {
+            uploadTask.on(
+              "state_changed",
+              (snapshot) => {
+                const progress =
+                  (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                setUploadProgress(progress);
+                console.log("Upload progress:", progress.toFixed(0) + "%");
+              },
+              (error) => {
+                console.error("Upload error:", error);
+                reject(error);
+              },
+              async () => {
+                try {
+                  const url = await getDownloadURL(uploadTask.snapshot.ref);
+                  videoUrl = url;
+                  resolve();
+                } catch (error) {
+                  reject(error);
+                }
+              }
+            );
           });
         }
 
-        // Check video file size if present
-        if (videoFile && videoFile.size > 200 * 1024 * 1024) {
-          throw new Error("Video file size must be less than 200MB");
-        }
-
-        // Submit everything in one request
         const formData = new FormData();
         formData.append("name", name);
         if (email) formData.append("email", email);
@@ -126,7 +177,7 @@ export default function QuotePage() {
         formData.append("service", selectedService || "");
         formData.append("size", selectedSize || "");
         formData.append("details", yardDetails);
-        if (videoFile) formData.append("video", videoFile);
+        if (videoUrl) formData.append("videoUrl", videoUrl);
 
         console.log("Submitting form with data:", {
           name,
@@ -157,28 +208,12 @@ export default function QuotePage() {
         }
 
         alert("Thank you! Your submission has been received.");
-        setYardDetails("");
-        setVideoFile(null);
-        setName("");
-        setEmail("");
-        setPhone("");
+        resetForm(); // Reset all form fields
       } catch (error) {
         console.error("Form submission error:", error);
         alert(error instanceof Error ? error.message : "Failed to submit form");
       } finally {
         setIsSubmitting(false);
-      }
-    };
-
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-      const file = e.target.files?.[0];
-      if (file) {
-        if (file.size > 200 * 1024 * 1024) {
-          alert("Video file size must be less than 200MB");
-          e.target.value = "";
-          return;
-        }
-        setVideoFile(file);
       }
     };
 
@@ -256,14 +291,28 @@ export default function QuotePage() {
 
               <div>
                 <label className="block text-gray-700 mb-2">
-                  Or upload a video of your lawn:
+                  Upload a video of your lawn:
                 </label>
                 <input
+                  ref={fileInputRef}
                   type="file"
                   accept="video/*"
                   onChange={handleFileChange}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
                 />
+                {uploadProgress > 0 && uploadProgress < 100 && (
+                  <div className="mt-2">
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                      <div
+                        className="bg-[#0cabba] h-2.5 rounded-full transition-all duration-300"
+                        style={{ width: `${uploadProgress}%` }}
+                      ></div>
+                    </div>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Uploading: {uploadProgress.toFixed(0)}%
+                    </p>
+                  </div>
+                )}
               </div>
 
               <button
