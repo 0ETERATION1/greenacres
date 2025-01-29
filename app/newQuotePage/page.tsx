@@ -104,6 +104,15 @@ export default function QuotePage() {
       try {
         setIsSubmitting(true);
 
+        // Log file details if present
+        if (videoFile) {
+          console.log("Video file details:", {
+            name: videoFile.name,
+            size: `${(videoFile.size / (1024 * 1024)).toFixed(2)}MB`,
+            type: videoFile.type,
+          });
+        }
+
         // Check video file size if present
         if (videoFile && videoFile.size > 200 * 1024 * 1024) {
           throw new Error("Video file size must be less than 200MB");
@@ -119,13 +128,32 @@ export default function QuotePage() {
         formData.append("details", yardDetails);
         if (videoFile) formData.append("video", videoFile);
 
+        console.log("Submitting form with data:", {
+          name,
+          email,
+          phone,
+          service: selectedService,
+          size: selectedSize,
+          hasVideo: !!videoFile,
+        });
+
         const response = await fetch("/api/submit-form", {
           method: "POST",
           body: formData,
         });
 
         if (!response.ok) {
-          throw new Error(`Server error: ${response.status}`);
+          const errorText = await response.text();
+          console.error("Server response:", {
+            status: response.status,
+            statusText: response.statusText,
+            body: errorText,
+          });
+          throw new Error(
+            `Server error: ${response.status} - ${
+              errorText || response.statusText
+            }`
+          );
         }
 
         alert("Thank you! Your submission has been received.");

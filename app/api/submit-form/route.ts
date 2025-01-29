@@ -43,9 +43,18 @@ export const config = {
 
 // Handle POST Request
 export async function POST(request: Request) {
+  console.log("[Submit-Form] Starting form submission");
+  
   try {
     const formData = await request.formData();
     const video = formData.get("video") as File | null;
+    
+    console.log("[Submit-Form] Form data received:", {
+      hasVideo: !!video,
+      videoSize: video ? `${(video.size / (1024 * 1024)).toFixed(2)}MB` : 'N/A',
+      videoType: video?.type
+    });
+
     let videoUrl = "";
 
     if (video) {
@@ -135,12 +144,14 @@ export async function POST(request: Request) {
       videoUrl
     });
   } catch (error: unknown) {
-    console.error("API Route: Detailed error:", error);
+    console.error("[Submit-Form] Error processing form:", {
+      error,
+      message: error instanceof Error ? error.message : "Unknown error",
+      stack: error instanceof Error ? error.stack : undefined
+    });
+    
     return NextResponse.json(
-      {
-        error: "Failed to submit form",
-        details: error instanceof Error ? error.message : "Unknown error"
-      },
+      { error: "Failed to process form submission" },
       { status: 500 }
     );
   }
