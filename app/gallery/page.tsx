@@ -145,61 +145,6 @@ const portfolioItems: PortfolioItem[] = [
 
     category: ["lawn-maintenance", "weed-control"],
   },
-
-  {
-    id: 2,
-
-    title: "Professional Lawn Care",
-
-    description: (
-      <>
-        <span className="highlight-animation">Lawn maintenance</span>,{" "}
-        <span className="highlight-animation">weed control</span> and
-        fertilizing maintenance keeping this property looking pristine
-        year-round.
-      </>
-    ),
-
-    imagePath: "/assets/images/portfolio/lawn/lawn2.jpg",
-
-    category: ["lawn-maintenance", "weed-control"],
-  },
-
-  {
-    id: 3,
-
-    title: "Professional Lawn Care",
-
-    description: (
-      <>
-        Backyard <span className="highlight-animation">lawn maintenance</span>,{" "}
-        <span className="highlight-animation">weed control</span> and
-        fertilizing maintenance.
-      </>
-    ),
-
-    imagePath: "/assets/images/portfolio/lawn/lawn3.jpg",
-
-    category: ["lawn-maintenance", "weed-control"],
-  },
-
-  {
-    id: 4,
-
-    title: "Spring Garden Makeover",
-
-    description: (
-      <>
-        Complete garden transformation with seasonal flowers and{" "}
-        <span className="highlight-animation">plant installation</span>.
-      </>
-    ),
-
-    imagePath: "/assets/images/portfolio/lawn/landscaping1.jpg",
-
-    category: ["plant-installation"],
-  },
-
   {
     id: 5,
 
@@ -235,6 +180,42 @@ const portfolioItems: PortfolioItem[] = [
       "/assets/images/port/sod/Prep work before a sod installation. Completed_.jpg",
 
     category: ["sod-installation"],
+  },
+
+  {
+    id: 4,
+
+    title: "Spring Garden Makeover",
+
+    description: (
+      <>
+        Complete garden transformation with seasonal flowers and{" "}
+        <span className="highlight-animation">plant installation</span>.
+      </>
+    ),
+
+    imagePath: "/assets/images/portfolio/lawn/landscaping1.jpg",
+
+    category: ["plant-installation"],
+  },
+
+  {
+    id: 2,
+
+    title: "Professional Lawn Care",
+
+    description: (
+      <>
+        <span className="highlight-animation">Lawn maintenance</span>,{" "}
+        <span className="highlight-animation">weed control</span> and
+        fertilizing maintenance keeping this property looking pristine
+        year-round.
+      </>
+    ),
+
+    imagePath: "/assets/images/portfolio/lawn/lawn2.jpg",
+
+    category: ["lawn-maintenance", "weed-control"],
   },
 
   {
@@ -308,6 +289,24 @@ const portfolioItems: PortfolioItem[] = [
     imagePath:
       "/assets/images/port/PlantInstall/Complete renovation of front garden. We ripped out the old and overgrown plants and installed new plants.jpg",
     category: ["plant-installation"],
+  },
+
+  {
+    id: 3,
+
+    title: "Lawn Maintenance",
+
+    description: (
+      <>
+        Backyard <span className="highlight-animation">lawn maintenance</span>,{" "}
+        <span className="highlight-animation">weed control</span> and
+        fertilizing maintenance.
+      </>
+    ),
+
+    imagePath: "/assets/images/portfolio/lawn/lawn3.jpg",
+
+    category: ["lawn-maintenance", "weed-control"],
   },
 
   {
