@@ -43,7 +43,7 @@ export default function Footer() {
               {[
                 "Services",
                 "About",
-                "Portfolio",
+                "Gallery",
                 "Firewood",
                 "Blog",
                 { text: "Contact", path: "quotePage" },
