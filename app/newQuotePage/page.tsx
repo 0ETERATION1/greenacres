@@ -15,7 +15,7 @@ interface PricingInfo {
   weekly: number;
   biweekly: number;
   size: string;
-  sqft: number;
+  sqft: string;
 }
 
 const PRICING_DATA: Record<string, PricingInfo> = {
@@ -23,19 +23,19 @@ const PRICING_DATA: Record<string, PricingInfo> = {
     weekly: 45,
     biweekly: 65,
     size: "Small",
-    sqft: 2000,
+    sqft: "Select One:",
   },
   medium: {
     weekly: 70,
     biweekly: 105,
     size: "Medium",
-    sqft: 3000,
+    sqft: "Select One:",
   },
   large: {
     weekly: 95,
     biweekly: 142.5,
     size: "Large",
-    sqft: 4000,
+    sqft: "Select One:",
   },
 };
 
