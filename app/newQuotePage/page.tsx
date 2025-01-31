@@ -23,19 +23,19 @@ const PRICING_DATA: Record<string, PricingInfo> = {
     weekly: 45,
     biweekly: 65,
     size: "Small",
-    sqft: "Please Select One",
+    sqft: "Please Select One and Read our Policy Below",
   },
   medium: {
     weekly: 70,
     biweekly: 105,
     size: "Medium",
-    sqft: "Please Select One",
+    sqft: "Please Select One and Read our Policy Below",
   },
   large: {
     weekly: 95,
     biweekly: 142.5,
     size: "Large",
-    sqft: "Please Select One",
+    sqft: "Please Select One and Read our Policy Below",
   },
 };
 
