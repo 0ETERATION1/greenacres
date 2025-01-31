@@ -19,6 +19,8 @@ export async function POST(req: Request) {
     };
 
     const amount = prices[size][frequency];
+    // Add transaction fee (e.g., 3%)
+    const amountWithFee = Math.round(amount * 1.03);
     
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded",
@@ -26,27 +28,32 @@ export async function POST(req: Request) {
         {
           price_data: {
             currency: "usd",
-            recurring: {
-              interval: frequency === 'weekly' ? 'week' : 'month',
-              interval_count: frequency === 'weekly' ? 1 : 2,
-            },
             product_data: {
               name: `${size.charAt(0).toUpperCase() + size.slice(1)} Lawn Mowing Service - ${frequency}`,
-              description: `Professional lawn maintenance service - ${frequency} visits`,
+              description: `Professional lawn maintenance service - ${frequency} visits (includes processing fee)`,
             },
-            unit_amount: amount,
+            unit_amount: amountWithFee,
           },
           quantity: 1,
         },
       ],
-      mode: "subscription",
+      mode: "payment",
       return_url: `${req.headers.get("origin")}/return?session_id={CHECKOUT_SESSION_ID}`,
       payment_method_types: ["card"],
+      billing_address_collection: "required",
+      custom_fields: [
+        {
+          key: "phone",
+          label: { type: "custom", custom: "Cell Phone" },
+          type: "text",
+          optional: false,
+        }
+      ],
       custom_text: {
         submit: {
-          message: "We'll get started on your lawn service right after subscription confirmation",
+          message: "We'll contact you within 24 hours to schedule your service",
         },
-      },
+      }
     });
 
     return NextResponse.json({ clientSecret: session.client_secret });
