@@ -496,7 +496,7 @@ export default function QuotePage() {
         }),
       });
       const data = await response.json();
-      console.log("Checkout session created:", data);
+      //console.log("Checkout session created:", data);
       setClientSecret(data.clientSecret);
     } catch (error) {
       console.error("Error creating checkout session:", error);
