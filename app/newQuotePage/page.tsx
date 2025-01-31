@@ -73,11 +73,11 @@ const PricingDisplay = ({
         <div
           onClick={() => handleFrequencySelect("weekly")}
           className={`p-4 bg-gray-50 rounded-lg border cursor-pointer transition-all
-            ${
-              selectedFrequency === "weekly"
-                ? "border-[#0cabba] shadow-md scale-105"
-                : "border-gray-200 hover:border-[#0cabba] hover:shadow-md"
-            }`}
+          ${
+            selectedFrequency === "weekly"
+              ? "border-[#0cabba] shadow-md scale-105"
+              : "border-gray-200 hover:border-[#0cabba] hover:shadow-md"
+          }`}
         >
           <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
             Weekly Service
@@ -92,11 +92,11 @@ const PricingDisplay = ({
         <div
           onClick={() => handleFrequencySelect("biweekly")}
           className={`p-4 bg-gray-50 rounded-lg border cursor-pointer transition-all
-            ${
-              selectedFrequency === "biweekly"
-                ? "border-[#0cabba] shadow-md scale-105"
-                : "border-gray-200 hover:border-[#0cabba] hover:shadow-md"
-            }`}
+          ${
+            selectedFrequency === "biweekly"
+              ? "border-[#0cabba] shadow-md scale-105"
+              : "border-gray-200 hover:border-[#0cabba] hover:shadow-md"
+          }`}
         >
           <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
             Biweekly Service
@@ -107,6 +107,29 @@ const PricingDisplay = ({
           <p className="text-gray-600 text-sm">per visit</p>
           <p className="mt-2 text-sm text-gray-600">
             Flexible option for moderate growth seasons
+          </p>
+        </div>
+      </div>
+      <div className="mt-8 text-center px-4">
+        <div className="bg-[#f8fafc] p-6 rounded-lg border border-[#0cabba]/20">
+          <p className="text-gray-700 leading-relaxed">
+            <span className="font-semibold text-[#0cabba]">
+              Accept the quote and submit payment today to lock in your rate!
+            </span>
+            <br />
+            <span className="text-gray-600">
+              Once payment has been received, Green Acres Landscaping will
+              contact you within
+              <span className="text-medium font-semibold text-black">
+                {" "}
+                24 hours{" "}
+              </span>
+              to schedule your first service—
+              <span className="text-medium font-semibold text-black">
+                guaranteed
+              </span>
+              , or your money back.
+            </span>
           </p>
         </div>
       </div>
