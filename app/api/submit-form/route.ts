@@ -3,10 +3,6 @@ import { initializeApp, getApps } from "firebase/app";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
 
 // Log environment variables
-console.log("Environment Variables:", {
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET
-});
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -19,7 +15,7 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
-console.log("Firebase Config:", firebaseConfig);
+
 
 // Initialize Firebase only if no apps exist
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
@@ -35,7 +31,7 @@ export const config = {
 
 // Handle POST Request (NO VIDEO UPLOAD HERE)
 export async function POST(request: Request) {
-  console.log("[Submit-Form] Starting form submission");
+  
   
   // Add CORS headers
   const headers = new Headers({
@@ -51,31 +47,24 @@ export async function POST(request: Request) {
   
   try {
     const formData = await request.formData();
-    const isDeclined = formData.get("status") === "declined";
-    const collectionName = isDeclined ? "declinedInquiries" : "inquiries";
+    const collectionName = formData.get("collection")?.toString() || "inquiries";
 
-    console.log(`[Submit-Form] Form data received for ${collectionName}:`, {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      service: formData.get("service"),
-      status: formData.get("status")
-    });
+    // console.log("[Submit-Form] Received collection name:", collectionName);
+    // console.log("[Submit-Form] Form data:", Object.fromEntries(formData.entries()));
 
-    // Save to appropriate collection
     const docRef = await addDoc(collection(db, collectionName), {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      phone: formData.get("phone"),
-      service: formData.get("service"),
-      size: formData.get("size"),
-      details: formData.get("details"),
-      videoUrl: formData.get("videoUrl"),
+      name: formData.get("name")?.toString() || "",
+      email: formData.get("email")?.toString() || "",
+      phone: formData.get("phone")?.toString() || "",
+      service: formData.get("service")?.toString() || "",
+      size: formData.get("size")?.toString() || "",
+      details: formData.get("details")?.toString() || "",
+      videoUrl: formData.get("videoUrl")?.toString() || "",
       timestamp: new Date().toISOString(),
-      status: isDeclined ? "declined" : "new"
+      status: formData.get("status")?.toString() || "new"
     });
 
-    console.log(`[Submit-Form] Data saved to ${collectionName}:`, docRef.id);
+    // console.log(`[Submit-Form] Successfully saved to ${collectionName}:`, docRef.id);
 
     return NextResponse.json(
       {
@@ -86,14 +75,12 @@ export async function POST(request: Request) {
       { headers }
     );
   } catch (error) {
-    console.error("[Submit-Form] Error processing form:", {
-      error,
-      message: error instanceof Error ? error.message : "Unknown error",
-      stack: error instanceof Error ? error.stack : undefined
-    });
-    
+    // console.error("[Submit-Form] Error:", error);
     return NextResponse.json(
-      { error: "Failed to process form submission" },
+      { 
+        error: error instanceof Error ? error.message : "Failed to process form submission",
+        details: error
+      }, 
       { status: 500, headers }
     );
   }
