@@ -152,7 +152,7 @@ export default function QuotePage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [acceptedTerms, setAcceptedTerms] = useState(false);
+  const [acceptedTerms, setAcceptedTerms] = useState<boolean | null>(null);
   const [clientSecret, setClientSecret] = useState<string>("");
   const [selectedFrequency, setSelectedFrequency] = useState<
     "weekly" | "biweekly" | null
@@ -558,7 +558,7 @@ export default function QuotePage() {
             type="button"
             onClick={handleAccept}
             className={`px-6 py-2 rounded-lg transition-colors ${
-              acceptedTerms
+              acceptedTerms === true
                 ? "bg-green-600 text-white"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
@@ -569,7 +569,7 @@ export default function QuotePage() {
             type="button"
             onClick={() => setAcceptedTerms(false)}
             className={`px-6 py-2 rounded-lg transition-colors ${
-              !acceptedTerms
+              acceptedTerms === false
                 ? "bg-red-600 text-white"
                 : "bg-gray-100 text-gray-600 hover:bg-gray-200"
             }`}
@@ -604,7 +604,7 @@ export default function QuotePage() {
           setClientSecret={setClientSecret}
         />
         <TermsAndService />
-        {clientSecret && acceptedTerms && (
+        {clientSecret && acceptedTerms === true && (
           <div className="max-w-2xl mx-auto mt-8 mb-32">
             <EmbeddedCheckoutProvider
               stripe={stripePromise}

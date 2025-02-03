@@ -51,45 +51,37 @@ export async function POST(request: Request) {
   
   try {
     const formData = await request.formData();
+    const isDeclined = formData.get("status") === "declined";
+    const collectionName = isDeclined ? "declinedInquiries" : "inquiries";
 
-    console.log("[Submit-Form] Form data received:", {
+    console.log(`[Submit-Form] Form data received for ${collectionName}:`, {
       name: formData.get("name"),
       email: formData.get("email"),
       phone: formData.get("phone"),
       service: formData.get("service"),
-      videoUrl: formData.get("videoUrl") // ✅ Expecting only a URL now
+      status: formData.get("status")
     });
 
-    const videoUrl = formData.get("videoUrl"); // ✅ Now expecting only the Firebase video URL
-
-    if (!videoUrl) {
-      return NextResponse.json(
-        { error: "Missing video URL. Ensure the video is uploaded first." },
-        { status: 400, headers }
-      );
-    }
-
-    // ✅ Save form data & video URL to Firestore
-    const docRef = await addDoc(collection(db, "inquiries"), {
+    // Save to appropriate collection
+    const docRef = await addDoc(collection(db, collectionName), {
       name: formData.get("name"),
       email: formData.get("email"),
       phone: formData.get("phone"),
       service: formData.get("service"),
       size: formData.get("size"),
       details: formData.get("details"),
-      videoUrl, // ✅ No video file, just the URL
+      videoUrl: formData.get("videoUrl"),
       timestamp: new Date().toISOString(),
-      status: "new"
+      status: isDeclined ? "declined" : "new"
     });
 
-    console.log("[Submit-Form] Form data saved to Firestore:", docRef.id);
+    console.log(`[Submit-Form] Data saved to ${collectionName}:`, docRef.id);
 
     return NextResponse.json(
       {
         success: true,
-        message: "Form submitted successfully",
-        id: docRef.id,
-        videoUrl
+        message: `Form submitted successfully to ${collectionName}`,
+        id: docRef.id
       },
       { headers }
     );
