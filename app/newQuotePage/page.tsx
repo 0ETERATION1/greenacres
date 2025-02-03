@@ -409,6 +409,23 @@ export default function QuotePage() {
     }
   }, [selectedFrequency]);
 
+  // Add useEffect to watch for size changes
+  useEffect(() => {
+    // Reset states when size changes
+    setSelectedFrequency(null);
+    setClientSecret("");
+    setAcceptedTerms(null);
+  }, [selectedSize]);
+
+  // Add useEffect to watch for service changes
+  useEffect(() => {
+    // Reset all relevant states when service changes
+    setSelectedSize(null);
+    setSelectedFrequency(null);
+    setClientSecret("");
+    setAcceptedTerms(null);
+  }, [selectedService]);
+
   const renderSizeOptions = () => {
     if (selectedService !== "mowing") return null;
 
