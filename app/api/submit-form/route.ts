@@ -60,7 +60,16 @@ export async function POST(request: Request) {
       size: formData.get("size")?.toString() || "",
       details: formData.get("details")?.toString() || "",
       videoUrl: formData.get("videoUrl")?.toString() || "",
-      timestamp: new Date().toISOString(),
+      timestamp: new Date().toLocaleString('en-US', {
+        timeZone: 'America/New_York',
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+        second: 'numeric',
+        hour12: true
+      }),
       status: formData.get("status")?.toString() || "new"
     });
 
