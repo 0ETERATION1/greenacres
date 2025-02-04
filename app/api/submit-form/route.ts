@@ -47,7 +47,7 @@ export async function POST(request: Request) {
   
   try {
     const formData = await request.formData();
-    const collectionName = formData.get("collection")?.toString() || "inquiries";
+    const collectionName = formData.get("collection")?.toString() || "mowingOtherLeads";
 
     // console.log("[Submit-Form] Received collection name:", collectionName);
     // console.log("[Submit-Form] Form data:", Object.fromEntries(formData.entries()));

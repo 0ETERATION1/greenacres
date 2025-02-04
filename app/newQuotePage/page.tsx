@@ -203,7 +203,7 @@ const DeclinedForm = ({
       formData.append("details", declinedDetails);
       formData.append("service", selectedService || "");
       formData.append("size", selectedSize || "");
-      formData.append("collection", "declinedInquiries");
+      formData.append("collection", "mowingDeclinedLeads");
       formData.append("status", "declined");
 
       if (declinedVideoFile) {
@@ -370,6 +370,242 @@ const DeclinedForm = ({
   );
 };
 
+// Move LandscapingForm outside of QuotePage component
+const LandscapingForm = ({
+  landscapingName,
+  setLandscapingName,
+  landscapingEmail,
+  setLandscapingEmail,
+  landscapingPhone,
+  setLandscapingPhone,
+  landscapingDetails,
+  setLandscapingDetails,
+  landscapingVideoFile,
+  setLandscapingVideoFile,
+  landscapingUploadProgress,
+  setLandscapingUploadProgress,
+  landscapingFileInputRef,
+  isSubmitting,
+  setIsSubmitting,
+  selectedService,
+}: {
+  landscapingName: string;
+  setLandscapingName: (name: string) => void;
+  landscapingEmail: string;
+  setLandscapingEmail: (email: string) => void;
+  landscapingPhone: string;
+  setLandscapingPhone: (phone: string) => void;
+  landscapingDetails: string;
+  setLandscapingDetails: (details: string) => void;
+  landscapingVideoFile: File | null;
+  setLandscapingVideoFile: (file: File | null) => void;
+  landscapingUploadProgress: number;
+  setLandscapingUploadProgress: (progress: number) => void;
+  landscapingFileInputRef: React.RefObject<HTMLInputElement>;
+  isSubmitting: boolean;
+  setIsSubmitting: (isSubmitting: boolean) => void;
+  selectedService: string | null;
+}) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("name", landscapingName);
+      formData.append("email", landscapingEmail);
+      formData.append("phone", landscapingPhone);
+      formData.append("details", landscapingDetails);
+      formData.append("service", selectedService || "");
+      formData.append("collection", "landscapingLeads");
+
+      if (landscapingVideoFile) {
+        const storageRef = ref(
+          storage,
+          `videos/${Date.now()}-${landscapingVideoFile.name}`
+        );
+        const uploadTask = uploadBytesResumable(
+          storageRef,
+          landscapingVideoFile
+        );
+
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            const progress =
+              (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            setLandscapingUploadProgress(progress);
+          },
+          (error) => {
+            console.error("Upload error:", error);
+            throw new Error("Failed to upload video");
+          }
+        );
+
+        await uploadTask;
+        const videoUrl = await getDownloadURL(storageRef);
+        formData.append("videoUrl", videoUrl);
+      }
+
+      const response = await fetch("/api/submit-form", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to submit");
+      }
+
+      alert("Thank you! Your submission has been received.");
+
+      // Reset form
+      setLandscapingName("");
+      setLandscapingEmail("");
+      setLandscapingPhone("");
+      setLandscapingDetails("");
+      setLandscapingVideoFile(null);
+      setLandscapingUploadProgress(0);
+      if (landscapingFileInputRef.current) {
+        landscapingFileInputRef.current.value = "";
+      }
+    } catch (error) {
+      console.error("Submission Error:", error);
+      alert("Failed to submit form. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <>
+      <div className="max-w-4xl mx-auto mt-12 mb-6 px-4">
+        <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
+          Tell Us About Your Project
+        </h2>
+      </div>
+
+      <div className="max-w-4xl mx-auto mb-32 px-4">
+        <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md border border-[#0cabba]">
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Name <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="text"
+                value={landscapingName}
+                onChange={(e) => setLandscapingName(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                placeholder="Enter your name"
+                required
+              />
+            </div>
+
+            <div className="text-gray-700 mb-2">
+              Please provide at least one way for us to contact you:
+            </div>
+
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Enter your email{" "}
+                {!landscapingPhone && <span className="text-red-500">*</span>}
+              </label>
+              <input
+                type="email"
+                value={landscapingEmail}
+                onChange={(e) => setLandscapingEmail(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                placeholder="Enter your email address"
+                required={!landscapingPhone}
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Enter your phone number{" "}
+                {!landscapingEmail && <span className="text-red-500">*</span>}
+              </label>
+              <input
+                type="tel"
+                value={landscapingPhone}
+                onChange={(e) => setLandscapingPhone(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                placeholder="Enter your phone number"
+                required={!landscapingEmail}
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Describe your project details:
+              </label>
+              <textarea
+                value={landscapingDetails}
+                onChange={(e) => setLandscapingDetails(e.target.value)}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+                rows={4}
+                placeholder="Please tell us about your project..."
+              />
+            </div>
+
+            <div>
+              <label className="block text-gray-700 mb-2">
+                Upload a video of your property:
+              </label>
+              <input
+                ref={landscapingFileInputRef}
+                type="file"
+                accept="video/*"
+                onChange={(e) => {
+                  const file = e.target.files?.[0];
+                  if (file) {
+                    if (file.size > 200 * 1024 * 1024) {
+                      alert("Video file size must be less than 200MB");
+                      e.target.value = "";
+                      return;
+                    }
+                    setLandscapingVideoFile(file);
+                  }
+                }}
+                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
+              />
+              {landscapingUploadProgress > 0 &&
+                landscapingUploadProgress < 100 && (
+                  <div className="mt-2">
+                    <div className="w-full bg-gray-200 rounded-full h-2.5">
+                      <div
+                        className="bg-[#0cabba] h-2.5 rounded-full transition-all duration-300"
+                        style={{ width: `${landscapingUploadProgress}%` }}
+                      ></div>
+                    </div>
+                    <p className="text-sm text-gray-600 mt-1">
+                      Uploading: {landscapingUploadProgress.toFixed(0)}%
+                    </p>
+                  </div>
+                )}
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`w-full bg-[#0cabba] text-white py-3 px-6 rounded-lg transition-colors
+                ${
+                  isSubmitting
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-[#0b9aa7]"
+                }`}
+            >
+              {isSubmitting ? "Submitting..." : "Submit Details"}
+            </button>
+          </form>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default function QuotePage() {
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -397,6 +633,17 @@ export default function QuotePage() {
   const [declinedVideoFile, setDeclinedVideoFile] = useState<File | null>(null);
   const [declinedUploadProgress, setDeclinedUploadProgress] = useState(0);
   const declinedFileInputRef = useRef<HTMLInputElement>(null);
+
+  // In the QuotePage component, add new state for landscaping form
+  const [landscapingName, setLandscapingName] = useState("");
+  const [landscapingEmail, setLandscapingEmail] = useState("");
+  const [landscapingPhone, setLandscapingPhone] = useState("");
+  const [landscapingDetails, setLandscapingDetails] = useState("");
+  const [landscapingVideoFile, setLandscapingVideoFile] = useState<File | null>(
+    null
+  );
+  const [landscapingUploadProgress, setLandscapingUploadProgress] = useState(0);
+  const landscapingFileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -444,62 +691,60 @@ export default function QuotePage() {
 
     return (
       <>
-        <div className="max-w-4xl mx-auto mt-12 mb-32 px-4">
-          <h2 className="text-2xl text-center font-semibold mb-6 text-[#0cabba]">
+        <div className="max-w-4xl mx-auto mt-12 mb-6 px-4">
+          <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
             Select Your Yard Size
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            {sizeOptions.map((size) => (
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {sizeOptions.map((size) => (
+            <div
+              key={size.name}
+              onClick={() => setSelectedSize(size.name.toLowerCase())}
+              className={`
+              border rounded-lg cursor-pointer transition-all
+              hover:shadow-lg flex flex-col relative overflow-hidden
+              min-h-[300px]
+              ${
+                selectedSize === size.name.toLowerCase()
+                  ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
+                  : "border-gray-200"
+              }
+            `}
+            >
               <div
-                key={size.name}
-                onClick={() => setSelectedSize(size.name.toLowerCase())}
-                className={`
-                border rounded-lg cursor-pointer transition-all
-                hover:shadow-lg flex flex-col relative overflow-hidden
-                min-h-[300px]
-                ${
-                  selectedSize === size.name.toLowerCase()
-                    ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
-                    : "border-gray-200"
-                }
-              `}
+                className={`relative z-10 bg-white p-4 rounded-t-lg border-b
+              ${
+                selectedSize === size.name.toLowerCase()
+                  ? "border-[#0cabba]"
+                  : ""
+              }`}
               >
-                <div
-                  className={`relative z-10 bg-white p-4 rounded-t-lg border-b
-                ${
-                  selectedSize === size.name.toLowerCase()
-                    ? "border-[#0cabba]"
-                    : ""
-                }`}
+                <h3
+                  className={`text-xl font-semibold text-center
+                ${selectedSize === size.name.toLowerCase() ? "font-bold" : ""}`}
                 >
-                  <h3
-                    className={`text-xl font-semibold text-center
-                  ${
-                    selectedSize === size.name.toLowerCase() ? "font-bold" : ""
-                  }`}
-                  >
-                    {size.name}
-                  </h3>
-                </div>
-                {size.isText ? (
-                  <div className="flex items-center justify-center h-full p-8 text-center text-gray-800 text-lg">
-                    My Yard Does not Match the Current Options
-                  </div>
-                ) : (
-                  <div className="absolute inset-0 top-[56px] z-0">
-                    <Image
-                      src={size.image!}
-                      alt={`${size.name} Yard`}
-                      fill
-                      quality={100}
-                      priority
-                      className="object-cover"
-                    />
-                  </div>
-                )}
+                  {size.name}
+                </h3>
               </div>
-            ))}
-          </div>
+              {size.isText ? (
+                <div className="flex items-center justify-center h-full p-8 text-center text-gray-800 text-lg">
+                  My Yard Does not Match the Current Options
+                </div>
+              ) : (
+                <div className="absolute inset-0 top-[56px] z-0">
+                  <Image
+                    src={size.image!}
+                    alt={`${size.name} Yard`}
+                    fill
+                    quality={100}
+                    priority
+                    className="object-cover"
+                  />
+                </div>
+              )}
+            </div>
+          ))}
         </div>
       </>
     );
@@ -619,7 +864,7 @@ export default function QuotePage() {
 
     return (
       <>
-        <div className="max-w-4xl mx-auto -mt-24 mb-6 px-4">
+        <div className="max-w-4xl mx-auto mt-12 mb-6 px-4">
           <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
             Tell Us About Your Yard
           </h2>
@@ -846,7 +1091,7 @@ export default function QuotePage() {
 
     return (
       <>
-        <div className="max-w-4xl mx-auto -mt-24 mb-6 px-4">
+        <div className="max-w-4xl mx-auto mt-12 mb-6 px-4">
           <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
             Please Review our Terms and Conditions
           </h2>
@@ -1016,6 +1261,28 @@ export default function QuotePage() {
 
             {/* Other Yard Form */}
             {renderOtherYardForm()}
+
+            {/* Landscaping Form */}
+            {selectedService === "landscaping" && (
+              <LandscapingForm
+                landscapingName={landscapingName}
+                setLandscapingName={setLandscapingName}
+                landscapingEmail={landscapingEmail}
+                setLandscapingEmail={setLandscapingEmail}
+                landscapingPhone={landscapingPhone}
+                setLandscapingPhone={setLandscapingPhone}
+                landscapingDetails={landscapingDetails}
+                setLandscapingDetails={setLandscapingDetails}
+                landscapingVideoFile={landscapingVideoFile}
+                setLandscapingVideoFile={setLandscapingVideoFile}
+                landscapingUploadProgress={landscapingUploadProgress}
+                setLandscapingUploadProgress={setLandscapingUploadProgress}
+                landscapingFileInputRef={landscapingFileInputRef}
+                isSubmitting={isSubmitting}
+                setIsSubmitting={setIsSubmitting}
+                selectedService={selectedService}
+              />
+            )}
           </div>
         </div>
       </div>
