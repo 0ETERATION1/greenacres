@@ -30,7 +30,7 @@ export async function POST(req: Request) {
             currency: "usd",
             product_data: {
               name: `${size.charAt(0).toUpperCase() + size.slice(1)} Lawn Mowing Service - ${frequency}`,
-              description: `Professional lawn maintenance service - ${frequency} visits (+ processing fee)`,
+              description: `Professional lawn maintenance service - ${frequency} visits (+ ${amountWithFee - amount} processing fee)`,
             },
             unit_amount: amountWithFee,
           },

@@ -645,6 +645,13 @@ export default function QuotePage() {
   const [landscapingUploadProgress, setLandscapingUploadProgress] = useState(0);
   const landscapingFileInputRef = useRef<HTMLInputElement>(null);
 
+  // Add state for notification
+  const [showNotification, setShowNotification] = useState(false);
+
+  // Add state for button colors
+  const [acceptClicked, setAcceptClicked] = useState(false);
+  const [declineClicked, setDeclineClicked] = useState(false);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -1002,9 +1009,26 @@ export default function QuotePage() {
     }
   };
 
-  const handleAccept = async () => {
-    setAcceptedTerms(true);
-    await createCheckoutSession();
+  const handleTermsResponse = (accepted: boolean) => {
+    if (!selectedFrequency) {
+      setShowNotification(true);
+      setTimeout(() => setShowNotification(false), 3000);
+      return;
+    }
+
+    if (accepted) {
+      setAcceptClicked(true);
+      setDeclineClicked(false);
+    } else {
+      setDeclineClicked(true);
+      setAcceptClicked(false);
+    }
+
+    setAcceptedTerms(accepted);
+
+    if (accepted && selectedFrequency) {
+      createCheckoutSession();
+    }
   };
 
   const TermsAndService = () => {
@@ -1052,29 +1076,40 @@ export default function QuotePage() {
           </div>
         </div>
 
-        <div className="mt-6 flex items-center justify-center space-x-4">
-          <button
-            type="button"
-            onClick={handleAccept}
-            className={`px-6 py-2 rounded-lg transition-colors ${
-              acceptedTerms === true
-                ? "bg-green-600 text-white"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
-          >
-            Accept Terms
-          </button>
-          <button
-            type="button"
-            onClick={() => setAcceptedTerms(false)}
-            className={`px-6 py-2 rounded-lg transition-colors ${
-              acceptedTerms === false
-                ? "bg-red-600 text-white"
-                : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-            }`}
-          >
-            Decline Terms
-          </button>
+        <div className="relative">
+          <div className="flex justify-center gap-4 mt-6">
+            <div className="relative">
+              <button
+                onClick={() => handleTermsResponse(true)}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  acceptClicked
+                    ? "bg-[#0cabba] hover:bg-[#0b9aa7] text-white"
+                    : "bg-gray-300 text-gray-600"
+                }`}
+              >
+                Accept
+              </button>
+            </div>
+
+            <div className="relative">
+              <button
+                onClick={() => handleTermsResponse(false)}
+                className={`px-6 py-2 rounded-lg transition-colors ${
+                  declineClicked
+                    ? "bg-red-500 hover:bg-red-600 text-white"
+                    : "bg-gray-300 text-gray-600"
+                }`}
+              >
+                Decline
+              </button>
+            </div>
+          </div>
+
+          {showNotification && !selectedFrequency && (
+            <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 bg-white border border-[#0cabba] text-[#0cabba] px-4 py-2 rounded-lg shadow-lg whitespace-nowrap z-50 transition-all duration-300 ease-in-out">
+              Please select a service frequency first
+            </div>
+          )}
         </div>
       </div>
     );
