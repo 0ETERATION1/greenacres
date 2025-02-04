@@ -669,6 +669,8 @@ export default function QuotePage() {
     setSelectedFrequency(null);
     setClientSecret("");
     setAcceptedTerms(null);
+    setAcceptClicked(false); // Reset accept button state
+    setDeclineClicked(false); // Reset decline button state
   }, [selectedSize]);
 
   // Add useEffect to watch for service changes
@@ -678,6 +680,8 @@ export default function QuotePage() {
     setSelectedFrequency(null);
     setClientSecret("");
     setAcceptedTerms(null);
+    setAcceptClicked(false); // Reset accept button state
+    setDeclineClicked(false); // Reset decline button state
   }, [selectedService]);
 
   const renderSizeOptions = () => {
