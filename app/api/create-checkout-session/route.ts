@@ -22,6 +22,10 @@ export async function POST(req: Request) {
     // Add transaction fee (e.g., 3%)
     const amountWithFee = Math.round(amount * 1.03);
     
+    // Calculate processing fee (3% of amount)
+    const processingFee = (amount * 0.03) / 100; // Convert cents to dollars
+    const formattedFee = processingFee.toFixed(2); // Format to 2 decimal places
+
     const session = await stripe.checkout.sessions.create({
       ui_mode: "embedded",
       line_items: [
@@ -30,7 +34,7 @@ export async function POST(req: Request) {
             currency: "usd",
             product_data: {
               name: `${size.charAt(0).toUpperCase() + size.slice(1)} Lawn Mowing Service - ${frequency}`,
-              description: `Professional lawn maintenance service - ${frequency} visits (+ ${amountWithFee - amount} processing fee)`,
+              description: `Professional lawn maintenance service - ${frequency} visits\n(+$${formattedFee} processing fee)`,
             },
             unit_amount: amountWithFee,
           },
