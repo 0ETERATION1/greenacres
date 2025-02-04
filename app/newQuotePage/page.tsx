@@ -11,7 +11,13 @@ import {
   EmbeddedCheckoutProvider,
 } from "@stripe/react-stripe-js";
 import { handlePhoneChange } from "@/app/utils/phoneFormatting";
-import { sanitizeInput } from "@/app/utils/sanitize";
+import {
+  sanitizeInput,
+  handleDetailsChange,
+  getCharacterCountText,
+  MAX_DETAILS_LENGTH,
+} from "@/app/utils/sanitize";
+import { useRouter } from "next/navigation";
 
 interface PricingInfo {
   weekly: number;
@@ -324,13 +330,17 @@ const DeclinedForm = ({
           <div>
             <label className="block text-gray-700 mb-2">
               Describe your yard details:
+              <span className="text-sm text-gray-500 ml-1">
+                {getCharacterCountText(declinedDetails.length)}
+              </span>
             </label>
             <textarea
               value={declinedDetails}
-              onChange={(e) => setDeclinedDetails(e.target.value)}
+              onChange={(e) => handleDetailsChange(e, setDeclinedDetails)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
               rows={4}
               placeholder="Please tell us about your yard..."
+              maxLength={MAX_DETAILS_LENGTH}
             />
           </div>
 
@@ -571,13 +581,17 @@ const LandscapingForm = ({
             <div>
               <label className="block text-gray-700 mb-2">
                 Describe your project details:
+                <span className="text-sm text-gray-500 ml-1">
+                  {getCharacterCountText(landscapingDetails.length)}
+                </span>
               </label>
               <textarea
                 value={landscapingDetails}
-                onChange={(e) => setLandscapingDetails(e.target.value)}
+                onChange={(e) => handleDetailsChange(e, setLandscapingDetails)}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
                 rows={4}
                 placeholder="Please tell us about your project..."
+                maxLength={MAX_DETAILS_LENGTH}
               />
             </div>
 
@@ -687,6 +701,8 @@ export default function QuotePage() {
   // Add state for button colors
   const [acceptClicked, setAcceptClicked] = useState(false);
   const [declineClicked, setDeclineClicked] = useState(false);
+
+  const router = useRouter();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -906,6 +922,7 @@ export default function QuotePage() {
 
         alert("Thank you! Your submission has been received.");
         resetForm(); // Reset all form fields
+        router.push("/submission-success");
       } catch (error) {
         console.error("Form submission error:", error);
         alert(error instanceof Error ? error.message : "Failed to submit form");
@@ -977,13 +994,17 @@ export default function QuotePage() {
               <div>
                 <label className="block text-gray-700 mb-2">
                   Describe your yard details:
+                  <span className="text-sm text-gray-500 ml-1">
+                    {getCharacterCountText(yardDetails.length)}
+                  </span>
                 </label>
                 <textarea
                   value={yardDetails}
-                  onChange={(e) => setYardDetails(e.target.value)}
+                  onChange={(e) => handleDetailsChange(e, setYardDetails)}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
                   rows={4}
                   placeholder="Please tell us about your yard..."
+                  maxLength={MAX_DETAILS_LENGTH}
                 />
               </div>
 
