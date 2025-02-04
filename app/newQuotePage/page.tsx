@@ -11,6 +11,7 @@ import {
   EmbeddedCheckoutProvider,
 } from "@stripe/react-stripe-js";
 import { handlePhoneChange } from "@/app/utils/phoneFormatting";
+import { sanitizeInput } from "@/app/utils/sanitize";
 
 interface PricingInfo {
   weekly: number;
@@ -188,6 +189,11 @@ const DeclinedForm = ({
         e.target.value = "";
         return;
       }
+      if (!file.type.startsWith("video/")) {
+        alert("File must be a video");
+        e.target.value = "";
+        return;
+      }
       setDeclinedVideoFile(file);
     }
   };
@@ -198,10 +204,10 @@ const DeclinedForm = ({
 
     try {
       const formData = new FormData();
-      formData.append("name", declinedName);
-      formData.append("email", declinedEmail);
-      formData.append("phone", declinedPhone);
-      formData.append("details", declinedDetails);
+      formData.append("name", sanitizeInput(declinedName));
+      formData.append("email", declinedEmail.toLowerCase().trim());
+      formData.append("phone", declinedPhone.replace(/\D/g, ""));
+      formData.append("details", sanitizeInput(declinedDetails));
       formData.append("service", selectedService || "");
       formData.append("size", selectedSize || "");
       formData.append("collection", "mowingDeclinedLeads");
@@ -436,10 +442,10 @@ const LandscapingForm = ({
 
     try {
       const formData = new FormData();
-      formData.append("name", landscapingName);
-      formData.append("email", landscapingEmail);
-      formData.append("phone", landscapingPhone);
-      formData.append("details", landscapingDetails);
+      formData.append("name", sanitizeInput(landscapingName));
+      formData.append("email", landscapingEmail.toLowerCase().trim());
+      formData.append("phone", landscapingPhone.replace(/\D/g, ""));
+      formData.append("details", sanitizeInput(landscapingDetails));
       formData.append("service", selectedService || "");
       formData.append("collection", "landscapingLeads");
 
@@ -588,6 +594,11 @@ const LandscapingForm = ({
                   if (file) {
                     if (file.size > 200 * 1024 * 1024) {
                       alert("Video file size must be less than 200MB");
+                      e.target.value = "";
+                      return;
+                    }
+                    if (!file.type.startsWith("video/")) {
+                      alert("File must be a video");
                       e.target.value = "";
                       return;
                     }
@@ -797,6 +808,11 @@ export default function QuotePage() {
           e.target.value = "";
           return;
         }
+        if (!file.type.startsWith("video/")) {
+          alert("File must be a video");
+          e.target.value = "";
+          return;
+        }
         setVideoFile(file);
       }
     };
@@ -852,12 +868,12 @@ export default function QuotePage() {
         console.log("Video URL before form submission:", videoUrl);
 
         const formData = new FormData();
-        formData.append("name", name);
-        if (email) formData.append("email", email);
-        if (phone) formData.append("phone", phone);
+        formData.append("name", sanitizeInput(name));
+        if (email) formData.append("email", email.toLowerCase().trim());
+        if (phone) formData.append("phone", phone.replace(/\D/g, ""));
         formData.append("service", selectedService || "");
         formData.append("size", selectedSize || "");
-        formData.append("details", yardDetails);
+        formData.append("details", sanitizeInput(yardDetails));
         if (videoUrl) formData.append("videoUrl", videoUrl);
 
         console.log("Submitting form with data:", {
