@@ -10,6 +10,7 @@ import {
   EmbeddedCheckout,
   EmbeddedCheckoutProvider,
 } from "@stripe/react-stripe-js";
+import { handlePhoneChange } from "@/app/utils/phoneFormatting";
 
 interface PricingInfo {
   weekly: number;
@@ -306,9 +307,10 @@ const DeclinedForm = ({
             <input
               type="tel"
               value={declinedPhone}
-              onChange={(e) => setDeclinedPhone(e.target.value)}
+              onChange={(e) => handlePhoneChange(e, setDeclinedPhone)}
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-              placeholder="Enter your phone number"
+              placeholder="123-456-7890"
+              maxLength={14}
               required={!declinedEmail}
             />
           </div>
@@ -406,6 +408,28 @@ const LandscapingForm = ({
   setIsSubmitting: (isSubmitting: boolean) => void;
   selectedService: string | null;
 }) => {
+  const formatPhoneNumber = (value: string) => {
+    const phoneNumber = value.replace(/\D/g, "").substring(0, 10);
+    if (phoneNumber.length <= 3) {
+      return phoneNumber;
+    } else if (phoneNumber.length <= 6) {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(3)}`;
+    } else {
+      return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
+        3,
+        6
+      )}-${phoneNumber.slice(6, 10)}`;
+    }
+  };
+
+  const handlePhoneChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setPhone: (value: string) => void
+  ) => {
+    const formattedNumber = formatPhoneNumber(e.target.value);
+    setPhone(formattedNumber);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -530,9 +554,10 @@ const LandscapingForm = ({
               <input
                 type="tel"
                 value={landscapingPhone}
-                onChange={(e) => setLandscapingPhone(e.target.value)}
+                onChange={(e) => handlePhoneChange(e, setLandscapingPhone)}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-                placeholder="Enter your phone number"
+                placeholder="123-456-7890"
+                maxLength={14}
                 required={!landscapingEmail}
               />
             </div>
@@ -925,9 +950,10 @@ export default function QuotePage() {
                 <input
                   type="tel"
                   value={phone}
-                  onChange={(e) => setPhone(e.target.value)}
+                  onChange={(e) => handlePhoneChange(e, setPhone)}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
-                  placeholder="Enter your phone number"
+                  placeholder="123-456-7890"
+                  maxLength={14}
                   required={!email}
                 />
               </div>
