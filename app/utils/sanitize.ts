@@ -1,22 +1,24 @@
-export const sanitizeInput = (input: string): string => {
-  return input
-    .replace(/<[^>]*>/g, '') // Remove HTML tags
-    .replace(/[<>'"`;]/g, '') // Remove dangerous characters
-    .trim();
-};
+export function sanitizeInput(input: string): string {
+  // Allow letters, numbers, all whitespace characters, and basic punctuation
+  return input.replace(/[^a-zA-Z0-9\s\n\r.,!?-]/g, '');
+}
 
-export const MAX_DETAILS_LENGTH = 2000; // Centralized character limit
-
-export const handleDetailsChange = (
+export function handleDetailsChange(
   e: React.ChangeEvent<HTMLTextAreaElement>,
-  setDetails: (value: string) => void
-) => {
-  const text = e.target.value;
-  if (text.length <= MAX_DETAILS_LENGTH) {
-    setDetails(sanitizeInput(text));
+  setDetails: (value: string) => void,
+  maxLength: number = MAX_DETAILS_LENGTH
+) {
+  const sanitizedValue = sanitizeInput(e.target.value);
+  if (sanitizedValue.length <= maxLength) {
+    setDetails(sanitizedValue);
   }
-};
+}
 
-// Helper for character count display
-export const getCharacterCountText = (currentLength: number) => 
-  `(${currentLength}/${MAX_DETAILS_LENGTH} characters)`; 
+export function getCharacterCountText(
+  currentLength: number,
+  maxLength: number = MAX_DETAILS_LENGTH
+): string {
+  return `${currentLength}/${maxLength} characters`;
+}
+
+export const MAX_DETAILS_LENGTH = 2000; 
