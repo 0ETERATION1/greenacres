@@ -667,6 +667,10 @@ const LandscapingForm = ({
 };
 
 export default function QuotePage() {
+  // Move ref declaration to top with other state
+  const yardSizeRef = useRef<HTMLDivElement>(null);
+  const landscapingFormRef = useRef<HTMLDivElement>(null);
+
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [yardDetails, setYardDetails] = useState<string>("");
@@ -746,6 +750,35 @@ export default function QuotePage() {
     setDeclineClicked(false); // Reset decline button state
   }, [selectedService]);
 
+  const handleServiceSelection = (service: string) => {
+    setSelectedService(service);
+
+    // Add small delay to ensure components are rendered
+    setTimeout(() => {
+      if (service === "mowing" && yardSizeRef.current) {
+        const yOffset = -150; // Adjust this value to control scroll position
+        const element = yardSizeRef.current;
+        const y =
+          element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      } else if (service === "landscaping" && landscapingFormRef.current) {
+        const yOffset = -150; // Adjust this value to control scroll position
+        const element = landscapingFormRef.current;
+        const y =
+          element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  };
+
   const renderSizeOptions = () => {
     if (selectedService !== "mowing") return null;
 
@@ -763,8 +796,8 @@ export default function QuotePage() {
     ];
 
     return (
-      <>
-        <div className="max-w-4xl mx-auto mt-12 mb-6 px-4">
+      <div ref={yardSizeRef} className="mt-12 mb-32">
+        <div className="mb-6">
           <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
             Select Your Yard Size
           </h2>
@@ -819,7 +852,7 @@ export default function QuotePage() {
             </div>
           ))}
         </div>
-      </>
+      </div>
     );
   };
 
@@ -1286,15 +1319,12 @@ export default function QuotePage() {
               <h2 className="text-2xl text-center font-semibold mb-4 bg-green-600 text-white shadow-lg p-4 rounded-t-lg">
                 Select your Service
               </h2>
-              {/* <p className="text-lg text-white bg-[#557A46] p-4 -mt-4">
-              select service(s) below
-            </p> */}
 
               {/* Service Selection Boxes */}
               <div className="grid md:grid-cols-2 gap-6 mt-6">
                 {/* Mowing Service Box */}
                 <div
-                  className={`                  border rounded-lg cursor-pointer transition-all
+                  className={`border rounded-lg cursor-pointer transition-all
                   hover:shadow-lg flex flex-col relative overflow-hidden
                   min-h-[400px] text-[#0cabba]
                   ${
@@ -1303,7 +1333,7 @@ export default function QuotePage() {
                       : "border-gray-200"
                   }
                 `}
-                  onClick={() => setSelectedService("mowing")}
+                  onClick={() => handleServiceSelection("mowing")}
                 >
                   <div
                     className={`relative z-10 bg-white p-4 rounded-t-lg border-b
@@ -1330,7 +1360,7 @@ export default function QuotePage() {
 
                 {/* Landscaping Service Box */}
                 <div
-                  className={`                  border rounded-lg cursor-pointer transition-all
+                  className={`border rounded-lg cursor-pointer transition-all
                   hover:shadow-lg flex flex-col relative overflow-hidden
                   min-h-[400px] text-[#0cabba]
                   ${
@@ -1339,7 +1369,7 @@ export default function QuotePage() {
                       : "border-gray-200"
                   }
                 `}
-                  onClick={() => setSelectedService("landscaping")}
+                  onClick={() => handleServiceSelection("landscaping")}
                 >
                   <div
                     className={`relative z-10 bg-white p-4 rounded-t-lg border-b
@@ -1370,36 +1400,32 @@ export default function QuotePage() {
               </div>
             </div>
 
-            {/* Size Selection Menu */}
+            {/* Rest of the components */}
             {renderSizeOptions()}
-
-            {/* Pricing Display */}
             {renderPricing()}
-
-            {/* Other Yard Form */}
             {renderOtherYardForm()}
-
-            {/* Landscaping Form */}
-            {selectedService === "landscaping" && (
-              <LandscapingForm
-                landscapingName={landscapingName}
-                setLandscapingName={setLandscapingName}
-                landscapingEmail={landscapingEmail}
-                setLandscapingEmail={setLandscapingEmail}
-                landscapingPhone={landscapingPhone}
-                setLandscapingPhone={setLandscapingPhone}
-                landscapingDetails={landscapingDetails}
-                setLandscapingDetails={setLandscapingDetails}
-                landscapingVideoFile={landscapingVideoFile}
-                setLandscapingVideoFile={setLandscapingVideoFile}
-                landscapingUploadProgress={landscapingUploadProgress}
-                setLandscapingUploadProgress={setLandscapingUploadProgress}
-                landscapingFileInputRef={landscapingFileInputRef}
-                isSubmitting={isSubmitting}
-                setIsSubmitting={setIsSubmitting}
-                selectedService={selectedService}
-              />
-            )}
+            <div ref={landscapingFormRef}>
+              {selectedService === "landscaping" && (
+                <LandscapingForm
+                  landscapingName={landscapingName}
+                  setLandscapingName={setLandscapingName}
+                  landscapingEmail={landscapingEmail}
+                  setLandscapingEmail={setLandscapingEmail}
+                  landscapingPhone={landscapingPhone}
+                  setLandscapingPhone={setLandscapingPhone}
+                  landscapingDetails={landscapingDetails}
+                  setLandscapingDetails={setLandscapingDetails}
+                  landscapingVideoFile={landscapingVideoFile}
+                  setLandscapingVideoFile={setLandscapingVideoFile}
+                  landscapingUploadProgress={landscapingUploadProgress}
+                  setLandscapingUploadProgress={setLandscapingUploadProgress}
+                  landscapingFileInputRef={landscapingFileInputRef}
+                  isSubmitting={isSubmitting}
+                  setIsSubmitting={setIsSubmitting}
+                  selectedService={selectedService}
+                />
+              )}
+            </div>
           </div>
         </div>
       </div>
