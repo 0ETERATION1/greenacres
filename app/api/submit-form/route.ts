@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { initializeApp, getApps } from "firebase/app";
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 // Log environment variables
 
@@ -49,8 +49,11 @@ export async function POST(request: Request) {
     const formData = await request.formData();
     const collectionName = formData.get("collection")?.toString() || "mowingOtherLeads";
 
-    // console.log("[Submit-Form] Received collection name:", collectionName);
-    // console.log("[Submit-Form] Form data:", Object.fromEntries(formData.entries()));
+    // console.log("Submitting to collection:", collectionName);
+    // console.log("Form data:", {
+    //   status: formData.get("status")?.toString() || "new",
+    //   timestamp: new Date().toLocaleString('en-US')
+    // });
 
     const docRef = await addDoc(collection(db, collectionName), {
       name: formData.get("name")?.toString() || "",
@@ -60,7 +63,8 @@ export async function POST(request: Request) {
       size: formData.get("size")?.toString() || "",
       details: formData.get("details")?.toString() || "",
       videoUrl: formData.get("videoUrl")?.toString() || "",
-      timestamp: new Date().toLocaleString('en-US', {
+      timestamp: serverTimestamp(),
+      readableTimestamp: new Date().toLocaleString('en-US', {
         timeZone: 'America/New_York',
         year: 'numeric',
         month: 'numeric',
@@ -73,7 +77,7 @@ export async function POST(request: Request) {
       status: formData.get("status")?.toString() || "new"
     });
 
-    // console.log(`[Submit-Form] Successfully saved to ${collectionName}:`, docRef.id);
+    // console.log("Document added with ID:", docRef.id);
 
     return NextResponse.json(
       {
