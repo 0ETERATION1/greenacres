@@ -667,11 +667,13 @@ const LandscapingForm = ({
 };
 
 export default function QuotePage() {
-  // Add new ref for Other Yard form
+  // Add new refs for payment and declined form
   const yardSizeRef = useRef<HTMLDivElement>(null);
   const landscapingFormRef = useRef<HTMLDivElement>(null);
   const termsRef = useRef<HTMLDivElement>(null);
   const otherYardFormRef = useRef<HTMLDivElement>(null);
+  const paymentRef = useRef<HTMLDivElement>(null);
+  const declinedFormRef = useRef<HTMLDivElement>(null);
 
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -1158,25 +1160,56 @@ export default function QuotePage() {
     }
   };
 
-  const handleTermsResponse = (accepted: boolean) => {
-    if (!selectedFrequency) {
+  const handleTermsDecision = (accepted: boolean) => {
+    if (accepted && !selectedFrequency) {
       setShowNotification(true);
       setTimeout(() => setShowNotification(false), 3000);
       return;
     }
 
+    setAcceptedTerms(accepted);
+
     if (accepted) {
       setAcceptClicked(true);
       setDeclineClicked(false);
+
+      // Create checkout session first
+      if (selectedFrequency) {
+        createCheckoutSession().then(() => {
+          // Only scroll after checkout session is created
+          setTimeout(() => {
+            if (paymentRef.current) {
+              const yOffset = -100;
+              const element = paymentRef.current;
+              const y =
+                element.getBoundingClientRect().top +
+                window.pageYOffset +
+                yOffset;
+
+              window.scrollTo({
+                top: y,
+                behavior: "smooth",
+              });
+            }
+          }, 100);
+        });
+      }
     } else {
       setDeclineClicked(true);
       setAcceptClicked(false);
-    }
+      setTimeout(() => {
+        if (declinedFormRef.current) {
+          const yOffset = -100;
+          const element = declinedFormRef.current;
+          const y =
+            element.getBoundingClientRect().top + window.pageYOffset + yOffset;
 
-    setAcceptedTerms(accepted);
-
-    if (accepted && selectedFrequency) {
-      createCheckoutSession();
+          window.scrollTo({
+            top: y,
+            behavior: "smooth",
+          });
+        }
+      }, 100);
     }
   };
 
@@ -1229,7 +1262,7 @@ export default function QuotePage() {
           <div className="flex justify-center gap-4 mt-6">
             <div className="relative">
               <button
-                onClick={() => handleTermsResponse(true)}
+                onClick={() => handleTermsDecision(true)}
                 className={`px-6 py-2 rounded-lg transition-colors ${
                   acceptClicked
                     ? "bg-[#0cabba] hover:bg-[#0b9aa7] text-white"
@@ -1242,7 +1275,7 @@ export default function QuotePage() {
 
             <div className="relative">
               <button
-                onClick={() => handleTermsResponse(false)}
+                onClick={() => handleTermsDecision(false)}
                 className={`px-6 py-2 rounded-lg transition-colors ${
                   declineClicked
                     ? "bg-red-500 hover:bg-red-600 text-white"
@@ -1288,7 +1321,7 @@ export default function QuotePage() {
         />
         <TermsAndService />
         {clientSecret && acceptedTerms === true && (
-          <div className="max-w-2xl mx-auto mt-8 mb-32">
+          <div ref={paymentRef} className="max-w-2xl mx-auto mt-8 mb-32">
             <EmbeddedCheckoutProvider
               stripe={stripePromise}
               options={{ clientSecret }}
@@ -1298,7 +1331,7 @@ export default function QuotePage() {
           </div>
         )}
         {acceptedTerms === false && (
-          <div className="mt-12">
+          <div ref={declinedFormRef} className="mt-12">
             <div className="max-w-4xl mx-auto mb-6 px-4">
               <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
                 Please let us know why you declined our terms and conditions.
