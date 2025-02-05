@@ -187,6 +187,8 @@ const DeclinedForm = ({
   selectedService: string | null;
   selectedSize: string | null;
 }) => {
+  const router = useRouter();
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -201,6 +203,18 @@ const DeclinedForm = ({
         return;
       }
       setDeclinedVideoFile(file);
+    }
+  };
+
+  const resetDeclinedForm = () => {
+    setDeclinedName("");
+    setDeclinedEmail("");
+    setDeclinedPhone("");
+    setDeclinedDetails("");
+    setDeclinedVideoFile(null);
+    setDeclinedUploadProgress(0);
+    if (declinedFileInputRef.current) {
+      declinedFileInputRef.current.value = "";
     }
   };
 
@@ -256,16 +270,8 @@ const DeclinedForm = ({
       }
 
       alert("Thank you! Your submission has been received.");
-
-      setDeclinedName("");
-      setDeclinedEmail("");
-      setDeclinedPhone("");
-      setDeclinedDetails("");
-      setDeclinedVideoFile(null);
-      setDeclinedUploadProgress(0);
-      if (declinedFileInputRef.current) {
-        declinedFileInputRef.current.value = "";
-      }
+      resetDeclinedForm();
+      router.push("/submission-success");
     } catch (error) {
       console.error("Submission Error:", error);
       alert("Failed to submit form. Please try again.");
@@ -429,6 +435,8 @@ const LandscapingForm = ({
   setIsSubmitting: (isSubmitting: boolean) => void;
   selectedService: string | null;
 }) => {
+  const router = useRouter();
+
   const formatPhoneNumber = (value: string) => {
     const phoneNumber = value.replace(/\D/g, "").substring(0, 10);
     if (phoneNumber.length <= 3) {
@@ -449,6 +457,18 @@ const LandscapingForm = ({
   ) => {
     const formattedNumber = formatPhoneNumber(e.target.value);
     setPhone(formattedNumber);
+  };
+
+  const resetLandscapingForm = () => {
+    setLandscapingName("");
+    setLandscapingEmail("");
+    setLandscapingPhone("");
+    setLandscapingDetails("");
+    setLandscapingVideoFile(null);
+    setLandscapingUploadProgress(0);
+    if (landscapingFileInputRef.current) {
+      landscapingFileInputRef.current.value = "";
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -504,17 +524,8 @@ const LandscapingForm = ({
       }
 
       alert("Thank you! Your submission has been received.");
-
-      // Reset form
-      setLandscapingName("");
-      setLandscapingEmail("");
-      setLandscapingPhone("");
-      setLandscapingDetails("");
-      setLandscapingVideoFile(null);
-      setLandscapingUploadProgress(0);
-      if (landscapingFileInputRef.current) {
-        landscapingFileInputRef.current.value = "";
-      }
+      resetLandscapingForm();
+      router.push("/submission-success");
     } catch (error) {
       console.error("Submission Error:", error);
       alert("Failed to submit form. Please try again.");
@@ -924,6 +935,7 @@ export default function QuotePage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
       e.preventDefault();
+      setIsSubmitting(true);
 
       try {
         setIsSubmitting(true);
