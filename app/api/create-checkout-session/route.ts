@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     const prices: Record<Size, Record<Frequency, number>> = {
       small: { weekly: 4500, biweekly: 6500 },
       medium: { weekly: 7000, biweekly: 10500 },
-      large: { weekly: 9500, biweekly: 14250 }
+      large: { weekly: 9500, biweekly: 14200 }
     };
 
     const amount = prices[size][frequency];
@@ -34,7 +34,7 @@ export async function POST(req: Request) {
             currency: "usd",
             product_data: {
               name: `${size.charAt(0).toUpperCase() + size.slice(1)} Lawn Mowing Service - ${frequency}`,
-              description: `Professional lawn maintenance service - ${frequency} visits\n(+$${formattedFee} processing fee)`,
+              description: `Professional lawn maintenance service - First Visit\n(+$${formattedFee} processing fee)`,
             },
             unit_amount: amountWithFee,
           },

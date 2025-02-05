@@ -41,7 +41,7 @@ const PRICING_DATA: Record<string, PricingInfo> = {
   },
   large: {
     weekly: 95,
-    biweekly: 142.5,
+    biweekly: 142,
     size: "Large",
     sqft: "Please Select One and Read our Policy Below",
   },
