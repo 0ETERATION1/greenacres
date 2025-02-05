@@ -305,6 +305,11 @@ const DeclinedForm = ({
               type="email"
               value={declinedEmail}
               onChange={(e) => setDeclinedEmail(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === " ") {
+                  e.preventDefault();
+                }
+              }}
               className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
               placeholder="Enter your email address"
               required={!declinedPhone}
@@ -556,6 +561,11 @@ const LandscapingForm = ({
                 type="email"
                 value={landscapingEmail}
                 onChange={(e) => setLandscapingEmail(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === " ") {
+                    e.preventDefault();
+                  }
+                }}
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
                 placeholder="Enter your email address"
                 required={!landscapingPhone}
@@ -969,6 +979,11 @@ export default function QuotePage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onKeyDown={(e) => {
+                    if (e.key === " ") {
+                      e.preventDefault();
+                    }
+                  }}
                   className="w-full p-3 border border-gray-300 rounded-lg focus:ring-[#0cabba] focus:border-[#0cabba]"
                   placeholder="Enter your email address"
                   required={!phone}
