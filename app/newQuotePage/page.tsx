@@ -667,9 +667,11 @@ const LandscapingForm = ({
 };
 
 export default function QuotePage() {
-  // Move ref declaration to top with other state
+  // Add new ref for Other Yard form
   const yardSizeRef = useRef<HTMLDivElement>(null);
   const landscapingFormRef = useRef<HTMLDivElement>(null);
+  const termsRef = useRef<HTMLDivElement>(null);
+  const otherYardFormRef = useRef<HTMLDivElement>(null);
 
   const [selectedService, setSelectedService] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
@@ -779,6 +781,35 @@ export default function QuotePage() {
     }, 100);
   };
 
+  const handleYardSizeSelection = (size: string) => {
+    setSelectedSize(size.toLowerCase());
+
+    // Add small delay to ensure components are rendered
+    setTimeout(() => {
+      if (size.toLowerCase() === "other" && otherYardFormRef.current) {
+        const yOffset = -150;
+        const element = otherYardFormRef.current;
+        const y =
+          element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      } else if (termsRef.current) {
+        const yOffset = -150;
+        const element = termsRef.current;
+        const y =
+          element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+
+        window.scrollTo({
+          top: y,
+          behavior: "smooth",
+        });
+      }
+    }, 100);
+  };
+
   const renderSizeOptions = () => {
     if (selectedService !== "mowing") return null;
 
@@ -806,7 +837,7 @@ export default function QuotePage() {
           {sizeOptions.map((size) => (
             <div
               key={size.name}
-              onClick={() => setSelectedSize(size.name.toLowerCase())}
+              onClick={() => handleYardSizeSelection(size.name)}
               className={`
               border rounded-lg cursor-pointer transition-all
               hover:shadow-lg flex flex-col relative overflow-hidden
@@ -976,7 +1007,10 @@ export default function QuotePage() {
 
     return (
       <>
-        <div className="max-w-4xl mx-auto mt-12 mb-6 px-4">
+        <div
+          ref={otherYardFormRef}
+          className="max-w-4xl mx-auto mt-12 mb-6 px-4"
+        >
           <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
             Tell Us About Your Yard
           </h2>
@@ -1241,7 +1275,7 @@ export default function QuotePage() {
 
     return (
       <>
-        <div className="max-w-4xl mx-auto mt-12 mb-6 px-4">
+        <div ref={termsRef} className="max-w-4xl mx-auto mt-12 mb-6 px-4">
           <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
             Please Review our Terms and Conditions
           </h2>
