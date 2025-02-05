@@ -65,7 +65,7 @@ export default function Footer() {
           {/* Quote Button and Social Media Links Container */}
           <div className="flex flex-col items-center -mt-6">
             {/* Quote Button */}
-            <Link href="/newQuotePage" className="cta-button">
+            <Link href="/quotePage" className="cta-button">
               Get a free quote! 🌳
             </Link>
 
