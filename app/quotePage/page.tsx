@@ -269,7 +269,7 @@ const DeclinedForm = ({
         throw new Error(data.error || "Failed to submit");
       }
 
-      alert("Thank you! Your submission has been received.");
+      //alert("Thank you! Your submission has been received.");
       resetDeclinedForm();
       router.push("/submission-success");
     } catch (error) {
@@ -523,7 +523,7 @@ const LandscapingForm = ({
         throw new Error(data.error || "Failed to submit");
       }
 
-      alert("Thank you! Your submission has been received.");
+      //alert("Thank you! Your submission has been received.");
       resetLandscapingForm();
       router.push("/submission-success");
     } catch (error) {
@@ -1008,7 +1008,7 @@ export default function QuotePage() {
           );
         }
 
-        alert("Thank you! Your submission has been received.");
+        //alert("Thank you! Your submission has been received.");
         resetForm(); // Reset all form fields
         router.push("/submission-success");
       } catch (error) {
