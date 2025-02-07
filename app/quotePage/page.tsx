@@ -1274,7 +1274,7 @@ export default function QuotePage() {
           <div className="flex justify-center gap-6 mt-6">
             <button
               onClick={() => handleTermsDecision(true)}
-              className={`w-72 px-8 py-3 rounded-full border-2 font-medium transition-all duration-200 
+              className={`w-72 px-8 py-3 rounded-lg border-2 font-medium transition-all duration-200 
                 ${
                   acceptClicked
                     ? "bg-green-600 border-green-600 text-white hover:bg-green-700 hover:border-green-700"
@@ -1286,7 +1286,7 @@ export default function QuotePage() {
 
             <button
               onClick={() => handleTermsDecision(false)}
-              className={`w-72 px-8 py-3 rounded-full border-2 font-medium transition-all duration-200
+              className={`w-72 px-8 py-3 rounded-lg border-2 font-medium transition-all duration-200
                 ${
                   declineClicked
                     ? "bg-red-500 border-red-500 text-white hover:bg-red-600 hover:border-red-600"
