@@ -1271,32 +1271,30 @@ export default function QuotePage() {
         </div>
 
         <div className="relative">
-          <div className="flex justify-center gap-4 mt-6">
-            <div className="relative">
-              <button
-                onClick={() => handleTermsDecision(true)}
-                className={`px-6 py-2 rounded-lg transition-colors ${
+          <div className="flex justify-center gap-6 mt-6">
+            <button
+              onClick={() => handleTermsDecision(true)}
+              className={`w-72 px-8 py-3 rounded-full border-2 font-medium transition-all duration-200 
+                ${
                   acceptClicked
-                    ? "bg-[#0cabba] hover:bg-[#0b9aa7] text-white"
-                    : "bg-gray-300 text-gray-600"
+                    ? "bg-green-600 border-green-600 text-white hover:bg-green-700 hover:border-green-700"
+                    : "bg-white border-green-600 text-green-600 hover:bg-green-600 hover:text-white"
                 }`}
-              >
-                Accept
-              </button>
-            </div>
+            >
+              Accept for Payment
+            </button>
 
-            <div className="relative">
-              <button
-                onClick={() => handleTermsDecision(false)}
-                className={`px-6 py-2 rounded-lg transition-colors ${
+            <button
+              onClick={() => handleTermsDecision(false)}
+              className={`w-72 px-8 py-3 rounded-full border-2 font-medium transition-all duration-200
+                ${
                   declineClicked
-                    ? "bg-red-500 hover:bg-red-600 text-white"
-                    : "bg-gray-300 text-gray-600"
+                    ? "bg-red-500 border-red-500 text-white hover:bg-red-600 hover:border-red-600"
+                    : "bg-white border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
                 }`}
-              >
-                Decline
-              </button>
-            </div>
+            >
+              Submit Details for Manual Review
+            </button>
           </div>
 
           {showNotification && !selectedFrequency && (
