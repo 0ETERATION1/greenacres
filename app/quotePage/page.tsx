@@ -538,7 +538,7 @@ const LandscapingForm = ({
     <>
       <div className="max-w-4xl mx-auto mt-12 mb-6 px-4">
         <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
-          Tell Us About Your Project
+          Tell us About Your Project
         </h2>
       </div>
 
