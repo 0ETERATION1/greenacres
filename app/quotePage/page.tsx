@@ -357,7 +357,7 @@ const DeclinedForm = ({
 
           <div>
             <label className="block text-gray-700 mb-2">
-              Upload a video of your lawn:
+              Upload a video of your lawn (optional):
             </label>
             <input
               ref={declinedFileInputRef}
@@ -618,7 +618,7 @@ const LandscapingForm = ({
 
             <div>
               <label className="block text-gray-700 mb-2">
-                Upload a video of your property:
+                Upload a video of your property (optional):
               </label>
               <input
                 ref={landscapingFileInputRef}
@@ -1106,7 +1106,7 @@ export default function QuotePage() {
 
               <div>
                 <label className="block text-gray-700 mb-2">
-                  Upload a video of your lawn:
+                  Upload a video of your lawn (optional):
                 </label>
                 <input
                   ref={fileInputRef}
