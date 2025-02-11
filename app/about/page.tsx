@@ -38,7 +38,7 @@ export default function AboutPage() {
       </section>
 
       {/* Hero Image */}
-      <section className="relative h-[45vh]">
+      <section className="relative h-[60vh]">
         <div className="w-full h-full relative">
           <Image
             src="/assets/images/port/startsFamily.jpg"
