@@ -80,13 +80,28 @@ const PricingDisplay = ({
       <div className="grid md:grid-cols-2 gap-6">
         <div
           onClick={() => handleFrequencySelect("weekly")}
-          className={`p-4 bg-gray-50 rounded-lg border cursor-pointer transition-all
-          ${
-            selectedFrequency === "weekly"
-              ? "border-[#0cabba] shadow-md scale-105"
-              : "border-gray-200 hover:border-[#0cabba] hover:shadow-md"
-          }`}
+          className={`p-4 bg-gray-50 rounded-lg border cursor-pointer transition-all relative
+            ${
+              selectedFrequency === "weekly"
+                ? "border-[#0cabba] shadow-md scale-105"
+                : "border-gray-200 hover:border-[#0cabba] hover:shadow-md"
+            }`}
         >
+          <div className="absolute top-4 right-4">
+            <div
+              className={`w-6 h-6 rounded-full border-2 flex items-center justify-center
+              ${
+                selectedFrequency === "weekly"
+                  ? "border-[#0cabba]"
+                  : "border-gray-300"
+              }`}
+            >
+              {selectedFrequency === "weekly" && (
+                <div className="w-3 h-3 rounded-full bg-[#0cabba]" />
+              )}
+            </div>
+          </div>
+
           <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
             Weekly Service
           </h4>
@@ -99,13 +114,28 @@ const PricingDisplay = ({
 
         <div
           onClick={() => handleFrequencySelect("biweekly")}
-          className={`p-4 bg-gray-50 rounded-lg border cursor-pointer transition-all
-          ${
-            selectedFrequency === "biweekly"
-              ? "border-[#0cabba] shadow-md scale-105"
-              : "border-gray-200 hover:border-[#0cabba] hover:shadow-md"
-          }`}
+          className={`p-4 bg-gray-50 rounded-lg border cursor-pointer transition-all relative
+            ${
+              selectedFrequency === "biweekly"
+                ? "border-[#0cabba] shadow-md scale-105"
+                : "border-gray-200 hover:border-[#0cabba] hover:shadow-md"
+            }`}
         >
+          <div className="absolute top-4 right-4">
+            <div
+              className={`w-6 h-6 rounded-full border-2 flex items-center justify-center
+              ${
+                selectedFrequency === "biweekly"
+                  ? "border-[#0cabba]"
+                  : "border-gray-300"
+              }`}
+            >
+              {selectedFrequency === "biweekly" && (
+                <div className="w-3 h-3 rounded-full bg-[#0cabba]" />
+              )}
+            </div>
+          </div>
+
           <h4 className="text-lg font-semibold text-[#0cabba] mb-2">
             Biweekly Service
           </h4>
