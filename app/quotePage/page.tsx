@@ -866,50 +866,61 @@ export default function QuotePage() {
       { name: "Small", image: "/assets/images/yards/smallYard.jpg" },
       { name: "Medium", image: "/assets/images/yards/mediumYard.jpg" },
       { name: "Large", image: "/assets/images/yards/largeYard.jpg" },
-      { name: "Other", isText: true },
+      { name: "Other", image: "/assets/images/port/questionMark.jpg" },
     ];
 
     return (
-      <div ref={yardSizeRef} className="mt-12 mb-32">
-        <div className="mb-6">
+      <div ref={yardSizeRef} className="mt-6 mb-16">
+        <div className="mb-2">
           <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
             Select Your Yard Size
           </h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-2">
           {sizeOptions.map((size) => (
             <div
               key={size.name}
               onClick={() => handleYardSizeSelection(size.name)}
               className={`
-              border rounded-lg cursor-pointer transition-all
-              hover:shadow-lg flex flex-col relative overflow-hidden
-              min-h-[300px]
-              ${
-                selectedSize === size.name.toLowerCase()
-                  ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
-                  : "border-gray-200"
-              }
-            `}
+                border rounded-lg cursor-pointer transition-all
+                hover:shadow-lg flex flex-col relative overflow-hidden
+                min-h-[350px] ${
+                  selectedSize === size.name.toLowerCase()
+                    ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
+                    : "border-gray-200"
+                }
+              `}
             >
               <div
                 className={`relative z-10 bg-white p-4 rounded-t-lg border-b
-              ${
-                selectedSize === size.name.toLowerCase()
-                  ? "border-[#0cabba]"
-                  : ""
-              }`}
+                ${
+                  selectedSize === size.name.toLowerCase()
+                    ? "border-[#0cabba]"
+                    : ""
+                }`}
               >
                 <h3
                   className={`text-xl font-semibold text-center
-                ${selectedSize === size.name.toLowerCase() ? "font-bold" : ""}`}
+                  ${
+                    selectedSize === size.name.toLowerCase() ? "font-bold" : ""
+                  }`}
                 >
                   {size.name}
                 </h3>
               </div>
-              {size.isText ? (
-                <div className="flex items-center justify-center h-full p-8 text-center text-gray-800 text-lg">
-                  My Yard Does not Match the Current Options
+              {size.name === "Other" ? (
+                <div className="absolute inset-0 top-[56px] z-0 flex items-center justify-center bg-gray-50">
+                  <div className="relative w-full h-full p-4">
+                    <Image
+                      src="/assets/images/port/questionMark.jpg"
+                      alt={`${size.name} Yard`}
+                      fill
+                      quality={100}
+                      priority
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
                 </div>
               ) : (
                 <div className="absolute inset-0 top-[56px] z-0">
