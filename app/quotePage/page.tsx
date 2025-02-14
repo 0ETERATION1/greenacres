@@ -871,12 +871,12 @@ export default function QuotePage() {
 
     return (
       <div ref={yardSizeRef} className="mt-6 mb-16">
-        <div className="mb-2">
-          <h2 className="text-2xl text-center font-semibold text-[#0cabba]">
-            Select Your Yard Size
+        <div className="mb-8">
+          <h2 className="text-2xl text-center font-semibold mb-4 bg-green-600 text-white shadow-lg p-4 rounded-t-lg">
+            Select your Yard Size
           </h2>
         </div>
-        <div className="grid md:grid-cols-2 gap-2">
+        <div className="grid md:grid-cols-2 gap-2 mt-4">
           {sizeOptions.map((size) => (
             <div
               key={size.name}
@@ -900,7 +900,7 @@ export default function QuotePage() {
                 }`}
               >
                 <h3
-                  className={`text-xl font-semibold text-center
+                  className={`text-xl font-semibold text-center text-[#0cabba]
                   ${
                     selectedSize === size.name.toLowerCase() ? "font-bold" : ""
                   }`}
