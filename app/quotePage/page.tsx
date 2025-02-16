@@ -1501,7 +1501,7 @@ export default function QuotePage() {
                       className={`text-xl font-semibold text-center
                       ${selectedService === "landscaping" ? "font-bold" : ""}`}
                     >
-                      Landscaping / Property Cleanup / Other
+                      Turf Program / Property Cleanup / Other
                     </h3>
                   </div>
                   <div className="absolute inset-0 top-[56px] z-0">
