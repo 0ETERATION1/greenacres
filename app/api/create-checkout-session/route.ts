@@ -27,6 +27,39 @@ export async function POST(req: Request) {
     const formattedFee = processingFee.toFixed(2); // Format to 2 decimal places
 
     const session = await stripe.checkout.sessions.create({
+      shipping_address_collection: {
+        allowed_countries: ['US'],
+      },
+      shipping_options: [{
+        shipping_rate_data: {
+          type: 'fixed_amount',
+          fixed_amount: { amount: 0, currency: 'usd' },
+          display_name: 'Service Location',
+        },
+      }],
+      // custom_fields: [
+      //   {
+      //     key: 'first_name',
+      //     label: { type: 'custom', custom: 'First Name' },
+      //     type: 'text',
+      //     optional: false,
+      //   },
+      //   {
+      //     key: 'last_name',
+      //     label: { type: 'custom', custom: 'Last Name' },
+      //     type: 'text',
+      //     optional: false,
+      //   }
+      // ],
+      phone_number_collection: {
+        enabled: true,
+      },
+      custom_text: {
+        shipping_address: { 
+          message: 'Please enter your name and the address where service will be performed' 
+        },
+        submit: { message: 'We will contact you within 24 hours to schedule your service.' }
+      },
       ui_mode: "embedded",
       line_items: [
         {
@@ -44,20 +77,6 @@ export async function POST(req: Request) {
       mode: "payment",
       return_url: `${req.headers.get("origin")}/return?session_id={CHECKOUT_SESSION_ID}`,
       payment_method_types: ["card"],
-      billing_address_collection: "required",
-      custom_fields: [
-        {
-          key: "phone",
-          label: { type: "custom", custom: "Cell Phone" },
-          type: "text",
-          optional: false,
-        }
-      ],
-      custom_text: {
-        submit: {
-          message: "We'll contact you within 24 hours to schedule your service",
-        },
-      }
     });
 
     return NextResponse.json({ clientSecret: session.client_secret });
