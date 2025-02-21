@@ -55,7 +55,7 @@ export async function POST(req: Request) {
       ],
       custom_text: {
         submit: {
-          message: "We'll contact you within 24 hours to schedule your service",
+          message: "We'll contact you within 24 hours to schedule your service!",
         },
       }
     });
