@@ -252,7 +252,7 @@ export default function ContactPage() {
                 Thank you for your message!
               </div>
               <p className="text-gray-600">
-                We'll get back to you as soon as possible.
+                We&apos;ll get back to you as soon as possible.
               </p>
               <button
                 onClick={() =>
