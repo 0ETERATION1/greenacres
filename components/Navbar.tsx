@@ -81,7 +81,7 @@ export default function Navbar() {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/quotePage" legacyBehavior passHref>
+                    <Link href="/contact" legacyBehavior passHref>
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                         Contact
                       </NavigationMenuLink>
@@ -206,7 +206,7 @@ export default function Navbar() {
                 Blog 📝
               </Link>
               <Link
-                href="/quotePage"
+                href="/contact"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
               >
                 Contact 📞
