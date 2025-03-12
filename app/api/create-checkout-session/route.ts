@@ -36,6 +36,10 @@ interface SessionConfig {
     enabled: boolean;
   };
   customer_email?: string;
+  metadata?: Record<string, string>;
+  payment_intent_data?: {
+    metadata: Record<string, string>;
+  };
 }
 
 export async function POST(req: Request) {
@@ -88,11 +92,33 @@ export async function POST(req: Request) {
       phone_number_collection: {
         enabled: true,
       },
+      // Add metadata to make customer info more accessible to Zapier
+      metadata: {
+        lawn_size: size,
+        service_frequency: frequency,
+        service_type: "lawn_mowing"
+      },
+      // Add payment intent metadata to ensure customer data is available
+      payment_intent_data: {
+        metadata: {
+          lawn_size: size,
+          service_frequency: frequency,
+          service_type: "lawn_mowing"
+        }
+      }
     };
 
-    // Add email conditionally
-    if (emailFromHeader) {
-      sessionConfig.customer_email = emailFromHeader;
+    // Always collect email - this ensures the email field is always present
+    // even if not pre-filled from headers
+    sessionConfig.customer_email = emailFromHeader || undefined;
+    
+    // Add email to metadata for better Zapier access
+    if (emailFromHeader && sessionConfig.metadata) {
+      sessionConfig.metadata.customer_email = emailFromHeader;
+    }
+    
+    if (emailFromHeader && sessionConfig.payment_intent_data?.metadata) {
+      sessionConfig.payment_intent_data.metadata.customer_email = emailFromHeader;
     }
 
     // Use type assertion for the Stripe API call
