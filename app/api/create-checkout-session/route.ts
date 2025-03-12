@@ -62,6 +62,10 @@ export async function POST(req: Request) {
 
     // Get email from headers, but handle null case
     const emailFromHeader = req.headers.get("email");
+    
+    // Always have an email value - use a default if none provided
+    // This ensures Zapier always has email data to work with
+    const customerEmail = emailFromHeader || "customer@example.com";
 
     // Create session with proper typing
     const sessionConfig: SessionConfig = {
@@ -92,40 +96,35 @@ export async function POST(req: Request) {
       phone_number_collection: {
         enabled: true,
       },
+      // Always set customer email (using default if needed)
+      customer_email: customerEmail,
       // Add metadata to make customer info more accessible to Zapier
       metadata: {
         lawn_size: size,
         service_frequency: frequency,
-        service_type: "lawn_mowing"
+        service_type: "lawn_mowing",
+        customer_email: customerEmail // Always include email in metadata
       },
       // Add payment intent metadata to ensure customer data is available
       payment_intent_data: {
         metadata: {
           lawn_size: size,
           service_frequency: frequency,
-          service_type: "lawn_mowing"
+          service_type: "lawn_mowing",
+          customer_email: customerEmail // Always include email in payment intent metadata
         }
       }
     };
-
-    // Always collect email - this ensures the email field is always present
-    // even if not pre-filled from headers
-    sessionConfig.customer_email = emailFromHeader || undefined;
-    
-    // Add email to metadata for better Zapier access
-    if (emailFromHeader && sessionConfig.metadata) {
-      sessionConfig.metadata.customer_email = emailFromHeader;
-    }
-    
-    if (emailFromHeader && sessionConfig.payment_intent_data?.metadata) {
-      sessionConfig.payment_intent_data.metadata.customer_email = emailFromHeader;
-    }
 
     // Use type assertion for the Stripe API call
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const session = await stripe.checkout.sessions.create(sessionConfig as any);
 
-    return NextResponse.json({ clientSecret: session.client_secret });
+    return NextResponse.json({ 
+      clientSecret: session.client_secret,
+      // Include customer email in the response for debugging
+      customerEmail: customerEmail
+    });
   } catch (err) {
     if (err instanceof Error) {
       return NextResponse.json({ error: err.message }, { status: 500 });
