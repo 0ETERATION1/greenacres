@@ -47,7 +47,7 @@ export async function POST(req: Request) {
     const { frequency, size } = await req.json() as { frequency: Frequency; size: Size };
     
     const prices: Record<Size, Record<Frequency, number>> = {
-      small: { weekly: 4500, biweekly: 6000 },
+      small: { weekly: 1000, biweekly: 6000 },
       medium: { weekly: 6500, biweekly: 8000 },
       large: { weekly: 8500, biweekly: 10000 }
     };
