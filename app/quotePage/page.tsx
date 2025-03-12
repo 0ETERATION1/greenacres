@@ -2,7 +2,7 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../lib/firebase";
 import { loadStripe } from "@stripe/stripe-js";
@@ -767,12 +767,37 @@ export default function QuotePage() {
     window.scrollTo(0, 0);
   }, []);
 
+  // Move createCheckoutSession function before the useEffect that uses it
+  // Wrap with useCallback to prevent infinite re-renders
+  const createCheckoutSession = useCallback(async () => {
+    if (!selectedSize || !selectedFrequency) return;
+
+    try {
+      console.log("Creating checkout session...");
+      const response = await fetch("/api/create-checkout-session", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          size: selectedSize,
+          frequency: selectedFrequency,
+        }),
+      });
+      const data = await response.json();
+      //console.log("Checkout session created:", data);
+      setClientSecret(data.clientSecret);
+    } catch (error) {
+      console.error("Error creating checkout session:", error);
+    }
+  }, [selectedSize, selectedFrequency, setClientSecret]);
+
   // Add this useEffect to watch for frequency changes
   useEffect(() => {
     if (acceptedTerms && selectedFrequency) {
       createCheckoutSession();
     }
-  }, [selectedFrequency]);
+  }, [selectedFrequency, acceptedTerms, createCheckoutSession]);
 
   // Add useEffect to watch for size changes
   useEffect(() => {
@@ -1188,29 +1213,6 @@ export default function QuotePage() {
         </div>
       </>
     );
-  };
-
-  const createCheckoutSession = async () => {
-    if (!selectedSize || !selectedFrequency) return;
-
-    try {
-      console.log("Creating checkout session...");
-      const response = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          size: selectedSize,
-          frequency: selectedFrequency,
-        }),
-      });
-      const data = await response.json();
-      //console.log("Checkout session created:", data);
-      setClientSecret(data.clientSecret);
-    } catch (error) {
-      console.error("Error creating checkout session:", error);
-    }
   };
 
   const handleTermsDecision = (accepted: boolean) => {
