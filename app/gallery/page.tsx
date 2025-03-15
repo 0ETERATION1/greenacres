@@ -381,7 +381,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Before and After of a mulch installation /goodBefore.jpg",
+      "/assets/images/port/MulchInstall/Before and After of a mulch installation /goodBefore.jpg",
 
     category: ["mulch", "hand-weeding"],
   },
@@ -399,7 +399,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Before and After of a mulch installation /goodAfter.jpg",
+      "/assets/images/port/MulchInstall/Before and After of a mulch installation /goodAfter.jpg",
 
     category: ["mulch", "hand-weeding"],
   },
@@ -420,7 +420,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_132941.jpg",
+      "/assets/images/port/MulchInstall/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_132941.jpg",
 
     category: ["mulch", "hand-weeding"],
   },
@@ -441,7 +441,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_133000.jpg",
+      "/assets/images/port/MulchInstall/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_133000.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -460,7 +460,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Major clean up we completed/Before photo of major clean up we completed.jpg",
+      "/assets/images/port/MulchInstall/Major clean up we completed/Before photo of major clean up we completed.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -482,7 +482,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Major clean up we completed/Before photo of major clean up we completed. Frontyard 2.jpg",
+      "/assets/images/port/MulchInstall/Major clean up we completed/Before photo of major clean up we completed. Frontyard 2.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -501,7 +501,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Mulch install/20240420_152433.jpg",
+      "/assets/images/port/MulchInstall/MulchInstall/20240420_152433.jpg",
 
     category: ["mulch", "hand-weeding"],
   },
@@ -520,7 +520,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Mulch install/20240420_152614.jpg",
+      "/assets/images/port/MulchInstall/MulchInstall/20240420_152614.jpg",
 
     category: ["mulch", "hand-weeding", "plant-installation"],
   },
@@ -534,7 +534,7 @@ const portfolioItems: PortfolioItem[] = [
       "Efficient bulk mulch preparation and handling for large-scale landscape projects.",
 
     imagePath:
-      "/assets/images/port/Mulch install/Loading fresh mulch to install for our customers_.mp4",
+      "/assets/images/port/MulchInstall/Loading fresh mulch to install for our customers_.mp4",
 
     category: ["mulch"],
 
@@ -558,7 +558,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173002.jpg",
+      "/assets/images/port/MulchInstall/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173002.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -578,7 +578,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173019.jpg",
+      "/assets/images/port/MulchInstall/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173019.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -594,12 +594,12 @@ const portfolioItems: PortfolioItem[] = [
         <span className="highlight-animation">Bushes were trimmed</span>,{" "}
         <span className="highlight-animation">weeds pulled</span>, and{" "}
         <span className="highlight-animation">mulch refreshed </span>to bring
-        new life to this home’s exterior.
+        new life to this home&apos;s exterior.
       </>
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173055.jpg",
+      "/assets/images/port/MulchInstall/Spring Clean-Up for a beautiful home. We keep these bushes shaped up year round and keep the mulch beds weed free/20240406_173055.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -620,7 +620,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114828.jpg",
+      "/assets/images/port/MulchInstall/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114828.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -641,7 +641,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114835.jpg",
+      "/assets/images/port/MulchInstall/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114835.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -661,7 +661,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114916.jpg",
+      "/assets/images/port/MulchInstall/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114916.jpg",
 
     category: ["mulch", "hand-weeding"],
   },
@@ -681,7 +681,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114923.jpg",
+      "/assets/images/port/MulchInstall/Small Spring Clean-up we completed. We trimmed bushes, pulled weeds, edged flower beds and installed mulch/20240307_114923.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -703,7 +703,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105526.jpg",
+      "/assets/images/port/MulchInstall/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105526.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -724,7 +724,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105623.jpg",
+      "/assets/images/port/MulchInstall/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105623.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -743,7 +743,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Mulch install/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105636.jpg",
+      "/assets/images/port/MulchInstall/Mulch installation for a customer with very large mulch beds. We pulled weeds, trimmed bushes, edged flower beds and installed mulch/20240306_105636.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -761,7 +761,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/LawnMaintenance /A crew member mowing a lawn with a commercial grade lawn mowers. Leaving behind a great cut.mp4",
+      "/assets/images/port/LawnMaintenance/A crew member mowing a lawn with a commercial grade lawn mowers. Leaving behind a great cut.mp4",
 
     category: ["lawn-maintenance"],
 
@@ -782,7 +782,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/LawnMaintenance /A front yard of a property where we maintain the lawn and the flower beds.jpg",
+      "/assets/images/port/LawnMaintenance/A front yard of a property where we maintain the lawn and the flower beds.jpg",
 
     category: ["lawn-maintenance"],
   },
@@ -800,7 +800,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/LawnMaintenance /A well maintained backyard that was just mowed.jpg",
+      "/assets/images/port/LawnMaintenance/A well maintained backyard that was just mowed.jpg",
 
     category: ["lawn-maintenance"],
   },
@@ -816,7 +816,7 @@ const portfolioItems: PortfolioItem[] = [
       </>
     ),
 
-    imagePath: "/assets/images/port/LawnMaintenance /Feshly mowed lawn.jpg",
+    imagePath: "/assets/images/port/LawnMaintenance/Feshly mowed lawn.jpg",
 
     category: ["lawn-maintenance"],
   },
@@ -834,7 +834,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/LawnMaintenance /Mowing stripes on a bright green lawn we maintain_.jpg",
+      "/assets/images/port/LawnMaintenance/Mowing stripes on a bright green lawn we maintain_.jpg",
 
     category: ["lawn-maintenance"],
   },
@@ -849,7 +849,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/LawnMaintenance /Mowing stripes on a property we maintain_.jpg",
+      "/assets/images/port/LawnMaintenance/Mowing stripes on a property we maintain_.jpg",
 
     category: ["lawn-maintenance"],
   },
@@ -864,7 +864,7 @@ const portfolioItems: PortfolioItem[] = [
       </>
     ),
     imagePath:
-      "/assets/images/port/LawnMaintenance /Nick mowing a large property we maintain_.mp4",
+      "/assets/images/port/LawnMaintenance/Nick mowing a large property we maintain_.mp4",
 
     category: ["lawn-maintenance"],
     isVideo: true,
@@ -884,7 +884,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/LawnMaintenance /Nick mowing a larger property we maintain_.jpg",
+      "/assets/images/port/LawnMaintenance/Nick mowing a larger property we maintain_.jpg",
 
     category: ["lawn-maintenance"],
   },
@@ -901,7 +901,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/LawnMaintenance /Stripes from a mow on this large property we maintain_.jpg",
+      "/assets/images/port/LawnMaintenance/Stripes from a mow on this large property we maintain_.jpg",
 
     category: ["lawn-maintenance"],
   },
@@ -916,7 +916,7 @@ const portfolioItems: PortfolioItem[] = [
       </>
     ),
     imagePath:
-      "/assets/images/port/LawnMaintenance /The crew working on a lawn with a beautiful mowing pattern_.mp4",
+      "/assets/images/port/LawnMaintenance/The crew working on a lawn with a beautiful mowing pattern_.mp4",
 
     category: ["lawn-maintenance"],
     isVideo: true,
@@ -935,7 +935,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/LeafRemoval /Pile of leaves we collected before hauling them away.jpg",
+      "/assets/images/port/LeafRemoval/Pile of leaves we collected before hauling them away.jpg",
 
     category: ["leaf-removal"],
   },
@@ -952,7 +952,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/LeafRemoval /The guys blowing leaves towards the curb so we can vacuum it and haul away.mp4",
+      "/assets/images/port/LeafRemoval/The guys blowing leaves towards the curb so we can vacuum it and haul away.mp4",
 
     category: ["leaf-removal"],
     isVideo: true,
