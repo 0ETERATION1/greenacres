@@ -31,7 +31,7 @@ export default function AboutPage() {
               reflect both professionalism and care. For over 30 years, Green
               Acres Landscaping has remained a trusted partner to Montgomery
               County, transforming outdoor spaces while staying true to the
-              values that shaped its foundation.
+              values that shaped its foundation!
             </p>
           </div>
         </div>
