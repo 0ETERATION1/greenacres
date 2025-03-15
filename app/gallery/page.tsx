@@ -381,7 +381,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/MulchInstall/Before and After of a mulch installation /goodBefore.jpg",
+      "/assets/images/port/MulchInstall/Before and After of a mulch installation/goodBefore.jpg",
 
     category: ["mulch", "hand-weeding"],
   },
@@ -399,7 +399,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/MulchInstall/Before and After of a mulch installation /goodAfter.jpg",
+      "/assets/images/port/MulchInstall/Before and After of a mulch installation/goodAfter.jpg",
 
     category: ["mulch", "hand-weeding"],
   },
@@ -420,7 +420,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/MulchInstall/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_132941.jpg",
+      "/assets/images/port/MulchInstall/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch/20240318_132941.jpg",
 
     category: ["mulch", "hand-weeding"],
   },
@@ -441,7 +441,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/MulchInstall/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch /20240318_133000.jpg",
+      "/assets/images/port/MulchInstall/Larger spring clean-up we completed. We trimmed bushes, pulled weeds, edged beds, and installed mulch/20240318_133000.jpg",
 
     category: ["mulch", "hand-weeding", "bush-trimming"],
   },
@@ -986,7 +986,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Firewood /Firewood we delivered and stacked 2.jpg",
+      "/assets/images/port/Firewood/Firewood we delivered and stacked 2.jpg",
 
     category: ["firewood"],
   },
@@ -1002,7 +1002,7 @@ const portfolioItems: PortfolioItem[] = [
     ),
 
     imagePath:
-      "/assets/images/port/Firewood /Firewood we delivered and stacked.jpg",
+      "/assets/images/port/Firewood/Firewood we delivered and stacked.jpg",
 
     category: ["firewood"],
   },
