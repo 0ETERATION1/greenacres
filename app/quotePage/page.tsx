@@ -1468,7 +1468,7 @@ export default function QuotePage() {
                   </div>
                   <div className="absolute inset-0 top-[56px] z-0">
                     <Image
-                      src="/assets/images/port/LawnMaintenance /Nick mowing a larger property we maintain_.jpg"
+                      src="/assets/images/port/LawnMaintenance/Nick mowing a larger property we maintain_.jpg"
                       alt="Mowing Service"
                       fill
                       quality={100}
