@@ -122,14 +122,17 @@
 .main-banner {
   position: relative;
   width: 100%;
-  height: 70vh;
+  height: 90vh;
   display: flex;
   align-items: center;
+  overflow: hidden; /* Prevent any potential image overflow */
 }
 
 .banner-background {
   object-fit: cover;
   z-index: 0;
+  opacity: 0; /* Start invisible */
+  animation: fadeIn 0.5s ease-in-out forwards; /* Fade in smoothly once loaded */
 }
 
 .banner-overlay {
@@ -140,15 +143,6 @@
   bottom: 0;
   background: rgba(0, 0, 0, 0.3);
   z-index: 1;
-}
-
-.main-banner{
-  position: relative;
-  width: 100%;
-  height: 90vh;
-  display: flex;
-  align-items: center;
-  justify-content: center; /* Add this to center horizontally */
 }
 
 .banner-content {
