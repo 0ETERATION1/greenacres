@@ -1,4 +1,4 @@
-import Image from "next/image";
+// import Image from "next/image";
 import Link from "next/link";
 import styles from "../styles/PropertySection.module.css";
 
@@ -11,12 +11,10 @@ export default function PropertySection() {
           <div
             className={`w-1/2 place-items-end px-5 ${styles.imageContainer}`}
           >
-            <Image
+            <img
               src="/assets/images/port/bradleyAndDad.JPG"
               alt="Dad mowing Lawn and leaving stripes in Montgomery County Maryland"
-              width={300}
-              height={400}
-              className="rounded-image custom-image"
+              className="rounded-image custom-image w-[300px] h-[400px] object-cover"
             />
           </div>
           <div className={`w-1/2 pl-6 ${styles.textContainer}`}>
@@ -90,12 +88,10 @@ export default function PropertySection() {
           <div
             className={`w-1/2 place-items-start px-5 ${styles.imageContainer}`}
           >
-            <Image
+            <img
               src="/assets/images/port/dadMowing.jpg"
               alt="Description of the second image"
-              width={300}
-              height={400}
-              className="rounded-image custom-image"
+              className="rounded-image custom-image w-[300px] h-[400px] object-cover"
             />
           </div>
         </div>
@@ -105,12 +101,10 @@ export default function PropertySection() {
           <div
             className={`w-1/2 place-items-end px-5 ${styles.imageContainer}`}
           >
-            <Image
+            <img
               src="/assets/images/port/Houseblossom.jpg"
               alt="Description of the third image"
-              width={300}
-              height={400}
-              className="rounded-image custom-image"
+              className="rounded-image custom-image w-[300px] h-[400px] object-cover"
             />
           </div>
           <div className={`w-1/2 pl-6 ${styles.textContainer}`}>

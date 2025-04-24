@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -40,12 +39,12 @@ export default function AboutPage() {
       {/* Hero Image */}
       <section className="relative h-[60vh]">
         <div className="w-full h-full relative">
-          <Image
+          <img
             src="/assets/images/port/startsFamily.jpg"
             alt="Family working together"
-            fill
-            className="object-cover"
-            priority
+            className="object-cover w-full h-full"
+            loading="lazy"
+            decoding="async"
           />
         </div>
       </section>
@@ -132,7 +131,7 @@ Bradley and Nicholas naturally began aligning their education and efforts with t
 
             <ValueCard
               title="Quality"
-              description="Our experienced landscaping crew specializes in delivering high-quality lawn care. From perfectly manicured lawns to expertly trimmed hedges, we never cut corners. With a focus on sustainable practices, we use top-tier equipment and techniques to achieve beautiful, eco-friendly results that enhance your property’s curb appeal."
+              description="Our experienced landscaping crew specializes in delivering high-quality lawn care. From perfectly manicured lawns to expertly trimmed hedges, we never cut corners. With a focus on sustainable practices, we use top-tier equipment and techniques to achieve beautiful, eco-friendly results that enhance your property's curb appeal."
               icon="🌟"
             />
 

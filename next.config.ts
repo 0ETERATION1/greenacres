@@ -2,8 +2,9 @@
 const nextConfig = {
   output: 'standalone',
   images: {
-    domains: ['https://greenacres.vercel.app/'], // Add any image domains you're using
-    unoptimized: true
+    domains: [], // Remove the incorrect domain format
+    unoptimized: true,
+    disableStaticImages: true // Completely disable static image optimization
   },
 }
 

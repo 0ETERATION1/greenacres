@@ -1,7 +1,6 @@
 "use client";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
-import Image from "next/image";
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { storage } from "../../lib/firebase";
@@ -936,26 +935,23 @@ export default function QuotePage() {
               {size.name === "Other" ? (
                 <div className="absolute inset-0 top-[56px] z-0 flex items-center justify-center bg-gray-50">
                   <div className="relative w-full h-full p-4">
-                    <Image
+                    <img
                       src="/assets/images/port/questionMark.jpg"
                       alt={`${size.name} Yard`}
-                      fill
-                      quality={100}
-                      priority
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover w-full h-full"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
               ) : (
                 <div className="absolute inset-0 top-[56px] z-0">
-                  <Image
+                  <img
                     src={size.image!}
                     alt={`${size.name} Yard`}
-                    fill
-                    quality={100}
-                    priority
-                    className="object-cover"
+                    className="object-cover w-full h-full"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
               )}
@@ -1467,13 +1463,12 @@ export default function QuotePage() {
                     </h3>
                   </div>
                   <div className="absolute inset-0 top-[56px] z-0">
-                    <Image
+                    <img
                       src="/assets/images/port/LawnMaintenance/Nick mowing a larger property we maintain_.jpg"
                       alt="Mowing Service"
-                      fill
-                      quality={100}
-                      priority
-                      className="object-cover"
+                      className="object-cover w-full h-full"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>
@@ -1507,13 +1502,12 @@ export default function QuotePage() {
                     </h3>
                   </div>
                   <div className="absolute inset-0 top-[56px] z-0">
-                    <Image
+                    <img
                       src="/assets/images/port/plantInstall3.jpg"
                       alt="Landscaping Service"
-                      fill
-                      quality={100}
-                      priority
-                      className="object-cover"
+                      className="object-cover w-full h-full"
+                      loading="lazy"
+                      decoding="async"
                     />
                   </div>
                 </div>

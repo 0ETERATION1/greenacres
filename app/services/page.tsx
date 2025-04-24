@@ -3,7 +3,6 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Image from "next/image";
 
 interface ServiceCardProps {
   title: string;
@@ -119,13 +118,12 @@ function ServiceCard({
             Your browser does not support the video tag.
           </video>
         ) : (
-          <Image
+          <img
             src={imagePath}
             alt={title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw"
-            priority
+            className="object-cover w-full h-full"
+            loading="lazy"
+            decoding="async"
           />
         )}
       </div>

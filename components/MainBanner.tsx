@@ -1,6 +1,7 @@
 "use client";
 
-import Image from "next/image";
+// Remove the Image import
+// import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function MainBanner() {
@@ -8,13 +9,10 @@ export default function MainBanner() {
 
   return (
     <section className="main-banner">
-      <Image
+      <img
         src="/assets/images/bg/pattern/beautifulTurf.jpg"
         alt="Beautiful lawn"
-        fill
-        priority
-        quality={100}
-        className="banner-background"
+        className="banner-background absolute inset-0 w-full h-full object-cover"
       />
       <div className="banner-overlay" />
       <div className="banner-content">

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, Suspense, useMemo } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
@@ -129,13 +128,12 @@ const BlogModal = ({
       >
         <div className="max-h-[90vh] overflow-y-auto">
           <div className="relative aspect-video">
-            <Image
+            <img
               src={post.imagePath}
               alt={post.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-              priority
+              className="object-cover w-full h-full"
+              loading="lazy"
+              decoding="async"
             />
           </div>
           <div className="p-6">
@@ -349,12 +347,15 @@ function BlogContent() {
             onClick={() => handlePostSelect(post)}
           >
             <div className="relative h-48">
-              <Image
-                src={post.imagePath}
-                alt={post.title}
-                fill
-                className="object-cover"
-              />
+              <div className="relative aspect-video">
+                <img
+                  src={post.imagePath}
+                  alt={post.title}
+                  className="object-cover w-full h-full"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               {/* Expand Icon */}
               <div className="absolute top-2 right-2 bg-black bg-opacity-50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <svg
