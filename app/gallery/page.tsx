@@ -1,7 +1,5 @@
 "use client";
 
-import Image from "next/image";
-
 import { useState } from "react";
 
 import { motion, AnimatePresence } from "framer-motion";
@@ -92,12 +90,10 @@ const ImageModal = ({
             Your browser does not support video playback.
           </video>
         ) : (
-          <Image
+          <img
             src={image}
             alt={title}
-            fill
-            className="object-contain"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+            className="object-contain w-full h-full"
           />
         )}
 
@@ -1186,11 +1182,10 @@ export default function Portfolio() {
                       </video>
                     </div>
                   ) : (
-                    <Image
+                    <img
                       src={item.imagePath}
                       alt={item.title}
-                      fill
-                      className="object-cover"
+                      className="object-cover w-full h-full"
                     />
                   )}
 
