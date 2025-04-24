@@ -94,6 +94,8 @@ const ImageModal = ({
             src={image}
             alt={title}
             className="object-contain w-full h-full"
+            loading="lazy"
+            decoding="async"
           />
         )}
 
@@ -1186,6 +1188,8 @@ export default function Portfolio() {
                       src={item.imagePath}
                       alt={item.title}
                       className="object-cover w-full h-full"
+                      loading="lazy"
+                      decoding="async"
                     />
                   )}
 
