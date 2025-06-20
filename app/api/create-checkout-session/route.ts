@@ -54,12 +54,13 @@ export async function POST(req: Request) {
     };
 
     const amount = prices[size][frequency];
-    // Add transaction fee (e.g., 3%)
-    const amountWithFee = Math.round(amount * 1.03);
+    // Add transaction fee (2.9% + $0.30)
+    const processingFee = (amount * 0.029) + 30; // 2.9% + $0.30 in cents
+    const amountWithFee = Math.round(amount + processingFee);
     
-    // Calculate processing fee (3% of amount)
-    const processingFee = (amount * 0.03) / 100; // Convert cents to dollars
-    const formattedFee = processingFee.toFixed(2); // Format to 2 decimal places
+    // Calculate processing fee for display (convert cents to dollars)
+    const processingFeeInDollars = processingFee / 100;
+    const formattedFee = processingFeeInDollars.toFixed(2); // Format to 2 decimal places
 
     // Get email from headers, but handle null case
     const emailFromHeader = req.headers.get("email");
