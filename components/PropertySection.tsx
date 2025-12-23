@@ -53,37 +53,38 @@ export default function PropertySection() {
 
         {/* Second Image and Text */}
         <div className="flex items-center mb-10">
-          <div
-            className={`w-1/2 place-items-end px-5 ${styles.imageContainer}`}
-          >
+          <div className={`w-1/2 pr-6 ${styles.textContainer}`}>
             <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
               Our Skillset
             </h1>
-            <p className="text-left md:text-right">
+            <p>
               From precision mowing and seasonal maintenance to comprehensive
               lawn care, our Turf Program delivers year-round solutions that
               keep your property healthy, vibrant, and beautiful in every
               season.
             </p>
             <br></br>
-            <Link
-              href="/services"
-              className="
-                inline-block px-4 py-2
-                bg-gradient-to-r from-green-600 to-green-700
-                text-white
-                rounded-md
-                transition-transform duration-300 ease-in-out
-                hover:-translate-y-0.5
-                shadow-md
-                whitespace-nowrap
-                w-[140px]
-                text-center
-              "
-              style={{ fontWeight: 500 }}
-            >
-              Services 🛠️
-            </Link>
+            <div className="flex justify-end">
+              <Link
+                href="/services"
+                className="
+                  inline-block px-4 py-2
+                  bg-gradient-to-r from-green-600 to-green-700
+                  text-white
+                  rounded-md
+                  transition-transform duration-300 ease-in-out
+                  hover:-translate-y-0.5
+                  shadow-md
+                  whitespace-nowrap
+                  w-[140px]
+                  text-center
+                  
+                "
+                style={{ fontWeight: 500 }}
+              >
+                Services 🛠️
+              </Link>
+            </div>
           </div>
           <div
             className={`w-1/2 place-items-start px-5 ${styles.imageContainer}`}
