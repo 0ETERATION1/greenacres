@@ -29,26 +29,27 @@ export default function PropertySection() {
                 ensures your outdoor space receives the care it deserves.
               </p>
               <br></br>
-              <Link
-                href="/about"
-                className="
-                  inline-block px-4 py-2
-                  bg-gradient-to-r from-green-600 to-green-700
-                  text-white
-                  rounded-md
-                  transition-transform duration-300 ease-in-out
-                  hover:-translate-y-0.5
-                  shadow-md
-                  whitespace-nowrap
-                  w-[140px]
-                  text-center
-                  
-                "
-                style={{ fontWeight: 500 }}
-              >
-                Our story 📖
-                {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
-              </Link>
+              <div className="flex justify-center">
+                <Link
+                  href="/about"
+                  className="
+                    inline-block px-4 py-2
+                    bg-gradient-to-r from-green-600 to-green-700
+                    text-white
+                    rounded-md
+                    transition-transform duration-300 ease-in-out
+                    hover:-translate-y-0.5
+                    shadow-md
+                    whitespace-nowrap
+                    w-[140px]
+                    text-center
+                    
+                  "
+                  style={{ fontWeight: 500 }}
+                >
+                  Our story 📖
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -69,7 +70,7 @@ export default function PropertySection() {
                 season.
               </p>
               <br></br>
-              <div className="flex justify-end">
+              <div className="flex justify-center">
                 <Link
                   href="/services"
                   className="
@@ -126,26 +127,27 @@ export default function PropertySection() {
                 create their dream gardens and landscapes.
               </p>
               <br></br>
-              <Link
-                href="/gallery"
-                className="
-                  inline-block px-4 py-2
-                  bg-gradient-to-r from-green-600 to-green-700
-                  text-white
-                  rounded-md
-                  transition-transform duration-300 ease-in-out
-                  hover:-translate-y-0.5
-                  shadow-md
-                  whitespace-nowrap
-                  w-[140px]
-                  text-center
-                  
-                "
-                style={{ fontWeight: 500 }}
-              >
-                Gallery 🖼️
-                {/* <span>Free Quote!</span> <span className="text-lg">🌳</span> */}
-              </Link>
+              <div className="flex justify-center">
+                <Link
+                  href="/gallery"
+                  className="
+                    inline-block px-4 py-2
+                    bg-gradient-to-r from-green-600 to-green-700
+                    text-white
+                    rounded-md
+                    transition-transform duration-300 ease-in-out
+                    hover:-translate-y-0.5
+                    shadow-md
+                    whitespace-nowrap
+                    w-[140px]
+                    text-center
+                    
+                  "
+                  style={{ fontWeight: 500 }}
+                >
+                  Gallery 🖼️
+                </Link>
+              </div>
             </div>
           </div>
         </div>
