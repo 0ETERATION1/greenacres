@@ -511,8 +511,7 @@
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(90deg, #7ab83c 0%, #3cc99c 100%);
-  padding: 2rem 2.5rem;
-  border-radius: 8px;
+  padding: 2rem 5%;
   color: white;
   gap: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
