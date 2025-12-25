@@ -321,16 +321,33 @@ function BlogContent() {
 
         {/* Sort Order - Styled to match */}
         <div className="flex justify-center items-center gap-2">
-          <select
-            value={sortOrder}
-            onChange={(e) =>
-              setSortOrder(e.target.value as "newest" | "oldest")
-            }
-            className="px-6 py-2 rounded-lg border border-gray-200 bg-gray-100 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#0cabba] transition-all duration-300"
-          >
-            <option value="newest">Newest First</option>
-            <option value="oldest">Oldest First</option>
-          </select>
+          <div className="relative">
+            <select
+              value={sortOrder}
+              onChange={(e) =>
+                setSortOrder(e.target.value as "newest" | "oldest")
+              }
+              className="appearance-none pl-6 pr-12 py-2 rounded-lg border border-gray-200 bg-gray-100 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#0cabba] transition-all duration-300 cursor-pointer"
+            >
+              <option value="newest">Newest First</option>
+              <option value="oldest">Oldest First</option>
+            </select>
+            <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center">
+              <svg
+                className="h-4 w-4 text-gray-500"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
 
