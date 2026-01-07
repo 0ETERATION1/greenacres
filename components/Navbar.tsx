@@ -174,40 +174,40 @@ export default function Navbar() {
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
               <Link
                 href="/about"
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 text-center"
               >
                 About 📖
               </Link>
 
               <Link
                 href="/services"
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 text-center"
               >
                 Services 🛠️
               </Link>
 
               <Link
                 href="/gallery"
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 text-center"
               >
                 Gallery 🖼
               </Link>
 
               <Link
                 href="/firewood"
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 text-center"
               >
                 Firewood 🔥🪵
               </Link>
               <Link
                 href="/blog"
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 text-center"
               >
                 Blog 📝
               </Link>
               <Link
                 href="/contact"
-                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50"
+                className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 text-center"
               >
                 Contact 📞
               </Link>

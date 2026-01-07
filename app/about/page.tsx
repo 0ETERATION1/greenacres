@@ -160,8 +160,8 @@ function TimelineItem({
   description: string;
 }) {
   return (
-    <div className="flex gap-8 items-start">
-      <div className="text-2xl font-bold text-[#0f8c20] w-32 flex-shrink-0">
+    <div className="flex flex-col md:flex-row gap-2 md:gap-8 items-start">
+      <div className="text-2xl font-bold text-[#0f8c20] md:w-32 flex-shrink-0">
         {year}
       </div>
       <div className="flex-1">
