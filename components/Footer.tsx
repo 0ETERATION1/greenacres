@@ -5,9 +5,10 @@ export default function Footer() {
   return (
     <footer className="bg-white/95 backdrop-blur-md text-gray-800 py-6 shadow-inner">
       <div className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center items-start">
           {/* Company Information */}
           <div>
+            <h3 className="text-xl font-bold mb-4 text-center">Who We Are</h3>
             <p className="mb-4 justify-items-center text-center">
               Green Acres is a landscaping company, based in Montgomery County
               Maryland. Founded over 30 years ago, we strive to continue
@@ -38,7 +39,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+            <h3 className="text-xl font-bold mb-4 text-center">Quick Links</h3>
             <ul className="justify-items-center">
               {[
                 "Services",
@@ -63,15 +64,15 @@ export default function Footer() {
           </div>
 
           {/* Quote Button and Social Media Links Container */}
-          <div className="flex flex-col items-center -mt-6">
+          <div className="flex flex-col items-center">
+            <h3 className="text-xl font-bold mb-4 text-center">Get Started</h3>
             {/* Quote Button */}
             <Link href="/quotePage" className="cta-button">
               Get a free quote! 🌳
             </Link>
 
             {/* Social Media Links */}
-            <h3 className="text-xl font-bold mt-8 mb-4">Connect With Us!</h3>
-            <div className="flex gap-4">
+            <div className="flex gap-4 mt-6">
               <a
                 href="https://www.facebook.com/share/15TsUDSShQ/?mibextid=wwXIfr"
                 target="_blank"
