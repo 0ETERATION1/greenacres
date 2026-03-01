@@ -27,7 +27,7 @@ interface PricingInfo {
 
 const PRICING_DATA: Record<string, PricingInfo> = {
   small: {
-    weekly: 1,
+    weekly: 55,
     biweekly: 70,
     size: "Small",
     sqft: "Please Select One and Read our Policy Below",
