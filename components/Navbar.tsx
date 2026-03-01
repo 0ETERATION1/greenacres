@@ -25,7 +25,9 @@ export default function Navbar() {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem className="pl-0">
-                  <Link href="/" legacyBehavior passHref>
+                  <Link href="/">
+                    {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                    }
                     <NavigationMenuLink className="navbar-logo">
                       <div className="logo"></div>
                     </NavigationMenuLink>
@@ -41,7 +43,9 @@ export default function Navbar() {
               <NavigationMenuList className="w-full flex items-center justify-center">
                 <div className="flex items-center justify-center gap-12 pl-32">
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/about" legacyBehavior passHref>
+                    <Link href="/about">
+                      {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                      }
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                         About
                       </NavigationMenuLink>
@@ -49,7 +53,9 @@ export default function Navbar() {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/services" legacyBehavior passHref>
+                    <Link href="/services">
+                      {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                      }
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                         Services
                       </NavigationMenuLink>
@@ -57,7 +63,9 @@ export default function Navbar() {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/gallery" legacyBehavior passHref>
+                    <Link href="/gallery">
+                      {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                      }
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                         Gallery
                       </NavigationMenuLink>
@@ -65,7 +73,9 @@ export default function Navbar() {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/firewood" legacyBehavior passHref>
+                    <Link href="/firewood">
+                      {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                      }
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                         Firewood
                       </NavigationMenuLink>
@@ -73,7 +83,9 @@ export default function Navbar() {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/blog" legacyBehavior passHref>
+                    <Link href="/blog">
+                      {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                      }
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                         Blog
                       </NavigationMenuLink>
@@ -81,7 +93,9 @@ export default function Navbar() {
                   </NavigationMenuItem>
 
                   <NavigationMenuItem className="flex items-center">
-                    <Link href="/contact" legacyBehavior passHref>
+                    <Link href="/contact">
+                      {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
+                      }
                       <NavigationMenuLink className="nav-link py-2 px-1 text-base">
                         Contact
                       </NavigationMenuLink>
