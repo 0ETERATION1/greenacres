@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: "2025-01-27.acacia"
+  apiVersion: "2025-01-27.acacia"
 });
 
 type Frequency = 'weekly' | 'biweekly';
@@ -45,9 +45,9 @@ interface SessionConfig {
 export async function POST(req: Request) {
   try {
     const { frequency, size } = await req.json() as { frequency: Frequency; size: Size };
-    
+
     const prices: Record<Size, Record<Frequency, number>> = {
-      small: { weekly: 5500, biweekly: 7000 },
+      small: { weekly: 100, biweekly: 7000 },
       // was 1000 before
       medium: { weekly: 7500, biweekly: 9000 },
       large: { weekly: 9500, biweekly: 11000 }
@@ -57,7 +57,7 @@ export async function POST(req: Request) {
     // Add transaction fee (2.9% + $0.30)
     const processingFee = (amount * 0.029) + 30; // 2.9% + $0.30 in cents
     const amountWithFee = Math.round(amount + processingFee);
-    
+
     // Calculate processing fee for display (convert cents to dollars)
     const processingFeeInDollars = processingFee / 100;
     const formattedFee = processingFeeInDollars.toFixed(2); // Format to 2 decimal places
@@ -114,12 +114,12 @@ export async function POST(req: Request) {
     // This does NOT pre-fill the email field - customers will still enter their own email
     if (emailFromHeader) {
       sessionConfig.customer_email = emailFromHeader;
-      
+
       // Also add to metadata if available
       if (sessionConfig.metadata) {
         sessionConfig.metadata.customer_email = emailFromHeader;
       }
-      
+
       if (sessionConfig.payment_intent_data?.metadata) {
         sessionConfig.payment_intent_data.metadata.customer_email = emailFromHeader;
       }
