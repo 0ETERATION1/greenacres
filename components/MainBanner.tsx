@@ -22,7 +22,7 @@ export default function MainBanner() {
           Care Easy.
         </h1>
         <h2 className="banner-subtitle">
-          Lawn Care, Fertilizer and Weed Control. We&apos;ve got you covered.
+          Mowing, Fertilizer and Weed Control. We&apos;ve got you covered.
         </h2>
         <button
           onClick={() => router.push("/quotePage")}
