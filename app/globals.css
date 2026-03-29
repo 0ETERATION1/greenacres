@@ -637,6 +637,55 @@
   }
 }
 
+/* Scroll indicator — desktop only */
+.hero-scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  color: rgba(255, 255, 255, 0.85);
+  animation: heroScrollFade 2.5s ease-in-out infinite;
+  pointer-events: none;
+  user-select: none;
+}
+
+.hero-scroll-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+.hero-scroll-arrow {
+  width: 1.5rem;
+  height: 1.5rem;
+  filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.55));
+  animation: heroScrollBounce 1.4s ease-in-out infinite;
+}
+
+@keyframes heroScrollFade {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 0.45; }
+}
+
+@keyframes heroScrollBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(5px); }
+}
+
+/* Hide scroll indicator on tablet/phone (they already scroll intuitively) */
+@media (max-width: 1023px) {
+  .hero-scroll-indicator {
+    display: none;
+  }
+}
+
 /* Narrow phones: shrink title so nowrap line still fits */
 @media (max-width: 420px) {
   .main-banner {

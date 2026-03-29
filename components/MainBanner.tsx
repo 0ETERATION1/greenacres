@@ -46,6 +46,22 @@ export default function MainBanner() {
           Get a free quote! 🌳
         </button>
       </div>
+
+      {/* Scroll indicator — desktop only; hidden on tablet/phone */}
+      <div className="hero-scroll-indicator" aria-hidden>
+        <span className="hero-scroll-label">Scroll</span>
+        <svg
+          className="hero-scroll-arrow"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <path d="M12 5v14M5 12l7 7 7-7" />
+        </svg>
+      </div>
     </section>
   );
 }
