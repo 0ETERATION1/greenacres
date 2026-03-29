@@ -1527,7 +1527,7 @@ export default function QuotePage() {
                   <p className="text-xs text-gray-500 text-center px-1">
                     Best for maintained lawns that fit our standard mowing
                     sizes. If your property is unusually large or complex,
-                    select 'Other' in the Yard Size section.
+                    select &ldquo;Other&rdquo; in the Yard Size section.
                   </p>
                 </div>
 
