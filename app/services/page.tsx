@@ -9,6 +9,7 @@ interface ServiceCardProps {
   description: string;
   imagePath: string;
   isVideo?: boolean;
+  note?: string;
 }
 
 export default function ServicesPage() {
@@ -55,40 +56,38 @@ export default function ServicesPage() {
           <div className="grid gap-12">
             <ServiceCard
               title="Lawn Maintenance"
-              description="Our lawn maintenance service ensures your lawn in Montgomery County stays pristine, healthy, and vibrant all season long. With professional-grade mowers and razor-sharp blades, we provide a precise cut that encourages robust grass growth. Hard-to-reach areas are meticulously trimmed, flower beds expertly edged, and walkways and driveways bordered with a clean, defined finish using a metal blade edger. To complete the service, we thoroughly clear all grass clippings from hard surfaces, leaving your property polished and immaculate."
+              description="Our recurring lawn maintenance service is built for maintained residential properties. We mow maintained turf, trim around normal obstacles, edge where included, and blow hard surfaces clean at the end of service. We show up consistently and keep the process simple."
+              note="Service details can vary by property size, layout, and condition. If a lawn is unusually overgrown or requires extra corrective work, we will explain that clearly before the visit."
               imagePath="/assets/images/portfolio/lawn/lawn1.jpg"
             />
 
             <ServiceCard
               title="6-Step Weed Control & Fertilizer Program for Montgomery County Lawns"
-              description="Our 6-step weed control and fertilizer program is designed to enhance the health and beauty of all grass types commonly found in Montgomery County, Maryland, with a particular focus on optimizing tall fescue grass. This program combines precision weed control and balanced fertilizers tailored to promote robust growth, vivid color, and resilience against weeds.
-
-Following all Montgomery County regulations, our program provides environmentally responsible care, ensuring a lush, thriving lawn while protecting our local ecosystem. Whether you have tall fescue or another grass type, trust us to help your lawn reach its full potential.
-"
+              description="Our turf program is designed for Montgomery County lawns, with a strong focus on tall fescue. We use seasonally timed applications to improve color, density, weed control, and overall lawn health while following local regulations."
               imagePath="/assets/images/port/weed1.jpg"
             />
 
             <ServiceCard
               title="Mulch Installation"
-              description="Our Mulch Installation Service enhances the beauty and health of your landscaping by providing a fresh, professional layer of mulch to your garden beds. Mulch not only improves the visual appeal of your outdoor spaces but also helps retain soil moisture, regulate temperature, and suppress weed growth. We carefully prepare the area, ensuring even distribution and clean edges for a polished, finished look that protects and enriches your plants while adding a touch of elegance to your property."
+              description="Fresh mulch improves the appearance of your beds and helps retain moisture and suppress weeds. We install mulch with clean preparation and a neat finished look."
               imagePath="/assets/images/port/mulchInstallation.jpg"
             />
 
             <ServiceCard
-              title="Precise Hand Weeding for Mulch Beds"
-              description="Our meticulous hand weeding service for mulch beds is tailored to maintain the health and aesthetics of your landscaped areas. By carefully removing weeds at the root, we ensure a clean, polished look while protecting the integrity of your mulch beds. This eco-friendly approach promotes healthier plants and a well-maintained garden without the use of harsh chemicals, providing a sustainable solution that enhances the beauty of your outdoor spaces."
+              title="Hand Weeding for Mulch Beds"
+              description="We remove weeds from mulch beds by hand to keep landscaped areas clean and maintained without unnecessary damage to surrounding plants."
               imagePath="/assets/images/port/weedpulling.jpg"
             />
 
             <ServiceCard
               title="Bush Trimming"
-              description="Our Bush Trimming Service is designed to keep your shrubs and hedges looking neat, healthy, and well-maintained. We carefully shape and prune each bush to promote natural growth, enhance aesthetics, and prevent overgrowth. Using professional-grade tools, we ensure clean, precise cuts that improve the overall appearance of your landscaping while supporting the long-term health and vitality of your plants."
+              description="We trim shrubs and hedges to keep them neat, healthy, and in scale with the property. Our goal is a clean look without overcutting or forcing unnatural shapes."
               imagePath="/assets/images/port/bushTrimming2.jpg"
             />
 
             <ServiceCard
               title="Plant & Small Tree Installation"
-              description="Our Fall Leaf Removal Service ensures your property remains clean and well-maintained as the seasons change. We efficiently remove leaves from your lawn, garden beds, and hard surfaces, preventing unsightly buildup and potential damage to your grass. Using professional equipment, we leave your property spotless, allowing your outdoor spaces to thrive through the cooler months while enhancing the overall appearance of your landscape."
+              description="We install plants and small trees that fit the property, the space, and the maintenance goals. We focus on practical choices that look good and establish well over time."
               imagePath="/assets/images/port/plantInstall3.jpg"
             />
 
@@ -120,6 +119,7 @@ function ServiceCard({
   description,
   imagePath,
   isVideo = false,
+  note,
 }: ServiceCardProps) {
   return (
     <div className="flex flex-col md:flex-row gap-8 items-start bg-white rounded-lg shadow-lg overflow-hidden">
@@ -149,6 +149,11 @@ function ServiceCard({
       <div className="w-full md:w-2/3 p-8">
         <h2 className="text-2xl font-bold mb-4 text-[#0cabba]">{title}</h2>
         <p className="text-gray-700 leading-relaxed">{description}</p>
+        {note && (
+          <p className="mt-4 text-sm text-gray-500 italic border-t border-gray-100 pt-3">
+            {note}
+          </p>
+        )}
       </div>
     </div>
   );
