@@ -974,13 +974,33 @@
 
 .firewood-banner {
   display: flex;
-  justify-content: space-between;
+  justify-content: center !important;
   align-items: center;
   background: linear-gradient(90deg, #7ab83c 0%, #3cc99c 100%);
-  padding: 2rem 5%;
+  padding: 2rem 1rem;
   color: white;
-  gap: 2rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+/* Matches the container pattern used everywhere else on the page */
+.firewood-banner-inner {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.firewood-banner-inner .banner-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .firewood-banner .banner-content {
