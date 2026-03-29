@@ -180,6 +180,10 @@
   animation-fill-mode: forwards;
 }
 
+.banner-subtitle-mobile {
+  display: none;
+}
+
 /* Hero social proof — variants: minimal | scorecard | stripe | glass */
 .banner-social-proof {
   width: 100%;
@@ -521,12 +525,43 @@
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
+  .main-banner {
+    height: auto;
+    min-height: min(78vh, 640px);
+    align-items: flex-start;
+    padding: 5.5rem 0 2rem;
+    box-sizing: border-box;
+  }
+
+  .banner-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+    box-sizing: border-box;
+  }
+
   .banner-title {
-    font-size: 3rem;
+    font-size: 2.35rem;
+    line-height: 1.12;
+    margin-bottom: 0.5rem;
   }
 
   .banner-subtitle {
-    font-size: 1.25rem;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    margin-bottom: 0.6rem;
+  }
+
+  .banner-subtitle-desktop {
+    display: none;
+  }
+
+  .banner-subtitle-mobile {
+    display: block;
+  }
+
+  .banner-social-proof {
+    margin-bottom: 0.55rem;
   }
 
   .banner-sp-big-num {
@@ -534,7 +569,32 @@
   }
 
   .banner-social-proof--minimal .banner-sp-minimal-row {
-    padding: 0.45rem 0.7rem 0.4rem;
+    padding: 0.4rem 0.65rem 0.35rem;
+    gap: 0.25rem;
+  }
+
+  /* Less hero text: 2-line quote + hide CRM footnote */
+  .banner-social-proof--minimal .banner-sp-quote-text.banner-sp-quote-slot {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    min-height: calc(2 * 1.33em);
+    max-height: calc(2 * 1.33em);
+    font-size: 0.88rem;
+  }
+
+  .banner-sp-crm-note--minimal {
+    display: none;
+  }
+
+  .banner-trust-meta--minimal {
+    font-size: 0.72rem;
+    margin-top: 0.35rem;
+  }
+
+  .cta-button {
+    margin-top: 0.35rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
   }
 
   .banner-social-proof--stripe .banner-sp-stripe-inner {
@@ -566,8 +626,22 @@
 
 /* Narrow phones: shrink title so nowrap line still fits */
 @media (max-width: 420px) {
+  .main-banner {
+    min-height: 0;
+    padding-top: 5rem;
+    padding-bottom: 1.5rem;
+  }
+
   .banner-title {
-    font-size: 2.25rem;
+    font-size: 1.95rem;
+  }
+
+  .banner-title-line1 {
+    white-space: normal;
+  }
+
+  .banner-subtitle {
+    font-size: 0.98rem;
   }
 }
 

@@ -25,9 +25,14 @@ export default function MainBanner() {
           You Can Count On.
         </h1>
         <h2 className="banner-subtitle">
-          Always on schedule. Easy to work with. Serving North Potomac,
-          Rockville, and nearby Montgomery County neighborhoods for over 30
-          years.
+          <span className="banner-subtitle-desktop">
+            Always on schedule. Easy to work with. Serving North Potomac,
+            Rockville, and nearby Montgomery County neighborhoods for over 30
+            years.
+          </span>
+          <span className="banner-subtitle-mobile">
+            Reliable, easy to work with. 30+ years in Montgomery County.
+          </span>
         </h2>
         {/* Social proof style: "minimal" | "scorecard" | "stripe" | "glass" */}
         <BannerSocialProof
