@@ -18,7 +18,7 @@ export default function PropertySection() {
             />
           </div>
           <div className={`w-1/2 pl-6 ${styles.textContainer}`}>
-            <div className="max-w-[340px]">
+            <div className="w-full max-w-xl">
               <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
                 What we bring to the table
               </h1>
@@ -59,7 +59,7 @@ export default function PropertySection() {
           <div
             className={`w-1/2 pr-6 flex justify-end ${styles.textContainer}`}
           >
-            <div className="max-w-[340px]">
+            <div className="w-full max-w-xl">
               <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
                 Our Skillset
               </h1>
@@ -116,7 +116,7 @@ export default function PropertySection() {
             />
           </div>
           <div className={`w-1/2 pl-6 ${styles.textContainer}`}>
-            <div className="max-w-[340px]">
+            <div className="w-full max-w-xl">
               <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
                 See your house blossom
               </h1>

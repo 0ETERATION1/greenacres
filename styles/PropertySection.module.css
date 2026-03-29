@@ -1,4 +1,4 @@
-@media (max-width: 768px) {
+@media (max-width: 1023px) {
   .mobileSection > div > div {
     flex-direction: column !important;
   }

@@ -38,10 +38,10 @@ export default function Navbar() {
           </div>
 
           {/* Center: Navigation on Desktop */}
-          <div className="flex-1 flex justify-center items-center">
-            <NavigationMenu className="hidden md:flex w-full max-w-4xl">
+          <div className="flex-1 flex justify-center items-center min-w-0">
+            <NavigationMenu className="hidden lg:flex w-full max-w-4xl justify-center">
               <NavigationMenuList className="w-full flex items-center justify-center">
-                <div className="flex items-center justify-center gap-12 pl-32">
+                <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-1 xl:gap-10">
                   <NavigationMenuItem className="flex items-center">
                     <Link href="/about">
                       {/* @next-codemod-error This Link previously used the now removed `legacyBehavior` prop, and has a child that might not be an anchor. The codemod bailed out of lifting the child props to the Link. Check that the child component does not render an anchor, and potentially move the props manually to Link. */
@@ -106,9 +106,9 @@ export default function Navbar() {
             </NavigationMenu>
           </div>
 
-          {/* Right: Desktop Buttons */}
-          <div className="w-[300px] flex items-center justify-end gap-4 pr-4">
-            <div className="hidden md:flex items-center gap-4">
+          {/* Right: Desktop Buttons (lg+ so iPad portrait/tablet uses hamburger row) */}
+          <div className="shrink-0 flex items-center justify-end gap-2 sm:gap-4 pr-1 sm:pr-4 max-w-[min(100%,320px)] lg:max-w-none">
+            <div className="hidden lg:flex items-center gap-3 xl:gap-4">
               <Link
                 href="/quotePage"
                 className="
@@ -137,8 +137,8 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Mobile Actions (Free Quote + Hamburger) */}
-            <div className="md:hidden flex items-center gap-2">
+            {/* Tablet + mobile: quote + hamburger */}
+            <div className="lg:hidden flex items-center gap-2">
               <Link
                 href="/quotePage"
                 className="
@@ -184,7 +184,7 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 bg-white border-t">
               <Link
                 href="/about"

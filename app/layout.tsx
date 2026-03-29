@@ -33,7 +33,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body>
+      <body className="min-h-screen overflow-x-hidden">
         {children}
         <SpeedInsights />
       </body>

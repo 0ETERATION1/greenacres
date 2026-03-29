@@ -122,17 +122,25 @@
 .main-banner {
   position: relative;
   width: 100%;
+  max-width: 100%;
   height: 90vh;
   display: flex;
   align-items: center;
-  overflow: hidden; /* Prevent any potential image overflow */
+  justify-content: center;
+  overflow: hidden;
 }
-
-.banner-background {
+/* Full-bleed background — do not rely on Tailwind utilities alone (Safari / tablet quirks) */
+.main-banner .banner-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
   object-fit: cover;
+  object-position: center;
   z-index: 0;
-  opacity: 0; /* Start invisible */
-  animation: fadeIn 0.5s ease-in-out forwards; /* Fade in smoothly once loaded */
+  opacity: 0;
+  animation: fadeIn 0.5s ease-in-out forwards;
 }
 
 .banner-overlay {
@@ -145,15 +153,20 @@
   z-index: 1;
 }
 
-.banner-content {
+/* Hero inner — unique class name (not .banner-content) so firewood styles never collide */
+.main-banner .hero-banner-inner {
+  position: relative;
   z-index: 2;
   max-width: 800px;
-  text-align: center; /* Add this to center text */
+  width: 100%;
+  flex: 0 1 auto;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; /* Add this to center children */
-  width: fit-content;
-  margin: 0 auto; 
+  align-items: center;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  box-sizing: border-box;
 }
 
 .banner-title {
@@ -523,8 +536,8 @@
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
+/* Hero + banner: tablet and phone (matches lg: nav breakpoint) */
+@media (max-width: 1023px) {
   .main-banner {
     height: auto;
     min-height: min(78vh, 640px);
@@ -533,7 +546,7 @@
     box-sizing: border-box;
   }
 
-  .banner-content {
+  .main-banner .hero-banner-inner {
     width: 100%;
     max-width: 100%;
     padding: 0 1rem;
@@ -586,9 +599,9 @@
     display: none;
   }
 
+  /* Google stats line hidden on small screens — keeps hero scannable */
   .banner-trust-meta--minimal {
-    font-size: 0.72rem;
-    margin-top: 0.35rem;
+    display: none;
   }
 
   .cta-button {
@@ -921,19 +934,18 @@
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.banner-content {
+.firewood-banner .banner-content {
   flex: 1;
 }
 
-.banner-content h3 {
+.firewood-banner .banner-content h3 {
   font-size: 1.75rem;
   margin-bottom: 1rem;
   color: white;
   font-weight: 600;
 }
 
-.banner-content p {
-  /*  */
+.firewood-banner .banner-content p {
   font-size: 1.1rem;
   opacity: 0.9;
   color: rgba(255, 255, 255, 0.9);

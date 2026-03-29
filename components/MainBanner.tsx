@@ -18,7 +18,7 @@ export default function MainBanner() {
         className="banner-background absolute inset-0 w-full h-full object-cover"
       />
       <div className="banner-overlay" />
-      <div className="banner-content">
+      <div className="hero-banner-inner">
         <h1 className="banner-title">
           <span className="banner-title-line1">Family Owned Lawn Care</span>
           <br />
