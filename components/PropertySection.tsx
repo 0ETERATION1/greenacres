@@ -20,13 +20,16 @@ export default function PropertySection() {
           <div className={`w-1/2 pl-6 ${styles.textContainer}`}>
             <div className="w-full max-w-xl">
               <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
-                What we bring to the table
+                Why Homeowners Choose Green Acres
               </h1>
               <p>
-                With over three decades of experience in Montgomery County, we
-                bring expertise, dedication, and a family-oriented approach to
-                every project. Our commitment to quality and attention to detail
-                ensures your outdoor space receives the care it deserves.
+                Green Acres is a family-owned lawn care and landscaping company
+                based in Montgomery County. Customers know us for showing up
+                consistently, making lawn care easy, and taking a
+                family-oriented approach to every project. We focus on recurring
+                mowing, turf care, and seasonal property maintenance for
+                homeowners who want dependable service from a real local
+                company.
               </p>
               <br></br>
               <div className="flex justify-center">
@@ -61,13 +64,13 @@ export default function PropertySection() {
           >
             <div className="w-full max-w-xl">
               <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
-                Our Skillset
+                Recurring Mowing and Turf Care
               </h1>
               <p>
-                From precision mowing and seasonal maintenance to comprehensive
-                lawn care, our Turf Program delivers year-round solutions that
-                keep your property healthy, vibrant, and beautiful in every
-                season.
+                We focus on weekly mowing, seasonal lawn care, and turf
+                treatments that keep properties clean, healthy, and easy to
+                maintain. Our goal is dependable service and results that match
+                the property.
               </p>
               <br></br>
               <div className="flex justify-center">
@@ -118,13 +121,11 @@ export default function PropertySection() {
           <div className={`w-1/2 pl-6 ${styles.textContainer}`}>
             <div className="w-full max-w-xl">
               <h1 className="text-3xl md:text-4xl font-bold text-[#0cabba] mb-4">
-                See your house blossom
+                See Real Local Results
               </h1>
               <p>
-                Transform your outdoor space into a stunning landscape that
-                enhances your property&apos;s beauty and value. Browse our
-                portfolio to see how we&apos;ve helped countless homeowners
-                create their dream gardens and landscapes.
+                Browse recent Green Acres projects across Montgomery County,
+                including mowing, mulch, seasonal cleanup, and turf work.
               </p>
               <br></br>
               <div className="flex justify-center">

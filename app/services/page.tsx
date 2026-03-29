@@ -19,13 +19,32 @@ export default function ServicesPage() {
       {/* Hero Section */}
       <section className="pt-24 pb-16 bg-white">
         <div className="container mx-auto px-4">
-          <h1 className="text-5xl font-bold text-center mb-8 text-[#0cabba]">
+          <h1 className="text-5xl font-bold text-center mb-4 text-[#0cabba]">
             Our Services
           </h1>
+
+          {/* Trust line */}
+          <p className="text-center text-sm font-semibold text-gray-600 mb-6 tracking-wide">
+            100+{" "}
+            {process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL ? (
+              <a
+                href={process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-2 hover:text-[#0cabba] transition-colors"
+              >
+                Google Reviews
+              </a>
+            ) : (
+              "Google Reviews"
+            )}{" "}
+            • 4.9 Stars • Family-Owned • Licensed &amp; Insured
+          </p>
+
           <p className="text-xl text-center max-w-3xl mx-auto text-gray-700">
-            From comprehensive lawn care to landscape transformations, we
-            provide professional services tailored to Montgomery County&apos;s
-            unique environment.
+            Simple, dependable services for Montgomery County homeowners. We
+            focus on recurring mowing, turf care, mulch, cleanup, trimming, and
+            seasonal property maintenance.
           </p>
         </div>
       </section>
