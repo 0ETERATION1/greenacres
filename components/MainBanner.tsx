@@ -30,7 +30,10 @@ export default function MainBanner() {
           years.
         </h2>
         {/* Social proof style: "minimal" | "scorecard" | "stripe" | "glass" */}
-        <BannerSocialProof googleReviewsUrl={googleReviewsUrl} variant="minimal" />
+        <BannerSocialProof
+          googleReviewsUrl={googleReviewsUrl}
+          variant="minimal"
+        />
         <button
           onClick={() => router.push("/quotePage")}
           className="cta-button"
