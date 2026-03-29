@@ -3,6 +3,9 @@
 // Remove the Image import
 // import Image from "next/image";
 import { useRouter } from "next/navigation";
+import BannerSocialProof from "./BannerSocialProof";
+
+const googleReviewsUrl = process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL;
 
 export default function MainBanner() {
   const router = useRouter();
@@ -17,13 +20,17 @@ export default function MainBanner() {
       <div className="banner-overlay" />
       <div className="banner-content">
         <h1 className="banner-title">
-          We Make Lawn
+          <span className="banner-title-line1">Family Owned Lawn Care</span>
           <br />
-          Care Easy.
+          You Can Count On.
         </h1>
         <h2 className="banner-subtitle">
-          Lawn Care, Fertilizer and Weed Control. We&apos;ve got you covered.
+          Always on schedule. Easy to work with. Serving North Potomac,
+          Rockville, and nearby Montgomery County neighborhoods for over 30
+          years.
         </h2>
+        {/* Social proof style: "minimal" | "scorecard" | "stripe" | "glass" */}
+        <BannerSocialProof googleReviewsUrl={googleReviewsUrl} variant="minimal" />
         <button
           onClick={() => router.push("/quotePage")}
           className="cta-button"
