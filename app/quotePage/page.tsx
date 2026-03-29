@@ -176,7 +176,7 @@ const PricingDisplay = ({
 
 // Initialize Stripe outside component
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
 );
 
 const DeclinedForm = ({
@@ -265,7 +265,7 @@ const DeclinedForm = ({
       if (declinedVideoFile) {
         const storageRef = ref(
           storage,
-          `videos/${Date.now()}-${declinedVideoFile.name}`
+          `videos/${Date.now()}-${declinedVideoFile.name}`,
         );
         const uploadTask = uploadBytesResumable(storageRef, declinedVideoFile);
 
@@ -279,7 +279,7 @@ const DeclinedForm = ({
           (error) => {
             console.error("Upload error:", error);
             throw new Error("Failed to upload video");
-          }
+          },
         );
 
         await uploadTask;
@@ -475,14 +475,14 @@ const LandscapingForm = ({
     } else {
       return `(${phoneNumber.slice(0, 3)}) ${phoneNumber.slice(
         3,
-        6
+        6,
       )}-${phoneNumber.slice(6, 10)}`;
     }
   };
 
   const handlePhoneChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    setPhone: (value: string) => void
+    setPhone: (value: string) => void,
   ) => {
     const formattedNumber = formatPhoneNumber(e.target.value);
     setPhone(formattedNumber);
@@ -516,11 +516,11 @@ const LandscapingForm = ({
       if (landscapingVideoFile) {
         const storageRef = ref(
           storage,
-          `videos/${Date.now()}-${landscapingVideoFile.name}`
+          `videos/${Date.now()}-${landscapingVideoFile.name}`,
         );
         const uploadTask = uploadBytesResumable(
           storageRef,
-          landscapingVideoFile
+          landscapingVideoFile,
         );
 
         uploadTask.on(
@@ -533,7 +533,7 @@ const LandscapingForm = ({
           (error) => {
             console.error("Upload error:", error);
             throw new Error("Failed to upload video");
-          }
+          },
         );
 
         await uploadTask;
@@ -748,7 +748,7 @@ export default function QuotePage() {
   const [landscapingPhone, setLandscapingPhone] = useState("");
   const [landscapingDetails, setLandscapingDetails] = useState("");
   const [landscapingVideoFile, setLandscapingVideoFile] = useState<File | null>(
-    null
+    null,
   );
   const [landscapingUploadProgress, setLandscapingUploadProgress] = useState(0);
   const landscapingFileInputRef = useRef<HTMLInputElement>(null);
@@ -1006,7 +1006,7 @@ export default function QuotePage() {
         if (videoFile) {
           const storageRef = ref(
             storage,
-            `videos/${Date.now()}-${videoFile.name}`
+            `videos/${Date.now()}-${videoFile.name}`,
           );
           const uploadTask = uploadBytesResumable(storageRef, videoFile);
 
@@ -1026,7 +1026,7 @@ export default function QuotePage() {
                 } catch (error) {
                   reject(error);
                 }
-              }
+              },
             );
           });
         }
@@ -1066,7 +1066,7 @@ export default function QuotePage() {
           throw new Error(
             `Server error: ${response.status} - ${
               errorText || response.statusText
-            }`
+            }`,
           );
         }
 
@@ -1418,12 +1418,33 @@ export default function QuotePage() {
         {/* Hero Section */}
         <section className="container mx-auto px-4 py-8 max-w-7xl">
           <div className="container mx-auto px-4">
-            <h1 className="text-5xl font-bold text-center mb-8 text-[#0cabba]">
+            <h1 className="text-5xl font-bold text-center mb-4 text-[#0cabba]">
               Get a Quote
             </h1>
+
+            {/* Trust line */}
+            <p className="text-center text-sm font-semibold text-gray-600 mb-6 tracking-wide">
+              100+{" "}
+              {process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL ? (
+                <a
+                  href={process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline underline-offset-2 hover:text-[#0cabba] transition-colors"
+                >
+                  Google Reviews
+                </a>
+              ) : (
+                "Google Reviews"
+              )}{" "}
+              • 4.9 Stars • Family-Owned • Fast Local Response
+            </p>
+
             <p className="text-xl text-center max-w-3xl mx-auto text-gray-700">
-              Choose your service below and let us help you transform your
-              outdoor space into something extraordinary.
+              Choose the service you need and send the basics. We review the
+              details quickly and follow up with the next step. If you are using
+              the mowing quote tool, we may confirm the scope before your first
+              visit so pricing matches the property.
             </p>
           </div>
         </section>
@@ -1431,6 +1452,36 @@ export default function QuotePage() {
         {/* Service Selection Section */}
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
+            {/* How it works */}
+            <div className="mb-10">
+              <h2 className="text-xl font-bold text-center text-gray-800 mb-6">
+                How it works
+              </h2>
+              <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+                {[
+                  { n: "1", label: "Select your service" },
+                  { n: "2", label: "Select your yard size" },
+                  { n: "3", label: "Payment or manual review" },
+                ].map(({ n, label }, i, arr) => (
+                  <div
+                    key={n}
+                    className="flex flex-col items-center text-center relative"
+                  >
+                    {/* connector line between steps */}
+                    {i < arr.length - 1 && (
+                      <div className="hidden md:block absolute top-6 left-[calc(50%+1.5rem)] w-[calc(100%-1.5rem)] h-px bg-gray-200" />
+                    )}
+                    <div className="w-12 h-12 rounded-full bg-[#0cabba] text-white text-lg font-bold flex items-center justify-center mb-3 shadow-md z-10">
+                      {n}
+                    </div>
+                    <p className="text-sm font-medium text-gray-700 leading-snug">
+                      {label}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
             <div className="mb-8">
               <h2 className="text-2xl text-center font-semibold mb-4 bg-green-600 text-white shadow-lg p-4 rounded-t-lg">
                 Select your Service
@@ -1439,77 +1490,90 @@ export default function QuotePage() {
               {/* Service Selection Boxes */}
               <div className="grid md:grid-cols-2 gap-6 mt-6">
                 {/* Mowing Service Box */}
-                <div
-                  className={`border rounded-lg cursor-pointer transition-all
-                  hover:shadow-lg flex flex-col relative overflow-hidden
-                  min-h-[400px] text-[#0cabba]
-                  ${
-                    selectedService === "mowing"
-                      ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
-                      : "border-gray-200"
-                  }
-                `}
-                  onClick={() => handleServiceSelection("mowing")}
-                >
+                <div className="flex flex-col gap-2">
                   <div
-                    className={`relative z-10 bg-white p-4 rounded-t-lg border-b
-                    ${selectedService === "mowing" ? "border-[#0cabba]" : ""}`}
+                    className={`border rounded-lg cursor-pointer transition-all
+                    hover:shadow-lg flex flex-col relative overflow-hidden
+                    min-h-[400px] text-[#0cabba]
+                    ${
+                      selectedService === "mowing"
+                        ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
+                        : "border-gray-200"
+                    }
+                  `}
+                    onClick={() => handleServiceSelection("mowing")}
                   >
-                    <h3
-                      className={`text-xl font-semibold text-center
-                      ${selectedService === "mowing" ? "font-bold" : ""}`}
+                    <div
+                      className={`relative z-10 bg-white p-4 rounded-t-lg border-b
+                      ${selectedService === "mowing" ? "border-[#0cabba]" : ""}`}
                     >
-                      Mowing Service (Instant Price)
-                    </h3>
+                      <h3
+                        className={`text-xl font-semibold text-center
+                        ${selectedService === "mowing" ? "font-bold" : ""}`}
+                      >
+                        Mowing Service (Instant Price)
+                      </h3>
+                    </div>
+                    <div className="absolute inset-0 top-[56px] z-0">
+                      <img
+                        src="/assets/images/port/LawnMaintenance/Nick mowing a larger property we maintain_.jpg"
+                        alt="Mowing Service"
+                        className="object-cover w-full h-full"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
                   </div>
-                  <div className="absolute inset-0 top-[56px] z-0">
-                    <img
-                      src="/assets/images/port/LawnMaintenance/Nick mowing a larger property we maintain_.jpg"
-                      alt="Mowing Service"
-                      className="object-cover w-full h-full"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                  <p className="text-xs text-gray-500 text-center px-1">
+                    Best for maintained lawns that fit our standard mowing
+                    sizes. If your property is unusually large or complex,
+                    select 'Other' in the Yard Size section.
+                  </p>
                 </div>
 
                 {/* Landscaping Service Box */}
-                <div
-                  className={`border rounded-lg cursor-pointer transition-all
-                  hover:shadow-lg flex flex-col relative overflow-hidden
-                  min-h-[400px] text-[#0cabba]
-                  ${
-                    selectedService === "landscaping"
-                      ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
-                      : "border-gray-200"
-                  }
-                `}
-                  onClick={() => handleServiceSelection("landscaping")}
-                >
+                <div className="flex flex-col gap-2">
                   <div
-                    className={`relative z-10 bg-white p-4 rounded-t-lg border-b
+                    className={`border rounded-lg cursor-pointer transition-all
+                    hover:shadow-lg flex flex-col relative overflow-hidden
+                    min-h-[400px] text-[#0cabba]
                     ${
                       selectedService === "landscaping"
-                        ? "border-[#0cabba]"
-                        : ""
-                    }`}
+                        ? "border-[#0cabba] border-2 shadow-xl scale-[1.02]"
+                        : "border-gray-200"
+                    }
+                  `}
+                    onClick={() => handleServiceSelection("landscaping")}
                   >
-                    <h3
-                      className={`text-xl font-semibold text-center
-                      ${selectedService === "landscaping" ? "font-bold" : ""}`}
+                    <div
+                      className={`relative z-10 bg-white p-4 rounded-t-lg border-b
+                      ${
+                        selectedService === "landscaping"
+                          ? "border-[#0cabba]"
+                          : ""
+                      }`}
                     >
-                      Turf Program / Property Cleanup / Other
-                    </h3>
+                      <h3
+                        className={`text-xl font-semibold text-center
+                        ${selectedService === "landscaping" ? "font-bold" : ""}`}
+                      >
+                        Turf Program / Property Cleanup / Other
+                      </h3>
+                    </div>
+                    <div className="absolute inset-0 top-[56px] z-0">
+                      <img
+                        src="/assets/images/port/plantInstall3.jpg"
+                        alt="Landscaping Service"
+                        className="object-cover w-full h-full"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
                   </div>
-                  <div className="absolute inset-0 top-[56px] z-0">
-                    <img
-                      src="/assets/images/port/plantInstall3.jpg"
-                      alt="Landscaping Service"
-                      className="object-cover w-full h-full"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
+                  <p className="text-xs text-gray-500 text-center px-1">
+                    Best for turf treatments, seasonal cleanup, mulch, trimming,
+                    and anything that needs a closer look.
+                  </p>
                 </div>
               </div>
             </div>
