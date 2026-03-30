@@ -3,6 +3,7 @@
 import React from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { GOOGLE_REVIEWS_URL } from "@/lib/constants";
 
 interface ServiceCardProps {
   title: string;
@@ -27,18 +28,14 @@ export default function ServicesPage() {
           {/* Trust line */}
           <p className="text-center text-sm font-semibold text-gray-600 mb-6 tracking-wide">
             100+{" "}
-            {process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL ? (
-              <a
-                href={process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="underline underline-offset-2 hover:text-[#0cabba] transition-colors"
-              >
-                Google Reviews
-              </a>
-            ) : (
-              "Google Reviews"
-            )}{" "}
+            <a
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0cabba] underline underline-offset-2 hover:opacity-80 transition-opacity"
+            >
+              Google Reviews
+            </a>{" "}
             • 4.9 Stars • Family-Owned • Licensed &amp; Insured
           </p>
 

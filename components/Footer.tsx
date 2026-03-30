@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { GOOGLE_REVIEWS_URL } from "@/lib/constants";
 
 export default function Footer() {
   return (
@@ -116,18 +117,14 @@ export default function Footer() {
         <div className="mt-8 pt-8 border-t border-green-700 text-center space-y-2">
           <p className="text-base font-semibold text-gray-700 tracking-wide">
             100+{" "}
-            {process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL ? (
-              <a
-                href={process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#0cabba] underline underline-offset-2 hover:opacity-80 transition-opacity"
-              >
-                Google Reviews
-              </a>
-            ) : (
-              "Google Reviews"
-            )}{" "}
+            <a
+              href={GOOGLE_REVIEWS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[#0cabba] underline underline-offset-2 hover:opacity-80 transition-opacity"
+            >
+              Google Reviews
+            </a>{" "}
             • 4.9 Stars • Family-Owned • Licensed &amp; Insured
           </p>
           <p className="text-sm text-gray-500">

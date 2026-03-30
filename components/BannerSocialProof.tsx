@@ -2,6 +2,7 @@
 
 import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
+import { GOOGLE_REVIEWS_URL } from "@/lib/constants";
 
 /** Short excerpts from real customer feedback (CRM). Rotate for variety. */
 const FEATURED_REVIEWS: { quote: string; attribution: string }[] = [
@@ -66,7 +67,6 @@ export type BannerSocialProofVariant =
   | "glass"; // Frosted card (original)
 
 type BannerSocialProofProps = {
-  googleReviewsUrl?: string;
   /** Try: minimal | scorecard | stripe | glass */
   variant?: BannerSocialProofVariant;
 };
@@ -96,35 +96,24 @@ function CrmSourceNote({ className }: { className?: string }) {
   );
 }
 
-function TrustMeta({
-  googleReviewsUrl,
-  className,
-}: {
-  googleReviewsUrl?: string;
-  className?: string;
-}) {
+function TrustMeta({ className }: { className?: string }) {
   return (
     <p className={className}>
       100+{" "}
-      {googleReviewsUrl ? (
-        <a
-          href={googleReviewsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="banner-trust-line-link"
-        >
-          Google Reviews
-        </a>
-      ) : (
-        "Google Reviews"
-      )}{" "}
+      <a
+        href={GOOGLE_REVIEWS_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="banner-trust-line-link"
+      >
+        Google Reviews
+      </a>{" "}
       • 4.9 Stars • Family-Owned • Licensed & Insured
     </p>
   );
 }
 
 export default function BannerSocialProof({
-  googleReviewsUrl,
   variant = "minimal",
 }: BannerSocialProofProps) {
   const [index, setIndex] = useState(0);
@@ -154,10 +143,7 @@ export default function BannerSocialProof({
           <footer className="banner-sp-attrib">— {current.attribution}</footer>
         </blockquote>
         <CrmSourceNote className="banner-sp-crm-note banner-sp-crm-note--scorecard" />
-        <TrustMeta
-          googleReviewsUrl={googleReviewsUrl}
-          className="banner-trust-meta banner-trust-meta--scorecard"
-        />
+        <TrustMeta className="banner-trust-meta banner-trust-meta--scorecard" />
       </div>
     );
   }
@@ -180,10 +166,7 @@ export default function BannerSocialProof({
           </blockquote>
           <CrmSourceNote className="banner-sp-crm-note banner-sp-crm-note--minimal" />
         </div>
-        <TrustMeta
-          googleReviewsUrl={googleReviewsUrl}
-          className="banner-trust-meta banner-trust-meta--minimal"
-        />
+        <TrustMeta className="banner-trust-meta banner-trust-meta--minimal" />
       </div>
     );
   }
@@ -206,10 +189,7 @@ export default function BannerSocialProof({
           </blockquote>
           <CrmSourceNote className="banner-sp-crm-note banner-sp-crm-note--stripe" />
         </div>
-        <TrustMeta
-          googleReviewsUrl={googleReviewsUrl}
-          className="banner-trust-meta"
-        />
+        <TrustMeta className="banner-trust-meta" />
       </div>
     );
   }
@@ -227,10 +207,7 @@ export default function BannerSocialProof({
         </blockquote>
         <CrmSourceNote className="banner-sp-crm-note banner-sp-crm-note--glass" />
       </div>
-      <TrustMeta
-        googleReviewsUrl={googleReviewsUrl}
-        className="banner-trust-meta"
-      />
+      <TrustMeta className="banner-trust-meta" />
     </div>
   );
 }

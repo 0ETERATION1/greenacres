@@ -5,8 +5,6 @@
 import { useRouter } from "next/navigation";
 import BannerSocialProof from "./BannerSocialProof";
 
-const googleReviewsUrl = process.env.NEXT_PUBLIC_GOOGLE_REVIEWS_URL;
-
 export default function MainBanner() {
   const router = useRouter();
 
@@ -35,10 +33,7 @@ export default function MainBanner() {
           </span>
         </h2>
         {/* Social proof style: "minimal" | "scorecard" | "stripe" | "glass" */}
-        <BannerSocialProof
-          googleReviewsUrl={googleReviewsUrl}
-          variant="minimal"
-        />
+        <BannerSocialProof variant="minimal" />
         <button
           onClick={() => router.push("/quotePage")}
           className="cta-button"
