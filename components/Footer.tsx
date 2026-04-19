@@ -48,6 +48,7 @@ export default function Footer() {
                 "Gallery",
                 "Firewood",
                 "Blog",
+                "Careers",
                 { text: "Contact", path: "contact" },
               ].map((link) => (
                 <li key={typeof link === "string" ? link : link.text}>
