@@ -54,8 +54,8 @@ export default function CityLawnMowingPage({ city }: CityLawnMowingPageProps) {
   const mapsEmbedKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_EMBED_KEY;
   const mapSrc = mapsEmbedKey
     ? `https://www.google.com/maps/embed/v1/place?key=${mapsEmbedKey}&q=${encodeURIComponent(
-        `${city}, MD`
-      )}&zoom=12`
+        `${city}, MD`,
+      )}&zoom=13`
     : null;
 
   return (
@@ -162,7 +162,7 @@ export default function CityLawnMowingPage({ city }: CityLawnMowingPageProps) {
             </p>
 
             {mapSrc ? (
-              <div className="relative w-full aspect-video overflow-hidden rounded-lg shadow border border-gray-200">
+              <div className="relative w-full aspect-video overflow-hidden rounded-2xl border-2 border-[#0cabba]/60 ring-4 ring-[#0cabba]/15 shadow-2xl shadow-[#0cabba]/20 transition-shadow duration-300 hover:shadow-[#0cabba]/40">
                 <iframe
                   title={`Map of ${city}, MD`}
                   src={mapSrc}
