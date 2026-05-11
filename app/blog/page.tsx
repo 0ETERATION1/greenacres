@@ -1,5 +1,18 @@
 "use client";
 
+import { notFound } from "next/navigation";
+
+// Blog is temporarily disabled. The /blog route now 404s.
+// To re-enable: delete this stub and uncomment the implementation block below.
+export default function Blog() {
+  notFound();
+}
+
+/* ------------------------------------------------------------------
+ * Original blog implementation — preserved for easy re-enable.
+ * Uncomment everything between the dashed lines below to restore.
+ * ------------------------------------------------------------------
+
 import { useState, useEffect, Suspense, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -42,7 +55,6 @@ const ShareButtons = ({ post }: { post: BlogPost }) => {
   return (
     <div className="flex items-center gap-4 mt-6 pt-6 border-t border-gray-200">
       <span className="text-gray-600">Share:</span>
-      {/* Facebook */}
       <button
         onClick={() => window.open(shareData.facebook, "_blank")}
         className="p-2 rounded-full bg-blue-600 text-white hover:bg-blue-700 transition-colors"
@@ -53,7 +65,6 @@ const ShareButtons = ({ post }: { post: BlogPost }) => {
         </svg>
       </button>
 
-      {/* Twitter/X */}
       <button
         onClick={() => window.open(shareData.twitter, "_blank")}
         className="p-2 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
@@ -64,7 +75,6 @@ const ShareButtons = ({ post }: { post: BlogPost }) => {
         </svg>
       </button>
 
-      {/* LinkedIn */}
       <button
         onClick={() => window.open(shareData.linkedin, "_blank")}
         className="p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors"
@@ -75,7 +85,6 @@ const ShareButtons = ({ post }: { post: BlogPost }) => {
         </svg>
       </button>
 
-      {/* Email */}
       <button
         onClick={() => (window.location.href = shareData.email)}
         className="p-2 rounded-full bg-gray-600 text-white hover:bg-gray-700 transition-colors"
@@ -99,7 +108,6 @@ const ShareButtons = ({ post }: { post: BlogPost }) => {
   );
 };
 
-// Add a Modal component for full-screen view
 const BlogModal = ({
   post,
   isOpen,
@@ -182,7 +190,7 @@ const blogPosts: BlogPost[] = [
     title: "Spring Lawn Care Tips",
     excerpt:
       "Essential tips for maintaining a healthy lawn this spring season.",
-    content: `Spring is the perfect time to revitalize your lawn after the winter months. 
+    content: `Spring is the perfect time to revitalize your lawn after the winter months.
     Here are some essential steps to ensure your lawn thrives:
 
     1. Clean up winter debris
@@ -197,7 +205,6 @@ const blogPosts: BlogPost[] = [
     author: "Bradley Guerra",
     category: "lawn-care",
   },
-  // Add more blog posts here
 ];
 
 function BlogContent() {
@@ -207,16 +214,13 @@ function BlogContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  // Filter and sort posts
   const filteredAndSortedPosts = useMemo(() => {
     let posts = [...blogPosts];
 
-    // Apply category filter
     if (selectedCategory !== "all") {
       posts = posts.filter((post) => post.category === selectedCategory);
     }
 
-    // Apply sort
     posts.sort((a, b) => {
       const dateA = new Date(a.date).getTime();
       const dateB = new Date(b.date).getTime();
@@ -254,7 +258,6 @@ function BlogContent() {
         Insights and tips from our landscaping experts
       </p>
 
-      {/* Filters Section - Updated to match portfolio styling */}
       <div className="mb-12">
         <div className="flex flex-wrap justify-center gap-4 mb-8">
           <button
@@ -319,7 +322,6 @@ function BlogContent() {
           </button>
         </div>
 
-        {/* Sort Order - Styled to match */}
         <div className="flex justify-center items-center gap-2">
           <div className="relative">
             <select
@@ -351,7 +353,6 @@ function BlogContent() {
         </div>
       </div>
 
-      {/* Blog Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {filteredAndSortedPosts.map((post) => (
           <motion.div
@@ -373,7 +374,6 @@ function BlogContent() {
                   decoding="async"
                 />
               </div>
-              {/* Expand Icon */}
               <div className="absolute top-2 right-2 bg-black bg-opacity-50 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -405,7 +405,6 @@ function BlogContent() {
         ))}
       </div>
 
-      {/* Show message if no posts match filters */}
       {filteredAndSortedPosts.length === 0 && (
         <div className="text-center py-12">
           <p className="text-gray-600">
@@ -427,7 +426,6 @@ function BlogContent() {
   );
 }
 
-// Loading component
 function BlogLoading() {
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
@@ -455,3 +453,5 @@ export default function Blog() {
     </>
   );
 }
+
+* ------------------------------------------------------------------ */

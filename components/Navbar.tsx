@@ -177,6 +177,7 @@ export default function Navbar() {
                     </NavigationMenuLink>
                   </NavigationMenuItem>
 
+                  {/* Blog temporarily disabled — uncomment to restore.
                   <NavigationMenuItem className="flex items-center">
                     <NavigationMenuLink
                       asChild
@@ -185,6 +186,7 @@ export default function Navbar() {
                       <Link href="/blog">Blog</Link>
                     </NavigationMenuLink>
                   </NavigationMenuItem>
+                  */}
 
                   <NavigationMenuItem className="flex items-center">
                     <NavigationMenuLink
@@ -322,12 +324,14 @@ export default function Navbar() {
               >
                 Firewood 🔥🪵
               </Link>
+              {/* Blog temporarily disabled — uncomment to restore.
               <Link
                 href="/blog"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 text-center"
               >
                 Blog 📝
               </Link>
+              */}
               <Link
                 href="/contact"
                 className="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-50 text-center"
